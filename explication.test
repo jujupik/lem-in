@@ -1,0 +1,31 @@
+
+
+la map est decoupee en 3 parties :
+
+1) la partie qui decrit le nombre de nb_fourmis
+	a) possiblement un commentaire a ignorer
+	b) le nombre de fourmis
+
+Tout autre cas -> error
+
+2) La description des pieces de la map
+	a) possiblement un commentaire a ignorer
+	b) possiblement une commande a effectuer si on la reconnait
+	c) le nom de la piece / les coords x et y de cette piece (Inutile pour nous vu
+		qu'on ne fait pas de visualisateur)
+
+Si jamais on tombe sur une ligne qui ne correspond PAS a une decription de
+piece ou un commentaire ou une commande -> on passe au parsing des liens
+
+3) la description des liens entre les pieces
+	a) possiblement un commentaire a ignorer
+	b) possiblement une commande -> on arrete de lire et on essaye de ressoudre la
+		map avec ce qu'on a pu obtenir
+	c) une description de lien entre deux pieces -> si une des deux peice n'existe
+		as, on arrete de lire et on essaye de ressoudre la map avec ce qu'on a pu lire
+
+une fois le parsing fini, on ressouds la map.
+
+une fois la map resolue, on affiche la map a nouveau dans la sortie standard,
+puis on affiche les tours a effectuer pour deplacer toute les fourmis du
+point a au point b
