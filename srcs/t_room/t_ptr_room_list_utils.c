@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   t_ptr_room_list_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 13:43:55 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/29 13:43:57 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/29 14:10:56 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/29 14:10:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "lem_in.h"
 
-# include "lem_in_includes.h"
+t_ptr_room			t_ptr_room_list_at(t_ptr_room_list *list, size_t index)
+{
+	if (index >= list->size)
+		index = list->size - 1;
+	return (list->content[index]);
+}
 
-# include "lem_in_room.h"
-# include "lem_in_map.h"
-
-BOOL line_is_commentary(char *line);
-BOOL line_is_command(char *line);
-BOOL line_is_piece(char *line);
-BOOL line_is_link(char *line);
-BOOL is_name_valid(t_room_list *list, char *name);
-
-#endif
+t_ptr_room			*t_ptr_room_list_get(t_ptr_room_list *list, size_t index)
+{
+	if (index >= list->size)
+		index = list->size - 1;
+	return (&(list->content[index]));
+}

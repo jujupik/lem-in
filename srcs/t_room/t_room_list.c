@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jlib_room_list.c                                   :+:      :+:    :+:   */
+/*   t_room_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:49:32 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/24 16:49:35 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/29 14:11:19 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/29 14:11:23 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room_list	create_room_list(size_t p_push_size)
+t_room_list		create_room_list(size_t p_push_size)
 {
 	t_room_list result;
 
@@ -25,7 +25,7 @@ t_room_list	create_room_list(size_t p_push_size)
 	return (result);
 }
 
-t_room_list	*malloc_room_list(size_t p_push_size)
+t_room_list		*malloc_room_list(size_t p_push_size)
 {
 	t_room_list	*result;
 
@@ -67,18 +67,4 @@ void			t_room_list_add(t_room_list *list, t_room to_add)
 	}
 	list->content[list->size] = to_add;
 	list->size++;
-}
-
-t_room			t_room_list_at(t_room_list *list, size_t index)
-{
-	if (index >= list->size)
-		index = list->size - 1;
-	return (list->content[index]);
-}
-
-t_room			*t_room_list_get(t_room_list *list, size_t index)
-{
-	if (index >= list->size)
-		index = list->size - 1;
-	return (&(list->content[index]));
 }

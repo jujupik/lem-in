@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in_room.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/29 13:44:44 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/29 13:44:47 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEM_IN_ROOM_H
-#define LEM_IN_ROOM_H
+# define LEM_IN_ROOM_H
 
 typedef enum		e_room_state
 {
@@ -10,10 +22,9 @@ typedef enum		e_room_state
 
 typedef struct		s_room
 {
-	char			*name;
-	t_room_state	status;
-	struct s_ptr_room_list
-					*links;
+	char					*name;
+	t_room_state			status;
+	struct s_ptr_room_list	*links;
 }					t_room;
 
 t_room				create_room(char *p_name, t_room_state p_status);
@@ -52,7 +63,8 @@ t_ptr_room_list		create_ptr_room_list(size_t p_push_size);
 t_ptr_room_list		*malloc_ptr_room_list(size_t p_push_size);
 void				destroy_ptr_room_list(t_ptr_room_list list);
 void				free_ptr_room_list(t_ptr_room_list *list);
-void				t_ptr_room_list_add(t_ptr_room_list *list, t_ptr_room to_add);
+void				t_ptr_room_list_add(t_ptr_room_list *list,
+						t_ptr_room to_add);
 t_ptr_room			t_ptr_room_list_at(t_ptr_room_list *list, size_t index);
 
 #endif

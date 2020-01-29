@@ -12,7 +12,7 @@
 
 #include "jlib.h"
 
-t_str_list	create_str_list(size_t p_push_size)
+t_str_list		create_str_list(size_t p_push_size)
 {
 	t_str_list result;
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_room.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/29 14:11:06 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/29 14:11:07 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 t_room	create_room(char *p_name, t_room_state p_status)
@@ -7,7 +19,7 @@ t_room	create_room(char *p_name, t_room_state p_status)
 	result.name = ft_strdup(p_name);
 	result.status = p_status;
 	result.links = malloc_ptr_room_list(500);
-	return(result);
+	return (result);
 }
 
 t_room	*malloc_room(char *p_name, t_room_state p_status)
@@ -33,10 +45,10 @@ void	free_room(t_room *to_free)
 	free(to_free);
 }
 
-void				room_add_link(t_room *a, t_room *b)
+void	room_add_link(t_room *a, t_room *b)
 {
-	size_t i;
-	BOOL found;
+	size_t	i;
+	BOOL	found;
 
 	i = 0;
 	found = FALSE;
