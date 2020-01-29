@@ -26,6 +26,7 @@ void	parse_nb_fourmis(t_map *map)
 	if (ft_strisdigit(line) == FALSE) //erreur si c'est pas juste un nombre
 		error_exit(0, "Nb ant line isn't fully digit");
 	map->nb_fourmis = ft_atoi(line); // on passe le nb lu dans nb_fourmis
+	free(line);
 }
 
 void	parse_room(t_map *map, char *line, t_room_state *status)
@@ -34,6 +35,7 @@ void	parse_room(t_map *map, char *line, t_room_state *status)
 	t_room	*actual;
 
 	tab = ft_strsplit(line, ' '); //on split pour avoir les param description en 3 partie
+
 	if (is_name_valid(map->room_list, tab[0]) == FALSE) //si nom commence par un L, a un espace ou -: cas erreur
 		error_exit(1, "Bad room name");
 	t_room_list_add(map->room_list, create_room(tab[0], *status)); //on rajoute le nom de cette room, son statu a la liste des rooms(et on lui malloc une lst pour futur lien)
@@ -84,6 +86,8 @@ void	parse_link(t_map *map, char *line, BOOL *utils)
 	t_room	*a;
 	t_room	*b;
 
+	if (map->start == NULL || map->end == NULL)
+		error_exit(0, "No start or end in map");
 	tab = ft_strsplit(line, '-'); //tab[0]-tab[1]
 	a = search_room(map, tab[0]); //a = la room tab[0] de la liste room si correspondance
 	b = search_room(map, tab[1]); // b pareil tab[1]
@@ -91,4 +95,5 @@ void	parse_link(t_map *map, char *line, BOOL *utils)
 		room_add_link(a, b); // si room valide on la rajoute a la liste chemins
 	else
 		*utils = FALSE; //si room inexistante alors mauvaise ligne
+	ft_tab_free(tab);
 }

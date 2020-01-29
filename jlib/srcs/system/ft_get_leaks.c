@@ -26,5 +26,6 @@ void	ft_get_leaks(char *prog_name, char *msg)
 	system(command);
 	ft_putstr(msg);
 	ft_putchar('\n');
+	ft_putchar('\n');
 	free(command);
 }

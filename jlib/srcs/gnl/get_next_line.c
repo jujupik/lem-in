@@ -29,6 +29,7 @@ BOOL			is_only_compose(char *src, char c, size_t len)
 int				get_next_line(int fd, char **line)
 {
 	int			result;
+	char		*tmp;
 	char		buff[BUFF_SIZE + 1];
 	static char	*saved[10000];
 
@@ -44,7 +45,9 @@ int				get_next_line(int fd, char **line)
 			*line = NULL;
 			return (0);
 		}
-		saved[fd] = ft_strjoin(saved[fd], buff);
+		tmp = saved[fd];
+		saved[fd] = ft_strjoin(tmp, buff);
+		free(tmp);
 	}
 	if (*line != NULL)
 		free(*line);

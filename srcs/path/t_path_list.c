@@ -38,6 +38,14 @@ t_path_list	*malloc_path_list(size_t p_push_size)
 
 void			destroy_path_list(t_path_list list)
 {
+	size_t i;
+
+	i = 0;
+	while (i < list.size)
+	{
+		destroy_ptr_room_list(t_path_list_at(&list, i));
+		i++;
+	}
 	free(list.content);
 }
 

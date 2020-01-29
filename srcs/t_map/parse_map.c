@@ -31,14 +31,13 @@ void	parse_map_content(t_map *map)
 			parse_command(line, &status); //si commande == ##start ou ##end set le status correspondant
 		else if (line_is_link(line) == TRUE) //si c'est un chemin donc format room-otherroom
 		{
-			if (map->start == NULL || map->end == NULL)
-				error_exit(0, "No start or end in map");
 			parse_link(map, line, &utils);  //parse la ligne, rajoute les chemins dans la lst chemin des rooms, set utils FALSE si invalide
 			links = TRUE;
 		}
 		else if (line_is_commentary(line) == FALSE) // si cest pas un commentaire (format #bla) ni le reste alors erreur
 			error_exit(1, "Bad map line");
 	}
+	free(line);
 }
 
 void	parse_map(t_map *map)

@@ -12,10 +12,32 @@
 
 #include "lem_in.h"
 
-typedef struct s_solution
-{
-	t_path_list *paths;
-}				t_solution;
+// typedef struct s_solution
+// {
+// 	t_path_list *paths;
+// }				t_solution;
+
+// t_solution create_solution()
+// {
+//
+// }
+//
+// t_solution *malloc_solution()
+// {
+//
+// }
+//
+// void destroy_solution(t_solution to_destroy)
+// {
+//
+// 	free_path_list(to_destroy.paths);
+// }
+//
+// void free_solution(t_solution *to_free)
+// {
+// 	destroy_solution(*to_free);
+// 	free(to_free);
+// }
 
 int	main(void)
 {
