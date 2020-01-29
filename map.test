@@ -1,18 +1,22 @@
-#ceci est le nombre de fourmis
 10
-##end
-start 0 0
-middle 1 1
-middle2 1 1
 ##start
-middle3 1 1
-middle4 1 1
-middle5 1 1
-##truc
-end 2 2
-middle-start
-middle-middle2
-middle2-middle3
-middle3-middle4
-middle4-middle5
-middle5-end
+a 0 0
+b 1 1
+c 2 2
+##end
+d 3 3
+e 4 4
+f 5 5
+g 6 6
+h 7 7
+i 8 8
+a-b
+a-e
+b-c
+b-h
+c-d
+c-f
+d-i
+e-f
+h-i
+i-d

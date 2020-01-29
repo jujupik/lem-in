@@ -12,21 +12,23 @@
 
 #include "lem_in.h"
 
-typedef struct s_solution
+void calc_room_distance(t_room *actual, size_t parent_distance)
 {
-	t_path_list *paths;
-}				t_solution;
+	size_t i;
+	t_room *tmp;
 
-int	main(void)
+	actual->distance = parent_distance; //distance attitree a la room de depart donc 0
+	i = 0;
+	while (i < actual->links->size) //on parcour la lst des chemins
+	{
+		tmp = t_ptr_room_list_at(actual->links, i); //tmp = elem de la lst room
+		if (tmp->distance > actual->distance + 1) //si la distance actuelle est plus grande que celle du prochain elem de la lst chemins
+			calc_room_distance(tmp, actual->distance + 1); //recursive +1
+		i++;
+	}
+}
+
+void calc_distance(t_map *map)
 {
-	t_map map;
-	t_ptr_room_list path;
-
-	map = create_map();
-	parse_map(&map);
-	calc_distance(&map);
-	print_map(&map);
-	path = calc_path(&map, map.end);
-	print_path(&path, "Path");
-	return (0);
+	calc_room_distance(map->start, 0);
 }

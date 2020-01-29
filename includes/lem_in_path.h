@@ -10,31 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_MAP_H
-# define LEM_IN_MAP_H
+#ifndef LEM_IN_PATH_H
+# define LEM_IN_PATH_H
 
-typedef struct	s_map
+typedef t_ptr_room_list t_path;
+
+typedef struct	s_path_list
 {
-	int			nb_fourmis;
-	t_room_list	*room_list;
-	t_room		*start;
-	t_room		*end;
-}				t_map;
+	t_path			*content;
+	size_t			size;
+	size_t			max_size;
+	size_t			push_size;
+}					t_path_list;
 
-t_map			create_map();
-t_map			*malloc_map();
-void			destroy_map(t_map to_destroy);
-void			free_map(t_map *to_free);
+t_path_list			create_path_list(size_t p_push_size);
+t_path_list			*malloc_path_list(size_t p_push_size);
+void				destroy_path_list(t_path_list list);
+void				free_path_list(t_path_list *list);
+void 				t_path_list_add(t_path_list *list, t_path to_add);
+t_path				t_path_list_at(t_path_list *list, size_t index);
+t_path				*t_path_list_get(t_path_list *list, size_t index);
 
-void			parse_map(t_map *map);
-void			parse_map_content(t_map *map);
-void			parse_nb_fourmis(t_map *map);
-void			parse_room(t_map *map, char *line, t_room_state *status);
-void			parse_command(char *line, t_room_state *status);
-t_room			*search_room(t_map *map, char *room_name);
-void			parse_link(t_map *map, char *line, BOOL *utils);
-
-void			draw_links(t_ptr_room_list *links);
-void			print_map(t_map *map);
+void 				calc_room_distance(t_room *actual, size_t parent_distance);
+void 				calc_distance(t_map *map);
+t_path				calc_path(t_map *map, t_room *departure);
+void				print_path(t_path *path, char *name);
 
 #endif

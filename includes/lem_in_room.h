@@ -25,6 +25,8 @@ typedef struct		s_room
 	char					*name;
 	t_room_state			status;
 	struct s_ptr_room_list	*links;
+	size_t					distance;
+	BOOL					occuped;
 }					t_room;
 
 t_room				create_room(char *p_name, t_room_state p_status);

@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-static void	draw_links(t_ptr_room_list *links)
+void	draw_links(t_ptr_room_list *links)
 {
 	size_t j;
 
@@ -47,8 +47,11 @@ void		print_map(t_map *map)
 	while (i < map->room_list->size)
 	{
 		room = t_room_list_get(map->room_list, i);
-		ft_printf("[%u] - {%s}\n", i, room->name);
-		draw_links(room->links);
+		ft_printf("[%7u] - {%9s} - {%9s} - [%4u]\n", i, room->name,
+						(room->status == normal ? "Normal" :
+						(room->status == start ? "Start" : "End")),
+						room->distance);
+		//draw_links(room->links);
 		i++;
 	}
 }

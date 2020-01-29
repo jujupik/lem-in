@@ -12,51 +12,51 @@
 
 #include "lem_in.h"
 
-t_ptr_room_list	create_ptr_room_list(size_t p_push_size)
+t_path_list	create_path_list(size_t p_push_size)
 {
-	t_ptr_room_list result;
+	t_path_list result;
 
 	result.push_size = p_push_size;
 	result.max_size = result.push_size;
-	result.content = malloc(sizeof(t_ptr_room) * result.max_size);
+	result.content = malloc(sizeof(t_path) * result.max_size);
 	if (result.content == NULL)
-		error_exit(-2, "can't malloc ptr_room list");
+		error_exit(-2, "can't malloc path list");
 	result.size = 0;
 	return (result);
 }
 
-t_ptr_room_list	*malloc_ptr_room_list(size_t p_push_size)
+t_path_list	*malloc_path_list(size_t p_push_size)
 {
-	t_ptr_room_list	*result;
+	t_path_list	*result;
 
-	result = (t_ptr_room_list *)malloc(sizeof(t_ptr_room_list));
+	result = (t_path_list *)malloc(sizeof(t_path_list));
 	if (result == NULL)
-		error_exit(111, "Can't malloc a t_ptr_room");
-	*result = create_ptr_room_list(p_push_size);
+		error_exit(111, "Can't malloc a t_path");
+	*result = create_path_list(p_push_size);
 	return (result);
 }
 
-void			destroy_ptr_room_list(t_ptr_room_list list)
+void			destroy_path_list(t_path_list list)
 {
 	free(list.content);
 }
 
-void			free_ptr_room_list(t_ptr_room_list *list)
+void			free_path_list(t_path_list *list)
 {
-	destroy_ptr_room_list(*list);
+	destroy_path_list(*list);
 	free(list);
 }
 
-void			t_ptr_room_list_add(t_ptr_room_list *list, t_ptr_room to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
+void			t_path_list_add(t_path_list *list, t_path to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
 {
-	t_ptr_room		*tmp;
+	t_path		*tmp;
 	size_t			i;
 
 	if (list->size == list->max_size - 1)
 	{
 		tmp = list->content;
 		list->max_size += list->push_size;
-		list->content = malloc(sizeof(t_ptr_room) * list->max_size);
+		list->content = malloc(sizeof(t_path) * list->max_size);
 		i = 0;
 		while (i < list->size)
 		{

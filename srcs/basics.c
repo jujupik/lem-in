@@ -12,34 +12,34 @@
 
 #include "lem_in.h"
 
-BOOL	line_is_commentary(char *line)
+BOOL	line_is_commentary(char *line) //commentaire commence par #
 {
 	if (line[0] == '#' && line[1] != '#')
 		return (TRUE);
 	return (FALSE);
 }
 
-BOOL	line_is_command(char *line)
+BOOL	line_is_command(char *line) //commande commence par ##
 {
 	if (line[0] == '#' && line[1] == '#')
 		return (TRUE);
 	return (FALSE);
 }
 
-BOOL	line_is_piece(char *line)
+BOOL	line_is_room(char *line) //regarde si format room correct
 {
 	char	**tab;
 	size_t	len;
 
-	if (line_is_commentary(line) == TRUE || line_is_command(line) == TRUE)
+	if (line_is_commentary(line) == TRUE || line_is_command(line) == TRUE) //si la ligne est un commentaire ou une commande return FALSE
 		return (FALSE);
-	tab = ft_strsplit(line, ' ');
+	tab = ft_strsplit(line, ' '); //on split selon les espace pour recup les 3 partie [0]le nom [1]coordonne [2]coordonne
 	len = ft_tab_len(tab);
 	ft_tab_free(tab);
 	return (len == 3 ? TRUE : FALSE);
 }
 
-BOOL	line_is_link(char *line)
+BOOL	line_is_link(char *line) //regarde si format chemin correct
 {
 	char	**tab;
 	size_t	len;
@@ -52,7 +52,7 @@ BOOL	line_is_link(char *line)
 	return (len == 2 ? TRUE : FALSE);
 }
 
-BOOL	is_name_valid(t_room_list *list, char *name)
+BOOL	is_name_valid(t_room_list *list, char *name) //cas d'erreur des noms de room valide
 {
 	size_t	i;
 	char	*to_test;

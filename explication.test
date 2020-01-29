@@ -8,20 +8,20 @@ la map est decoupee en 3 parties :
 
 Tout autre cas -> error
 
-2) La description des pieces de la map
+2) La description des rooms de la map
 	a) possiblement un commentaire a ignorer
 	b) possiblement une commande a effectuer si on la reconnait
-	c) le nom de la piece / les coords x et y de cette piece (Inutile pour nous vu
+	c) le nom de la room / les coords x et y de cette room (Inutile pour nous vu
 		qu'on ne fait pas de visualisateur)
 
 Si jamais on tombe sur une ligne qui ne correspond PAS a une decription de
-piece ou un commentaire ou une commande -> on passe au parsing des liens
+room ou un commentaire ou une commande -> on passe au parsing des liens
 
-3) la description des liens entre les pieces
+3) la description des liens entre les rooms
 	a) possiblement un commentaire a ignorer
 	b) possiblement une commande -> on arrete de lire et on essaye de ressoudre la
 		map avec ce qu'on a pu obtenir
-	c) une description de lien entre deux pieces -> si une des deux peice n'existe
+	c) une description de lien entre deux rooms -> si une des deux peice n'existe
 		as, on arrete de lire et on essaye de ressoudre la map avec ce qu'on a pu lire
 
 une fois le parsing fini, on ressouds la map.

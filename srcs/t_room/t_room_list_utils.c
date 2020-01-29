@@ -12,14 +12,14 @@
 
 #include "lem_in.h"
 
-t_room			t_room_list_at(t_room_list *list, size_t index)
+t_room			t_room_list_at(t_room_list *list, size_t index) //renvoi un copie
 {
 	if (index >= list->size)
 		index = list->size - 1;
 	return (list->content[index]);
 }
 
-t_room			*t_room_list_get(t_room_list *list, size_t index)
+t_room			*t_room_list_get(t_room_list *list, size_t index) //renvoi l'elem
 {
 	if (index >= list->size)
 		index = list->size - 1;

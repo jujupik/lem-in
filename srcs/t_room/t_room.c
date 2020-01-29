@@ -16,9 +16,11 @@ t_room	create_room(char *p_name, t_room_state p_status)
 {
 	t_room	result;
 
-	result.name = ft_strdup(p_name);
-	result.status = p_status;
-	result.links = malloc_ptr_room_list(500);
+	result.name = ft_strdup(p_name); //passe le nom
+	result.status = p_status; //passe le status (normal start ou end)
+	result.links = malloc_ptr_room_list(500); //on malloc une liste vide pour les liens de la room en question
+	result.distance = UINT_MAX;
+	result.occuped = FALSE;
 	return (result);
 }
 
@@ -45,20 +47,20 @@ void	free_room(t_room *to_free)
 	free(to_free);
 }
 
-void	room_add_link(t_room *a, t_room *b)
+void	room_add_link(t_room *a, t_room *b) // ajoute un chemin
 {
 	size_t	i;
 	BOOL	found;
 
 	i = 0;
 	found = FALSE;
-	while (i < a->links->size && found == FALSE)
+	while (i < a->links->size && found == FALSE) //parcour la liste tant que found est false
 	{
-		if (t_ptr_room_list_at(a->links, i) == b)
+		if (t_ptr_room_list_at(a->links, i) == b) //si b correspond a un elem de la lst chemin de a c'est bon
 			found = TRUE;
 		i++;
 	}
-	if (found == FALSE)
+	if (found == FALSE) //sinon on rajoute les chemin dans la lst de chacun
 	{
 		t_ptr_room_list_add(a->links, b);
 		t_ptr_room_list_add(b->links, a);
