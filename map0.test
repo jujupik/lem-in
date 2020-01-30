@@ -15,7 +15,7 @@ l 0 0
 m 0 0
 ##end
 n 0 0
-a-b
+a-c
 b-d
 d-e
 e-g
@@ -32,4 +32,4 @@ k-l
 l-m
 m-c
 c-d
-c-a
+b-a

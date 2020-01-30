@@ -24,5 +24,6 @@ BOOL line_is_command(char *line);
 BOOL line_is_room(char *line);
 BOOL line_is_link(char *line);
 BOOL is_name_valid(t_room_list *list, char *name);
+void print_solution(int *value, int nb_value);
 
 #endif

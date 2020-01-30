@@ -38,6 +38,8 @@ SRC =	ft_atoi.c \
 		ft_isnum.c \
 		ft_isprint.c \
 		ft_str_list.c \
+		jlib_int_array.c \
+		jlib_intstr_list.c \
 		jlib_vector2_list.c \
 		ft_bzero.c \
 		ft_memalloc.c \

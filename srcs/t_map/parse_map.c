@@ -44,4 +44,5 @@ void	parse_map(t_map *map)
 {
 	parse_nb_fourmis(map);
 	parse_map_content(map);
+	map->end->occuped = TRUE;
 }

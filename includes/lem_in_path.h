@@ -36,4 +36,7 @@ void 				calc_distance(t_map *map);
 t_path				calc_path(t_map *map, t_room *departure);
 void				print_path(t_path *path, char *name);
 
+void				generate_solution_value(t_intstr_list *list, int len,
+						int nb_value);
+
 #endif
