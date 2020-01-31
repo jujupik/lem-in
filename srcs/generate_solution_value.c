@@ -1,24 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   generate_solution_value.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/31 16:50:41 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/31 16:50:41 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-
-void print_solution(int *value, int nb_value)
+void		print_int_solution(int *value, int nb_value)
 {
+	int	z;
+
+	z = 0;
 	ft_printf("Combinaison : ");
 	if (nb_value == 0)
 		ft_printf("No path");
-	for (int z = 0; z < nb_value; z++)
+	while (z < nb_value)
 	{
 		if (z != 0)
 			ft_printf(" - ");
 		ft_printf("%d", value[z]);
+		z++;
 	}
 	ft_printf("\n");
 }
 
-static int *create_value_list(int nb_value)
+static int	*create_value_list(int nb_value)
 {
-	int *value;
-	int j;
+	int	*value;
+	int	j;
 
 	value = ft_int_str_new(nb_value);
 	j = 0;
@@ -30,10 +45,10 @@ static int *create_value_list(int nb_value)
 	return (value);
 }
 
-void generate_solution_value(t_intstr_list *list, int len, int nb_value)
+void		generate_solution_value(t_intstr_list *list, int len, int nb_value)
 {
-	static int *value = NULL;
-	int i;
+	static int	*value = NULL;
+	int			i;
 
 	if (value == NULL)
 		value = create_value_list(nb_value);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 14:10:14 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/29 14:10:15 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/31 16:49:58 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/31 16:50:38 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	parse_room(t_map *map, char *line, t_room_state *status)
 	t_room	*actual;
 
 	tab = ft_strsplit(line, ' '); //on split pour avoir les param description en 3 partie
-
 	if (is_name_valid(map->room_list, tab[0]) == FALSE) //si nom commence par un L, a un espace ou -: cas erreur
 		error_exit(1, "Bad room name");
 	t_room_list_add(map->room_list, create_room(tab[0], *status)); //on rajoute le nom de cette room, son statu a la liste des rooms(et on lui malloc une lst pour futur lien)

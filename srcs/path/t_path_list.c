@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   t_ptr_room_list.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 14:10:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/29 14:10:52 by jrouchon         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "lem_in.h"
 
 t_path_list	create_path_list(size_t p_push_size)
 {
-	t_path_list result;
+	t_path_list	result;
 
 	result.push_size = p_push_size;
 	result.max_size = result.push_size;
@@ -36,9 +24,9 @@ t_path_list	*malloc_path_list(size_t p_push_size)
 	return (result);
 }
 
-void			destroy_path_list(t_path_list list)
+void		destroy_path_list(t_path_list list)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < list.size)
@@ -49,16 +37,16 @@ void			destroy_path_list(t_path_list list)
 	free(list.content);
 }
 
-void			free_path_list(t_path_list *list)
+void		free_path_list(t_path_list *list)
 {
 	destroy_path_list(*list);
 	free(list);
 }
 
-void			t_path_list_add(t_path_list *list, t_path to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
+void		t_path_list_add(t_path_list *list, t_path to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
 {
-	t_path		*tmp;
-	size_t			i;
+	t_path	*tmp;
+	size_t	i;
 
 	if (list->size == list->max_size - 1)
 	{

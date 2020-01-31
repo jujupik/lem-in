@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   t_map_calc_distance.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/29 14:09:52 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/31 16:50:05 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/31 16:50:05 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void calc_room_distance(t_room *actual, size_t parent_distance)
 	while (i < actual->links->size) //on parcour la lst des chemins
 	{
 		tmp = t_ptr_room_list_at(actual->links, i); //tmp = elem de la lst room
-		if (tmp->distance > actual->distance + 1) //si la distance actuelle est plus grande que celle du prochain elem de la lst chemins
+		if (tmp->distance > actual->distance + 1 && tmp->occuped == FALSE) //si la distance actuelle est plus grande que celle du prochain elem de la lst chemins
 			calc_room_distance(tmp, actual->distance + 1); //recursive +1
 		i++;
 	}
