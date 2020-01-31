@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:10 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 20:45:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 21:49:23 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,20 @@ typedef enum		e_room_state
 typedef struct		s_room
 {
 	char					*name;
+	int						x;
+	int						y;
 	t_room_state			status;
 	struct s_ptr_room_list	*links;
+	struct s_ptr_room_list	*self_links;
 	size_t					distance;
 	BOOL					occuped;
+	struct s_fourmis		*fourmis;
 }					t_room;
 
-t_room				create_room(char *p_name, t_room_state p_status);
-t_room				*malloc_room(char *p_name, t_room_state p_status);
+t_room				create_room(char *p_name, t_room_state p_status, int x,
+						int y);
+t_room				*malloc_room(char *p_name, t_room_state p_status, int x,
+						int y);
 void				destroy_room(t_room to_destroy);
 void				free_room(t_room *to_free);
 void				room_add_link(t_room *a, t_room *b);

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:58 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 19:46:21 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 21:08:40 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	parse_room(t_map *map, char *line, t_room_state *status)
 	tab = ft_strsplit(line, ' ');
 	if (is_name_valid(map->room_list, tab[0]) == FALSE)
 		error_exit(1, "Bad room name");
-	t_room_list_add(map->room_list, create_room(tab[0], *status));
+	t_room_list_add(map->room_list, create_room(tab[0], *status,
+					ft_atoi(tab[1]), ft_atoi(tab[2])));
 	actual = t_room_list_get(map->room_list, map->room_list->size - 1);
 	if (*status == start)
 	{

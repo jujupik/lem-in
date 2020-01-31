@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jlib_int_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 20:57:37 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/30 20:57:41 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 21:04:48 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		set_int_array(t_int_array *array, int *base_array, int base_size)
 {
 	int	i;
 
-	if (array->content == NULL || array->size != base_size)
+	if (array->content == NULL || array->size != (size_t)(base_size))
 	{
 		destroy_int_array(*array);
 		array->content = malloc(sizeof(int) * base_size);

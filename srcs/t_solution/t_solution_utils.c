@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:49 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:50:49 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 22:47:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_solution(t_solution *solution)
 	while (i < solution->paths.size)
 	{
 		tmp = t_path_list_at(&(solution->paths), i);
-		room = t_ptr_room_list_at(&tmp, 0);
+		room = t_ptr_room_list_at(&tmp, 1);
 		print_path(&tmp, room->name);
 		i++;
 	}

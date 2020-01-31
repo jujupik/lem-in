@@ -31,7 +31,7 @@ SRC =	ft_atoi.c \
 		ft_intstr_new.c \
 		ft_inttab_cpy.c \
 		ft_inttab_new.c \
-		 ft_isalnum.c \
+		ft_isalnum.c \
 		ft_isalpha.c \
 		ft_isascii.c \
 		ft_isdigit.c \
@@ -112,7 +112,8 @@ SRC =	ft_atoi.c \
 		ft_tab_free.c \
 		ft_tab_len.c \
 		jlib_vector.c \
-		jlib_vector2_list.c
+		jlib_vector2_list.c \
+		jlib_intstr_list2.c
 
 ##Transform and place every .o from SRC
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
