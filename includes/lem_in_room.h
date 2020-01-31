@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:10 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 21:49:23 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 23:21:09 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef enum		e_room_state
 	end = 2
 }					t_room_state;
 
+char				*status_str(t_room_state status);
+
 typedef struct		s_room
 {
 	char					*name;
@@ -28,7 +30,7 @@ typedef struct		s_room
 	t_room_state			status;
 	struct s_ptr_room_list	*links;
 	struct s_ptr_room_list	*self_links;
-	size_t					distance;
+	long long				distance;
 	BOOL					occuped;
 	struct s_fourmis		*fourmis;
 }					t_room;

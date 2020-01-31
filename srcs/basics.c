@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 20:20:31 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 23:34:52 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ BOOL	line_is_link(char *line)
 	return (len == 2 ? TRUE : FALSE);
 }
 
-BOOL	is_name_valid(t_room_list *list, char *name)
+BOOL	is_name_valid(t_ptr_room_list *list, char *name)
 {
 	size_t	i;
 	char	*to_test;
@@ -63,7 +63,7 @@ BOOL	is_name_valid(t_room_list *list, char *name)
 	i = 0;
 	while (i < list->size)
 	{
-		to_test = t_room_list_at(list, i).name;
+		to_test = t_ptr_room_list_at(list, i)->name;
 		if (ft_strcmp(to_test, name) == 0)
 			return (FALSE);
 		i++;

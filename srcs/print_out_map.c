@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 21:23:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 23:34:13 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void print_out_map(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_room_list_get(map->room_list, i);
+		room = t_ptr_room_list_at(map->room_list, i);
 		if (room->status == start)
 			ft_printf("##start\n");
 		if (room->status == end)
@@ -46,7 +46,7 @@ void print_out_map(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_room_list_get(map->room_list, i);
+		room = t_ptr_room_list_at(map->room_list, i);
 		print_out_link(room);
 		i++;
 	}

@@ -6,103 +6,39 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 22:44:06 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:23:26 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*
-** calc_next_room utilite :
-** recupere la room qui a la plus petite distance de la liste des chemins de
-** la room actual
-*/
-
-static t_room	*calc_next_room(t_room *actual)
+t_path			create_path(t_ptr_room_list *p_path)
 {
-	t_room	*next;
-	size_t	j;
-	t_room	*tmp;
+	t_path result;
 
-	next = NULL;
-	j = 0;
-	while (j < actual->links->size)
-	{
-		tmp = t_ptr_room_list_at(actual->links, j);
-		if ((next == NULL || next->distance > tmp->distance) &&
-			tmp->occuped == FALSE)
-			next = tmp;
-		j++;
-	}
-	return (next);
-}
-
-t_path			calc_path(t_map *map, t_room *departure)
-{
-	size_t			i;
-	t_ptr_room_list	result;
-	t_room			*room[2];
-
-	result = create_ptr_room_list(map->room_list->size);
-	t_ptr_room_list_add(&result, map->end);
-	t_ptr_room_list_add(&result, departure);
-	i = 1;
-	while (i < result.size)
-	{
-		room[0] = t_ptr_room_list_at(&result, i);
-		if (room[0]->distance != 0)
-		{
-			room[1] = calc_next_room(room[0]);
-			if (room[1] == NULL)
-			{
-				destroy_ptr_room_list(result);
-				return (create_ptr_room_list(0));
-			}
-			t_ptr_room_list_add(&result, room[1]);
-			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE);
-		}
-		i++;
-	}
+	result.path = p_path;
+	result.nb_fourmi_to_launch = 0;
 	return (result);
 }
 
-void			print_path(t_path *path, char *name)
+t_path			*malloc_path(t_ptr_room_list *p_path)
 {
-	size_t	i;
-	t_room	*tmp;
+	t_path	*result;
 
-	i = 0;
-	ft_printf("%s :\n", name);
-	if (path == NULL || path->size == 0)
-		ft_printf("No path");
-	else
-	{
-		while (i < path->size)
-		{
-			tmp = t_ptr_room_list_at(path, i);
-			if (i != 0)
-				ft_printf("-");
-			ft_printf("%s", tmp->name);
-			i++;
-		}
-	}
-	ft_printf("\n");
+	result = (t_path *)malloc(sizeof(t_path));
+	if (result == NULL)
+		error_exit(111, "Can't malloc a t_path");
+	*result = create_path(p_path);
+	return (result);
 }
 
-void			reverse_path(t_path *path)
+void 			destroy_path(t_path to_destroy)
 {
-	t_ptr_room	tmp;
-	size_t		i;
-	size_t		j;
+	free_ptr_room_list(to_destroy.path);
+}
 
-	i = 0;
-	j = path->size - 1;
-	while (i < j)
-	{
-		tmp = path->content[i];
-		path->content[i] = path->content[j];
-		path->content[j] = tmp;
-		i++;
-		j--;
-	}
+void 			free_path(t_path *to_free)
+{
+	destroy_path(*to_free);
+	free(to_free);
 }

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 21:34:59 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 23:35:04 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ BOOL			line_is_commentary(char *line);
 BOOL			line_is_command(char *line);
 BOOL			line_is_room(char *line);
 BOOL			line_is_link(char *line);
-BOOL			is_name_valid(t_room_list *list, char *name);
+BOOL			is_name_valid(t_ptr_room_list *list, char *name);
 void			print_int_solution(int *value, int nb_value);
 t_solution		solver(t_map *map);
 void			print_out_map(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:46 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 22:57:42 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:08:25 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void					calc_solution(t_map *map, t_intstr_list *value_list,
 			list_array.content[j]), solution);
 		j++;
 	}
-	calc_solution_note(solution);
+	calc_solution_note(map, solution);
 }

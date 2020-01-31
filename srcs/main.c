@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 22:58:32 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/01 00:20:08 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int get_available_path(t_solution *solution)
 	while (i < solution->paths.size)
 	{
 		path = t_path_list_get(&(solution->paths), i);
-		room = t_ptr_room_list_at(path, 1);
+		room = t_ptr_room_list_at(path->path, 1);
 		if (room->fourmis == NULL)
 			return (i);
 		i++;
@@ -43,10 +43,10 @@ void move_fourmis(t_map *map, t_solution *solution, t_fourmis *fourmis)
 			return ;
 	}
 	path = t_path_list_get(&(solution->paths), fourmis->path_index);
-	actual = t_ptr_room_list_at(path, fourmis->room_index);
+	actual = t_ptr_room_list_at(path->path, fourmis->room_index);
 	if (actual->fourmis != NULL)
 		actual->fourmis = NULL;
-	next = t_ptr_room_list_at(path, fourmis->room_index + 1);
+	next = t_ptr_room_list_at(path->path, fourmis->room_index + 1);
 	fourmis->room_index++;
 	if (next == map->end)
 		fourmis->arrived = TRUE;
@@ -54,7 +54,7 @@ void move_fourmis(t_map *map, t_solution *solution, t_fourmis *fourmis)
 		next->fourmis = fourmis;
 }
 
-static void print_out_solution(t_map *map, t_solution *solution)
+void print_out_solution(t_map *map, t_solution *solution)
 {
 	t_fourmis	*fourmis_array;
 	int			i;
@@ -80,9 +80,9 @@ static void print_out_solution(t_map *map, t_solution *solution)
 				move_fourmis(map, solution, &(fourmis_array[i]));
 				if (fourmis_array[i].path_index != -1)
 				{
-					print_fourmis(solution, &(fourmis_array[i]));
-					if (i >= nb_arrived_fourmis && i != map->nb_fourmis - 1)
-						ft_printf(" ");
+					// print_fourmis(solution, &(fourmis_array[i]));
+					// if (i >= nb_arrived_fourmis && i != map->nb_fourmis - 1)
+					// 	ft_printf(" ");
 					if (fourmis_array[i].arrived == TRUE)
 						nb_arrived_fourmis++;
 				}
@@ -90,7 +90,7 @@ static void print_out_solution(t_map *map, t_solution *solution)
 			i++;
 		}
 		nb_tour++;
-		ft_printf("\n");
+		// ft_printf("\n");
 	}
 	ft_printf("NB tour : %d\n", nb_tour);
 }
@@ -102,9 +102,12 @@ int	main(void)
 
 	map = create_map();
 	parse_map(&map);
+	ft_printf("\n");
+	printf("Parse map done\n\n");
 	solution = solver(&map);
+	printf("Solving map done\n\n");
 	print_solution(&solution);
-	print_out_map(&map);
+	//print_out_map(&map);
 	ft_printf("\n");
 	print_out_solution(&map, &solution);
 	return (0);
