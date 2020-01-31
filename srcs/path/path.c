@@ -6,11 +6,17 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:51:29 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 19:22:23 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+** calc_next_room utilite :
+** recupere la room qui a la plus petite distance de la liste des chemins de
+** la room actual
+*/
 
 static t_room	*calc_next_room(t_room *actual)
 {
@@ -20,40 +26,40 @@ static t_room	*calc_next_room(t_room *actual)
 
 	next = NULL;
 	j = 0;
-	while (j < actual->links->size) //tant que j plus petit que le nb de chemin de actual
+	while (j < actual->links->size)
 	{
-		tmp = t_ptr_room_list_at(actual->links, j); //tmp room actuelle
+		tmp = t_ptr_room_list_at(actual->links, j);
 		if ((next == NULL || next->distance > tmp->distance) &&
-			tmp->occuped == FALSE) //si la room precedente a une distance plus grande que l'actuelle
+			tmp->occuped == FALSE)
 			next = tmp;
 		j++;
 	}
-	return (next); //on renvoi la room avec la plus petite distance par rapport a actual
+	return (next);
 }
 
-t_path			calc_path(t_map *map, t_room *departure) //map et depart
+t_path			calc_path(t_map *map, t_room *departure)
 {
 	size_t			i;
 	t_ptr_room_list	result;
 	t_room			*room[2];
 
-	result = create_ptr_room_list(map->room_list->size); //create lst
+	result = create_ptr_room_list(map->room_list->size);
 	t_ptr_room_list_add(&result, map->end);
-	t_ptr_room_list_add(&result, departure); //on passe la room depart
+	t_ptr_room_list_add(&result, departure);
 	i = 1;
 	while (i < result.size)
 	{
-		room[0] = t_ptr_room_list_at(&result, i); //la room
-		if (room[0]->distance != 0) //tant qu'on est pas sur la room start
+		room[0] = t_ptr_room_list_at(&result, i);
+		if (room[0]->distance != 0)
 		{
-			room[1] = calc_room[1]_room(room[0]); //next la room avec la plus petite distance par rapport a actual
+			room[1] = calc_next_room(room[0]);
 			if (room[1] == NULL)
 			{
 				destroy_ptr_room_list(result);
 				return (create_ptr_room_list(0));
 			}
-			t_ptr_room_list_add(&result, room[1]); //ajoute next au path result
-			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE); //on le set a occuped
+			t_ptr_room_list_add(&result, room[1]);
+			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE);
 		}
 		i++;
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_path_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/31 16:49:57 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/31 19:31:17 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 t_path_list	create_path_list(size_t p_push_size)
@@ -43,7 +55,7 @@ void		free_path_list(t_path_list *list)
 	free(list);
 }
 
-void		t_path_list_add(t_path_list *list, t_path to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
+void		t_path_list_add(t_path_list *list, t_path to_add)
 {
 	t_path	*tmp;
 	size_t	i;

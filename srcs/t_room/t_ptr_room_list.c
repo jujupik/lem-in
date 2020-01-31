@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:15 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:50:15 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 20:14:42 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			free_ptr_room_list(t_ptr_room_list *list)
 	free(list);
 }
 
-void			t_ptr_room_list_add(t_ptr_room_list *list, t_ptr_room to_add) //rajoute un chemin a lst (malloc pour si precedent malloc trop petit)
+void			t_ptr_room_list_add(t_ptr_room_list *list, t_ptr_room to_add)
 {
 	t_ptr_room		*tmp;
 	size_t			i;

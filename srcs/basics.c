@@ -6,40 +6,40 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:50:25 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 20:20:31 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-BOOL	line_is_commentary(char *line) //commentaire commence par #
+BOOL	line_is_commentary(char *line)
 {
 	if (line[0] == '#' && line[1] != '#')
 		return (TRUE);
 	return (FALSE);
 }
 
-BOOL	line_is_command(char *line) //commande commence par ##
+BOOL	line_is_command(char *line)
 {
 	if (line[0] == '#' && line[1] == '#')
 		return (TRUE);
 	return (FALSE);
 }
 
-BOOL	line_is_room(char *line) //regarde si format room correct
+BOOL	line_is_room(char *line)
 {
 	char	**tab;
 	size_t	len;
 
-	if (line_is_commentary(line) == TRUE || line_is_command(line) == TRUE) //si la ligne est un commentaire ou une commande return FALSE
+	if (line_is_commentary(line) == TRUE || line_is_command(line) == TRUE)
 		return (FALSE);
-	tab = ft_strsplit(line, ' '); //on split selon les espace pour recup les 3 partie [0]le nom [1]coordonne [2]coordonne
+	tab = ft_strsplit(line, ' ');
 	len = ft_tab_len(tab);
 	ft_tab_free(tab);
 	return (len == 3 ? TRUE : FALSE);
 }
 
-BOOL	line_is_link(char *line) //regarde si format chemin correct
+BOOL	line_is_link(char *line)
 {
 	char	**tab;
 	size_t	len;
@@ -52,7 +52,7 @@ BOOL	line_is_link(char *line) //regarde si format chemin correct
 	return (len == 2 ? TRUE : FALSE);
 }
 
-BOOL	is_name_valid(t_room_list *list, char *name) //cas d'erreur des noms de room valide
+BOOL	is_name_valid(t_room_list *list, char *name)
 {
 	size_t	i;
 	char	*to_test;

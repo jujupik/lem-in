@@ -6,14 +6,14 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:46 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:50:47 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/01/31 20:30:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		calc_next_valid_path(t_map *map, t_ptr_room to_test,
-					t_solution *solution)
+static void				calc_next_valid_path(t_map *map, t_ptr_room to_test,
+							t_solution *solution)
 {
 	t_path	path;
 
@@ -29,7 +29,7 @@ static void		calc_next_valid_path(t_map *map, t_ptr_room to_test,
 	}
 }
 
-t_intstr_list	calc_value_list(t_map *map)
+static t_intstr_list	calc_value_list(t_map *map)
 {
 	t_intstr_list	value_list;
 
@@ -38,8 +38,8 @@ t_intstr_list	calc_value_list(t_map *map)
 	return (value_list);
 }
 
-void			calc_solution(t_map *map, t_intstr_list *value_list,
-					size_t index, t_solution *solution)
+void					calc_solution(t_map *map, t_intstr_list *value_list,
+							size_t index, t_solution *solution)
 {
 	size_t		j;
 	t_int_array	list_array;
@@ -55,7 +55,7 @@ void			calc_solution(t_map *map, t_intstr_list *value_list,
 	calc_solution_note(solution);
 }
 
-void			solver(t_map *map)
+void					solver(t_map *map)
 {
 	size_t			i;
 	t_solution		solution;
