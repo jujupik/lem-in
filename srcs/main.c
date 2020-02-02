@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:53:43 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 22:36:29 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void print_out_solution(t_map *map, t_solution *solution)
 	i = 0;
 	while (i < map->nb_fourmis)
 	{
-		nb_tour++;
 		j = 0;
 		tmp = FALSE;
 		while (j < map->nb_fourmis)
@@ -88,16 +87,17 @@ void print_out_solution(t_map *map, t_solution *solution)
 				move_fourmis(map, solution, &(fourmis_array[j]));
 				if (fourmis_array[j].path_index == -1)
 					break;
-				if (tmp == TRUE)
-					ft_printf(" ");
-				print_fourmis(solution, &(fourmis_array[j]));
+				// if (tmp == TRUE)
+				// 	ft_printf(" ");
+				// print_fourmis(solution, &(fourmis_array[j]));
 				tmp = TRUE;
 				if (fourmis_array[j].arrived == TRUE)
 					i++;
 			}
 			j++;
 		}
-		ft_printf("\n");
+		nb_tour++;
+		// ft_printf("\n");
 	}
 	ft_printf("NB tour : %d\n", nb_tour);
 }
@@ -110,7 +110,7 @@ int	main(void)
 	map = create_map();
 	parse_map(&map);
 	solution = solver(&map);
-	print_out_map(&map);
+	//print_out_map(&map);
 	print_solution(&solution);
 	print_out_solution(&map, &solution);
 	return (0);

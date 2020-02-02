@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:46 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:50:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 22:56:55 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,13 @@ void				calc_next_valid_path(t_map *map, t_ptr_room to_test,
 {
 	t_path	*path;
 
-	calc_distance(map);
+	//calc_distance(map);
 	if (to_test->occuped == FALSE)
 	{
-		// if (check_availible_path(map, &path, to_test) == TRUE)
-		// 	add_path_to_solution(solution, path);
-		// else
-		// {
-			to_test->occuped = TRUE;
-			path = calc_path(map, to_test);
-			if (path != NULL)
-				add_path_to_solution(solution, path);
-		// }
+		to_test->occuped = TRUE;
+		path = calc_path(map, to_test);
+		if (path != NULL)
+			add_path_to_solution(solution, path);
 	}
 }
 
@@ -78,6 +73,7 @@ t_solution		*calc_solution(t_map *map, int *value_list)
 {
 	static t_solution *solution = NULL;
 	size_t		j;
+	t_room *room;
 
 	j = 0;
 	while (j < map->end->links->size)
@@ -94,8 +90,9 @@ t_solution		*calc_solution(t_map *map, int *value_list)
 	j = 0;
 	while (j < map->end->links->size)
 	{
-		calc_next_valid_path(map, t_ptr_room_list_at(map->end->links,
-			value_list[j]), solution);
+		room = t_ptr_room_list_at(map->end->links, value_list[j]);
+		if (room != NULL)
+			calc_next_valid_path(map, room, solution);
 		j++;
 	}
 	calc_solution_note(map, solution);
@@ -129,7 +126,7 @@ void	generate_optimial_solution(t_map *map, t_solution *result, int len, int nb_
 	if (len == nb_value)
 	{
 		tmp = calc_solution(map, value_list);
-		if (tmp->note < result->note)
+		if (tmp != NULL && tmp->note < result->note)
 			copy_solution(result, tmp);
 	}
 	else
@@ -152,12 +149,42 @@ void		multi_path_solver(t_map *map, t_solution *saved_solution)
 	reverse_solution(saved_solution);
 }
 
+void desactivate_useless(t_map *map, size_t base_len)
+{
+	t_ptr_room_list *tmp_list;
+	t_path *path;
+	size_t i;
+	t_room *tmp;
+
+	(void)base_len;
+	tmp_list = malloc_ptr_room_list(map->end->links->size);
+	i = 0;
+	while (i < map->end->links->size)
+	{
+		reset_map_occupation(map);
+		calc_distance(map);
+		tmp = t_ptr_room_list_at(map->end->links, i);
+		path = calc_path(map, tmp);
+		if (path != NULL)
+		{
+			ft_printf("Link cool : %s\n", tmp->name);
+			t_ptr_room_list_add(tmp_list, tmp);
+		}
+		else
+			ft_printf("Link useless : %s\n", tmp->name);
+		i++;
+	}
+	free_ptr_room_list(map->end->links);
+	map->end->links = tmp_list;
+}
+
 t_solution				solver(t_map *map)
 {
 	t_solution	solution;
 
 	calc_distance(map);
 	solution = single_path_solver(map, calc_path(map, map->end));
+	//desactivate_useless(map, solution.paths.content[0]->path->size + map->nb_fourmis);
 	multi_path_solver(map, &solution);
 	return (solution);
 }
