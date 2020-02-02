@@ -17,7 +17,7 @@ t_path			create_path(t_ptr_room_list *p_path)
 	t_path result;
 
 	result.path = p_path;
-	result.nb_fourmi_to_launch = 0;
+	result.count = 0;
 	return (result);
 }
 

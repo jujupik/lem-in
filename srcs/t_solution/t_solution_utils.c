@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:49 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/01 00:14:29 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 21:49:42 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_solution(t_solution *solution)
 {
-	t_path		tmp;
+	t_path		*tmp;
 	t_ptr_room	room;
 	size_t		i;
 
@@ -22,8 +22,8 @@ void	print_solution(t_solution *solution)
 	while (i < solution->paths.size)
 	{
 		tmp = t_path_list_at(&(solution->paths), i);
-		room = t_ptr_room_list_at(&tmp, 1);
-		print_path(&tmp, room->name);
+		room = t_ptr_room_list_at(tmp->path, 1);
+		print_path(tmp, room->name);
 		i++;
 	}
 	ft_printf("\n\n");
@@ -37,7 +37,7 @@ void	copy_solution(t_solution *dest, t_solution *src)
 	dest->paths.size = 0;
 	while (i < src->paths.size)
 	{
-		t_path_list_add(&(dest->paths), t_path_list_at(&(src->paths), i));
+		copy_path_list(&(dest->paths), &(src->paths));
 		i++;
 	}
 	dest->note = src->note;
@@ -51,7 +51,7 @@ void	reverse_solution(t_solution *solution)
 	i = 0;
 	while (i < solution->paths.size)
 	{
-		path = t_path_list_get(&(solution->paths), i);
+		path = t_path_list_at(&(solution->paths), i);
 		reverse_path(path);
 		i++;
 	}

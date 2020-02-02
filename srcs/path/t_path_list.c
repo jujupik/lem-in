@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:57 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 19:31:17 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 19:55:42 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_path_list	create_path_list(size_t p_push_size)
 
 	result.push_size = p_push_size;
 	result.max_size = result.push_size;
-	result.content = malloc(sizeof(t_path) * result.max_size);
+	result.content = malloc(sizeof(t_path *) * result.max_size);
 	if (result.content == NULL)
 		error_exit(-2, "can't malloc path list");
 	result.size = 0;
@@ -43,7 +43,7 @@ void		destroy_path_list(t_path_list list)
 	i = 0;
 	while (i < list.size)
 	{
-		destroy_ptr_room_list(t_path_list_at(&list, i));
+		free_path(t_path_list_at(&list, i));
 		i++;
 	}
 	free(list.content);
@@ -55,16 +55,16 @@ void		free_path_list(t_path_list *list)
 	free(list);
 }
 
-void		t_path_list_add(t_path_list *list, t_path to_add)
+void		t_path_list_add(t_path_list *list, t_path *to_add)
 {
-	t_path	*tmp;
+	t_path	**tmp;
 	size_t	i;
 
 	if (list->size == list->max_size - 1)
 	{
 		tmp = list->content;
 		list->max_size += list->push_size;
-		list->content = malloc(sizeof(t_path) * list->max_size);
+		list->content = malloc(sizeof(t_path *) * list->max_size);
 		i = 0;
 		while (i < list->size)
 		{

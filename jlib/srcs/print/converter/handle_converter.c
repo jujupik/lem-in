@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_converter.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:02:18 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/26 17:02:20 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 18:17:27 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	create_convert_funct_tab(t_convert_funct *tab)
 	tab['X'] = converter_x_maj;
 	tab['p'] = converter_p;
 	tab['%'] = converter_percent;
+	tab['b'] = converter_b;
 }
 
 void	handle_converter(t_data *data, t_flag_data *flag_data,

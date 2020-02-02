@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/01 00:04:14 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 21:20:52 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_path_list		*g_saved_path = NULL;
 
 /*
 ** calc_next_room utilite :
@@ -37,80 +39,53 @@ static t_room	*calc_next_room(t_room *actual)
 	return (next);
 }
 
-t_path			calc_path(t_map *map, t_room *departure)
+t_path			*calc_path(t_map *map, t_room *departure)
 {
 	size_t			i;
-	t_ptr_room_list	result;
+	t_ptr_room_list	*tmp_path;
 	t_room			*room[2];
 
-	result = create_ptr_room_list(map->room_list->size);
-	t_ptr_room_list_add(&result, map->end);
-	t_ptr_room_list_add(&result, departure);
-	i = 1;
-	while (i < result.size)
+	tmp_path = malloc_ptr_room_list(map->room_list->size);
+	if (departure != map->end)
+		t_ptr_room_list_add(tmp_path, map->end);
+	t_ptr_room_list_add(tmp_path, departure);
+	i = tmp_path->size - 1;
+	while (i < tmp_path->size)
 	{
-		room[0] = t_ptr_room_list_at(&result, i);
+		room[0] = t_ptr_room_list_at(tmp_path, i);
 		if (room[0]->distance != 0)
 		{
 			room[1] = calc_next_room(room[0]);
 			if (room[1] == NULL)
 			{
-				destroy_ptr_room_list(result);
-				return (create_ptr_room_list(0));
+				free_ptr_room_list(tmp_path);
+				return (NULL);
 			}
-			t_ptr_room_list_add(&result, room[1]);
+			t_ptr_room_list_add(tmp_path, room[1]);
 			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE);
 		}
 		i++;
 	}
-	return (result);
+	return (malloc_path(tmp_path));
 }
 
-t_path			calc_mono_path(t_map *map)
-{
-	size_t			i;
-	t_ptr_room_list	result;
-	t_room			*room[2];
-
-	result = create_ptr_room_list(map->room_list->size);
-	t_ptr_room_list_add(&result, map->end);
-	i = 0;
-	while (i < result.size)
-	{
-		room[0] = t_ptr_room_list_at(&result, i);
-		if (room[0]->distance != 0)
-		{
-			room[1] = calc_next_room(room[0]);
-			if (room[1] == NULL)
-			{
-				destroy_ptr_room_list(result);
-				return (create_ptr_room_list(0));
-			}
-			t_ptr_room_list_add(&result, room[1]);
-			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE);
-		}
-		i++;
-	}
-	return (result);
-}
-
-void			print_path(t_path *path, char *name)
+void			print_path(t_path *tmp, char *name)
 {
 	size_t	i;
-	t_room	*tmp;
+	t_room	*tmp2;
 
 	i = 0;
-	ft_printf("%s : %u\n", name, path->size);
-	if (path == NULL || path->size == 0)
+	ft_printf("%s : %u - %u\n", name, tmp->path->size, tmp->count);
+	if (tmp == NULL || tmp->path->size == 0)
 		ft_printf("No path");
 	else
 	{
-		while (i < path->size)
+		while (i < tmp->path->size)
 		{
-			tmp = t_ptr_room_list_at(path, i);
+			tmp2 = t_ptr_room_list_at(tmp->path, i);
 			if (i != 0)
 				ft_printf("-");
-			ft_printf("%s", tmp->name);
+			ft_printf("%s", tmp2->name);
 			i++;
 		}
 	}
@@ -119,18 +94,33 @@ void			print_path(t_path *path, char *name)
 
 void			reverse_path(t_path *path)
 {
-	t_ptr_room	tmp;
+	t_ptr_room_list *tmp;
+	t_ptr_room	tmp2;
 	size_t		i;
 	size_t		j;
 
 	i = 0;
-	j = path->size - 1;
+	tmp = path->path;
+	j = tmp->size - 1;
 	while (i < j)
 	{
-		tmp = path->content[i];
-		path->content[i] = path->content[j];
-		path->content[j] = tmp;
+		tmp2 = tmp->content[i];
+		tmp->content[i] = tmp->content[j];
+		tmp->content[j] = tmp2;
 		i++;
 		j--;
+	}
+}
+
+void			copy_path(t_path *dest, t_path *src)
+{
+	size_t	i;
+
+	i = 0;
+	dest->path->size = 0;
+	while (i < src->path->size)
+	{
+		t_ptr_room_list_add(dest->path, t_ptr_room_list_at(src->path, i));
+		i++;
 	}
 }

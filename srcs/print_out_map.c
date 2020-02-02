@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 23:34:13 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 21:49:39 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void print_out_map(t_map *map)
 		print_out_link(room);
 		i++;
 	}
+	ft_printf("\n");
 }
