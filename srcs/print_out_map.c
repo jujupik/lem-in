@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:49:39 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:00:27 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void print_out_link(t_room *room)
 	t_room	*tmp;
 
 	i = 0;
-	while (i < room->self_links->size)
+	while (i < room->children->size)
 	{
-		tmp = t_room_list_at(room->self_links, i);
+		tmp = t_room_list_at(room->children, i);
 		ft_printf("%s-%s\n", room->name, tmp->name);
 		i++;
 	}

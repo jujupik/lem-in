@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:10 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 01:15:46 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 07:59:18 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct		s_room
 	int						x;
 	int						y;
 	t_room_state			status;
-	struct s_room_list		*links;
-	struct s_room_list		*self_links;
+	struct s_room_list		*children;
+	struct s_room_list		*parent;
 	long long				distance;
 	int						nb_use;
 	BOOL					occuped;

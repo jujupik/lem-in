@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 23:46:10 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:00:07 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@ void		add_path_to_solution(t_solution *solution, t_path *to_add)
 void		clear_solution(t_solution *solution)
 {
 	solution->paths.size = 0;
+	solution->note = UINT_MAX;
+}
+
+void		clear_solution_index(t_solution *solution, size_t index)
+{
+	solution->paths.size = index;
 	solution->note = UINT_MAX;
 }

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 01:28:28 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:01:37 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static t_room	*calc_next_room(t_room *actual)
 
 	next = NULL;
 	j = 0;
-	while (j < actual->links->size)
+	while (j < actual->parent->size)
 	{
-		tmp = t_room_list_at(actual->links, j);
+		tmp = t_room_list_at(actual->parent, j);
 		if (tmp->occuped == FALSE)
 		{
 			if (next == NULL)

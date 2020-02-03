@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:05 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 00:33:31 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:01:49 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	calc_room_distance(t_room *actual, size_t parent_distance)
 	if (actual->status == end)
 		return ;
 	i = 0;
-	while (i < actual->links->size)
+	while (i < actual->children->size)
 	{
-		tmp = t_room_list_at(actual->links, i);
+		tmp = t_room_list_at(actual->children, i);
 		if (tmp->distance > actual->distance + 1)
 			calc_room_distance(tmp, actual->distance + 1);
 		i++;

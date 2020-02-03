@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 01:15:42 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:00:03 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_room	create_room(char *p_name, t_room_state p_status, int x, int y)
 	result.x = x;
 	result.y = y;
 	result.status = p_status;
-	result.links = malloc_room_list(500);
-	result.self_links = malloc_room_list(500);
+	result.children = malloc_room_list(500);
+	result.parent = malloc_room_list(500);
 	result.distance = UINT_MAX;
 	result.occuped = FALSE;
 	result.fourmis = NULL;
@@ -43,8 +43,8 @@ t_room	*malloc_room(char *p_name, t_room_state p_status, int x, int y)
 void	destroy_room(t_room to_destroy)
 {
 	free(to_destroy.name);
-	free_room_list(to_destroy.links);
-	free_room_list(to_destroy.self_links);
+	free_room_list(to_destroy.parent);
+	free_room_list(to_destroy.children);
 }
 
 void	free_room(t_room *to_free)
@@ -60,17 +60,16 @@ void	room_add_link(t_room *a, t_room *b)
 
 	i = 0;
 	found = FALSE;
-	while (i < a->links->size && found == FALSE)
+	while (i < a->parent->size && found == FALSE)
 	{
-		if (t_room_list_at(a->links, i) == b)
+		if (t_room_list_at(a->parent, i) == b)
 			found = TRUE;
 		i++;
 	}
 	if (found == FALSE)
 	{
-		t_room_list_add(a->links, b);
-		t_room_list_add(a->self_links, b);
-		t_room_list_add(b->links, a);
+		t_room_list_add(b->parent, a);
+		t_room_list_add(a->children, b);
 	}
 }
 
@@ -83,11 +82,11 @@ void print_room(t_room *room, size_t index)
 		(room->occuped == TRUE ? "occuped" : "empty"),
 		room->distance);
 	j = 0;
-	while (j < room->links->size)
+	while (j < room->parent->size)
 	{
 		if (j != 0)
 			ft_printf(" ");
-		ft_printf("{%s / %u}", t_room_list_at(room->links, j)->name, t_room_list_at(room->links, j)->distance);
+		ft_printf("{%s / %u}", t_room_list_at(room->parent, j)->name, t_room_list_at(room->parent, j)->distance);
 		j++;
 	}
 	ft_printf("}\n");

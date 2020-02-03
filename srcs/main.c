@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 01:49:07 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 07:58:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ int	main(void)
 
 	map = create_map();
 	parse_map(&map);
-	solution = solver(&map);
-	//print_out_map(&map);
-	ft_printf("Solution : \n");
-	print_solution(&solution);
+	// solution = solver(&map);
+	// //print_out_map(&map);
+	// ft_printf("Solution : \n");
+	// print_solution(&solution);
 	//print_out_solution(&map, &solution);
 	return (0);
 }
