@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:49 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 20:48:32 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 00:56:44 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,19 @@ void place_fourmis(t_map *map, t_solution *solution)
 void	calc_solution_note(t_map *map, t_solution *solution)
 {
 	t_path *tmp;
+	size_t i;
 
 	if (solution->paths.size == 0)
 	{
 		solution->note = UINT_MAX;
 		return ;
 	}
-
+	i = 0;
+	while (i < solution->paths.size)
+	{
+		solution->paths.content[i]->count = 0;
+		i++;
+	}
 	place_fourmis(map, solution);
 	tmp = get_longest_path(solution);
 	solution->note = tmp->path->size + tmp->count;

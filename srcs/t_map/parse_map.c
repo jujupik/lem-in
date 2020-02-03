@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:59 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 20:39:22 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 23:41:25 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,7 @@ void	parse_map_content(t_map *map)
 
 void	parse_map(t_map *map)
 {
-	size_t i;
-
 	parse_nb_fourmis(map);
 	parse_map_content(map);
 	map->end->occuped = TRUE;
-	g_saved_path = (t_path_list *)malloc(sizeof(t_path_list) * map->end->links->size);
-	i = 0;
-	while (i < map->end->links->size)
-	{
-		g_saved_path[i] = create_path_list(50);
-		i++;
-	}
 }

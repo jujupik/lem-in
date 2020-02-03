@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:06 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:31:20 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:11:30 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 typedef struct s_path
 {
-	t_ptr_room_list *path;
+	t_room_list *path;
 	int				count;
 }				t_path;
 
-t_path			create_path(t_ptr_room_list *p_path);
-t_path			*malloc_path(t_ptr_room_list *p_path);
+t_path			create_path(t_room_list *p_path);
+t_path			*malloc_path(t_room_list *p_path);
 void 			destroy_path(t_path to_destroy);
 void 			free_path(t_path *to_free);
 void			copy_path(t_path *dest, t_path *src);
@@ -48,4 +48,6 @@ void			print_path(t_path *path, char *name);
 void			reverse_path(t_path *path);
 void			copy_path_list(t_path_list *dest, t_path_list *src);
 void			clear_path_list(t_path_list *path);
+void			print_path_list(t_path_list *path);
+
 #endif

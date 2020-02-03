@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:19 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 16:50:20 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 23:42:13 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void			free_room_list(t_room_list *list)
 	free(list);
 }
 
-void			t_room_list_add(t_room_list *list, t_room to_add)
+void			t_room_list_add(t_room_list *list, t_room *to_add)
 {
-	t_room		*tmp;
+	t_room		**tmp;
 	size_t		i;
 
 	if (list->size == list->max_size - 1)

@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void				calc_next_valid_path(t_map *map, t_ptr_room to_test,
+void				calc_next_valid_path(t_map *map, t_room to_test,
 							t_solution *solution)
 {
 	t_path	path;
@@ -48,7 +48,7 @@ void				calc_next_valid_path(t_map *map, t_ptr_room to_test,
 // 	j = 0;
 // 	while (j < list_array.size)
 // 	{
-// 		calc_next_valid_path(map, t_ptr_room_list_at(map->end->links,
+// 		calc_next_valid_path(map, t_room_list_at(map->end->links,
 // 			list_array.content[j]), solution);
 // 		j++;
 // 	}

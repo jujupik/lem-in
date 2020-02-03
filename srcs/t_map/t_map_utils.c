@@ -6,13 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:07 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/31 23:35:41 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:15:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		draw_links(t_ptr_room_list *links)
+void		draw_links(t_room_list *links)
 {
 	size_t	j;
 
@@ -26,7 +26,7 @@ void		draw_links(t_ptr_room_list *links)
 		{
 			if (j != 0)
 				ft_printf(" - ");
-			ft_printf("(%s)", t_ptr_room_list_at(links, j)->name);
+			ft_printf("(%s)", t_room_list_at(links, j)->name);
 			j++;
 		}
 		ft_printf("\n");
@@ -51,11 +51,8 @@ void		print_map(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_ptr_room_list_at(map->room_list, i);
-		ft_printf("[%7u] - {%3s} - {%9s} - {%9s} - [%4lld]\n", i, room->name,
-			status_str(room->status),
-			(room->occuped == TRUE ? "occuped" : "empty"),
-			room->distance);
+		room = t_room_list_at(map->room_list, i);
+		print_room(room, i);
 		i++;
 	}
 }
@@ -68,7 +65,7 @@ void		reset_map_occupation(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_ptr_room_list_at(map->room_list, i);
+		room = t_room_list_at(map->room_list, i);
 		room->occuped = FALSE;
 		i++;
 	}

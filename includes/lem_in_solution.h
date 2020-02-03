@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:14 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 20:47:12 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/02 23:40:05 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void				calc_solution_note(t_map *map, t_solution *solution);
 void				copy_solution(t_solution *dest, t_solution *src);
 void				reverse_solution(t_solution *solution);
 t_solution			*calc_solution(t_map *map, int *value_list);
-void				calc_next_valid_path(t_map *map, t_ptr_room to_test,
-						t_solution *solution);
+void				calc_next_valid_path(t_map *map, t_solution *solution, size_t index);
 t_intstr_list		calc_value_list(t_map *map);
 
 #endif

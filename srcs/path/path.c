@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-t_path			create_path(t_ptr_room_list *p_path)
+t_path			create_path(t_room_list *p_path)
 {
 	t_path result;
 
@@ -21,7 +21,7 @@ t_path			create_path(t_ptr_room_list *p_path)
 	return (result);
 }
 
-t_path			*malloc_path(t_ptr_room_list *p_path)
+t_path			*malloc_path(t_room_list *p_path)
 {
 	t_path	*result;
 
@@ -34,7 +34,7 @@ t_path			*malloc_path(t_ptr_room_list *p_path)
 
 void 			destroy_path(t_path to_destroy)
 {
-	free_ptr_room_list(to_destroy.path);
+	free_room_list(to_destroy.path);
 }
 
 void 			free_path(t_path *to_free)

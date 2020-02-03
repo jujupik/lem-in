@@ -20,7 +20,7 @@ static void print_out_link(t_room *room)
 	i = 0;
 	while (i < room->self_links->size)
 	{
-		tmp = t_ptr_room_list_at(room->self_links, i);
+		tmp = t_room_list_at(room->self_links, i);
 		ft_printf("%s-%s\n", room->name, tmp->name);
 		i++;
 	}
@@ -35,7 +35,7 @@ void print_out_map(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_ptr_room_list_at(map->room_list, i);
+		room = t_room_list_at(map->room_list, i);
 		if (room->status == start)
 			ft_printf("##start\n");
 		if (room->status == end)
@@ -46,7 +46,7 @@ void print_out_map(t_map *map)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_ptr_room_list_at(map->room_list, i);
+		room = t_room_list_at(map->room_list, i);
 		print_out_link(room);
 		i++;
 	}

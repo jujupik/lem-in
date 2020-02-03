@@ -1,50 +1,63 @@
 10
 ##start
-d 0 0
-q 1 1
-u 2 2
-v 3 3
-f 4 4
-e 5 5
-c 6 6
+start 0 0
 ##end
-a 7 7
-b 8 8
-r 9 9
-p 10 10
-n 11 11
-g 12 12
-h 13 13
-i 14 14
-m 15 m15
-o 16 16
-k 17 17
-j 18 18
-l 19 19
-s 20 20
-t 21 21
-d-q
-d-r
-q-u
-q-p
-u-v
-v-f
-f-g
-f-e
-e-c
-c-a
-a-b
-a-i
-r-m
-p-o
-n-o
-n-g
-g-h
-m-l
-l-k
-l-s
-k-j
-s-t
-j-i
-i-a
-a-b
+end 1 1
+a2 2 2
+b2 2 2
+c2 2 2
+d2 2 2
+e2 2 2
+f2 2 2
+g2 2 2
+h2 2 2
+i2 2 2
+j2 2 2
+k2 2 2
+l2 2 2
+m2 2 2
+n2 2 2
+a1 1 1
+b1 1 1
+c1 1 1
+d1 1 1
+e1 1 1
+f1 1 1
+g1 1 1
+h1 1 1
+i1 1 1
+j1 1 1
+k1 1 1
+l1 1 1
+m1 1 1
+n1 1 1
+start-a1
+a1-b1
+b1-c1
+c1-d1
+d1-e1
+e1-f1
+f1-g1
+g1-h1
+h1-i1
+i1-j1
+j1-k1
+k1-l1
+l1-m1
+m1-n1
+n1-end
+start-a2
+a2-b2
+b2-c2
+c2-d2
+d2-e2
+e2-f2
+f2-g2
+g2-h2
+h2-i2
+i2-j2
+j2-k2
+k2-l2
+l2-m2
+m2-n2
+n2-end

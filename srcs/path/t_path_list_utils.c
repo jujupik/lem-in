@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:52 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:35:53 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:11:11 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,24 @@ void			clear_path_list(t_path_list *path)
 	path->size = 0;
 }
 
+void			print_path_list(t_path_list *path)
+{
+	t_path *tmp;
+	size_t i;
+
+	i = 0;
+	while (i < path->size)
+	{
+		tmp = t_path_list_at(path, i);
+		print_path(tmp, ft_itoa(i));
+		i++;
+	}
+	path->size = 0;
+}
+
 void			copy_path_list(t_path_list *dest, t_path_list *src)
 {
-	t_ptr_room_list *tmp;
+	t_room_list *tmp;
 	t_path *path_dest;
 	t_path *path_src;
 	size_t	i;
@@ -54,11 +69,11 @@ void			copy_path_list(t_path_list *dest, t_path_list *src)
 	while (i < src->size)
 	{
 		path_src = t_path_list_at(src, i);
-		tmp = malloc_ptr_room_list(path_src->path->size);
+		tmp = malloc_room_list(path_src->path->size);
 		j = 0;
 		while (j < path_src->path->size)
 		{
-			t_ptr_room_list_add(tmp, t_ptr_room_list_at(path_src->path, j));
+			t_room_list_add(tmp, t_room_list_at(path_src->path, j));
 			j++;
 		}
 		path_dest = malloc_path(tmp);

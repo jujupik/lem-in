@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:54:52 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 19:32:27 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 00:45:25 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 typedef struct	s_map
 {
 	size_t					nb_fourmis;
-	t_ptr_room_list			*room_list;
+	t_room_list				*room_list;
+	t_room_list				*to_calc;
+	t_room_list				*mono_path;
 	t_room					*start;
 	t_room					*end;
 }				t_map;
@@ -34,10 +36,8 @@ void			parse_command(char *line, t_room_state *status);
 t_room			*search_room(t_map *map, char *room_name);
 void			parse_link(t_map *map, char *line, BOOL *utils);
 
-void			draw_links(t_ptr_room_list *links);
+void			draw_links(t_room_list *links);
 void			print_map(t_map *map);
 void			reset_map_occupation(t_map *map);
-
-extern struct s_path_list	*g_saved_path;
 
 #endif

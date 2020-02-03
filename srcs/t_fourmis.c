@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 19:54:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:46:17 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void print_fourmis(t_solution *solution, t_fourmis *fourmis)
 {
 	if (fourmis->path_index == -1)
 		return ;
-	ft_printf("L%u-%s", fourmis->name, t_ptr_room_list_at(t_path_list_at(&(solution->paths), fourmis->path_index)->path, fourmis->room_index)->name);
+	ft_printf("L%u-%s", fourmis->name, t_room_list_at(t_path_list_at(&(solution->paths), fourmis->path_index)->path, fourmis->room_index)->name);
 }

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:09:50 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 22:36:29 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:49:07 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int get_available_path(t_solution *solution)
 		path = t_path_list_at(&(solution->paths), i);
 		if (path->count != 0)
 		{
-			room = t_ptr_room_list_at(path->path, 1);
+			room = t_room_list_at(path->path, 1);
 			if (room->fourmis == NULL)
 				return (i);
 		}
@@ -49,9 +49,9 @@ void move_fourmis(t_map *map, t_solution *solution, t_fourmis *fourmis)
 		path->count--;
 	}
 	path = t_path_list_at(&(solution->paths), fourmis->path_index);
-	actual = t_ptr_room_list_at(path->path, fourmis->room_index);
+	actual = t_room_list_at(path->path, fourmis->room_index);
 	actual->fourmis = NULL;
-	next = t_ptr_room_list_at(path->path, fourmis->room_index + 1);
+	next = t_room_list_at(path->path, fourmis->room_index + 1);
 	fourmis->room_index++;
 	if (next == map->end)
 		fourmis->arrived = TRUE;
@@ -87,9 +87,9 @@ void print_out_solution(t_map *map, t_solution *solution)
 				move_fourmis(map, solution, &(fourmis_array[j]));
 				if (fourmis_array[j].path_index == -1)
 					break;
-				// if (tmp == TRUE)
-				// 	ft_printf(" ");
-				// print_fourmis(solution, &(fourmis_array[j]));
+				if (tmp == TRUE)
+					ft_printf(" ");
+				print_fourmis(solution, &(fourmis_array[j]));
 				tmp = TRUE;
 				if (fourmis_array[j].arrived == TRUE)
 					i++;
@@ -97,7 +97,7 @@ void print_out_solution(t_map *map, t_solution *solution)
 			j++;
 		}
 		nb_tour++;
-		// ft_printf("\n");
+		ft_printf("\n");
 	}
 	ft_printf("NB tour : %d\n", nb_tour);
 }
@@ -111,7 +111,8 @@ int	main(void)
 	parse_map(&map);
 	solution = solver(&map);
 	//print_out_map(&map);
+	ft_printf("Solution : \n");
 	print_solution(&solution);
-	print_out_solution(&map, &solution);
+	//print_out_solution(&map, &solution);
 	return (0);
 }

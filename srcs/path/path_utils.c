@@ -6,13 +6,11 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 21:20:52 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 01:28:28 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-t_path_list		*g_saved_path = NULL;
 
 /*
 ** calc_next_room utilite :
@@ -30,10 +28,14 @@ static t_room	*calc_next_room(t_room *actual)
 	j = 0;
 	while (j < actual->links->size)
 	{
-		tmp = t_ptr_room_list_at(actual->links, j);
-		if ((next == NULL || next->distance > tmp->distance) &&
-			tmp->occuped == FALSE)
-			next = tmp;
+		tmp = t_room_list_at(actual->links, j);
+		if (tmp->occuped == FALSE)
+		{
+			if (next == NULL)
+				next = tmp;
+			else if (tmp->distance < actual->distance && tmp->distance < next->distance)
+				next = tmp;
+		}
 		j++;
 	}
 	return (next);
@@ -42,26 +44,26 @@ static t_room	*calc_next_room(t_room *actual)
 t_path			*calc_path(t_map *map, t_room *departure)
 {
 	size_t			i;
-	t_ptr_room_list	*tmp_path;
+	t_room_list	*tmp_path;
 	t_room			*room[2];
 
-	tmp_path = malloc_ptr_room_list(map->room_list->size);
+	tmp_path = malloc_room_list(map->room_list->size);
 	if (departure != map->end)
-		t_ptr_room_list_add(tmp_path, map->end);
-	t_ptr_room_list_add(tmp_path, departure);
+		t_room_list_add(tmp_path, map->end);
+	t_room_list_add(tmp_path, departure);
 	i = tmp_path->size - 1;
 	while (i < tmp_path->size)
 	{
-		room[0] = t_ptr_room_list_at(tmp_path, i);
+		room[0] = t_room_list_at(tmp_path, i);
 		if (room[0]->distance != 0)
 		{
 			room[1] = calc_next_room(room[0]);
 			if (room[1] == NULL)
 			{
-				free_ptr_room_list(tmp_path);
+				free_room_list(tmp_path);
 				return (NULL);
 			}
-			t_ptr_room_list_add(tmp_path, room[1]);
+			t_room_list_add(tmp_path, room[1]);
 			room[1]->occuped = (room[1]->distance != 0 ? TRUE : FALSE);
 		}
 		i++;
@@ -82,7 +84,7 @@ void			print_path(t_path *tmp, char *name)
 	{
 		while (i < tmp->path->size)
 		{
-			tmp2 = t_ptr_room_list_at(tmp->path, i);
+			tmp2 = t_room_list_at(tmp->path, i);
 			if (i != 0)
 				ft_printf("-");
 			ft_printf("%s", tmp2->name);
@@ -94,8 +96,8 @@ void			print_path(t_path *tmp, char *name)
 
 void			reverse_path(t_path *path)
 {
-	t_ptr_room_list *tmp;
-	t_ptr_room	tmp2;
+	t_room_list *tmp;
+	t_room		*tmp2;
 	size_t		i;
 	size_t		j;
 
@@ -120,7 +122,7 @@ void			copy_path(t_path *dest, t_path *src)
 	dest->path->size = 0;
 	while (i < src->path->size)
 	{
-		t_ptr_room_list_add(dest->path, t_ptr_room_list_at(src->path, i));
+		t_room_list_add(dest->path, t_room_list_at(src->path, i));
 		i++;
 	}
 }

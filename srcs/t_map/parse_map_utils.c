@@ -37,9 +37,9 @@ void	parse_room(t_map *map, char *line, t_room_state *status)
 	tab = ft_strsplit(line, ' ');
 	if (is_name_valid(map->room_list, tab[0]) == FALSE)
 		error_exit(1, "Bad room name");
-	t_ptr_room_list_add(map->room_list, malloc_room(tab[0], *status,
+	t_room_list_add(map->room_list, malloc_room(tab[0], *status,
 					ft_atoi(tab[1]), ft_atoi(tab[2])));
-	actual = t_ptr_room_list_at(map->room_list, map->room_list->size - 1);
+	actual = t_room_list_at(map->room_list, map->room_list->size - 1);
 	if (*status == start)
 	{
 		if (map->start != NULL)
@@ -72,7 +72,7 @@ t_room	*search_room(t_map *map, char *room_name)
 	i = 0;
 	while (i < map->room_list->size)
 	{
-		room = t_ptr_room_list_at(map->room_list, i);
+		room = t_room_list_at(map->room_list, i);
 		if (ft_strcmp(room->name, room_name) == 0)
 			return (room);
 		i++;
