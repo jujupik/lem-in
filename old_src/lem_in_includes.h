@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver.c                                           :+:      :+:    :+:   */
+/*   lem_in_includes.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 16:50:46 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 08:01:00 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/31 16:55:00 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/01/31 16:55:01 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#ifndef LEM_IN_INCLUDES_H
+# define LEM_IN_INCLUDES_H
 
-t_solution				solver(t_map *map)
-{
-	t_solution solution;
+# include "jlib.h"
 
-	solution = create_solution();
-	return (solution);
-}
+#endif

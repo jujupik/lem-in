@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:10 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 07:59:18 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:21:21 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ void				free_room(t_room *to_free);
 void				room_add_link(t_room *a, t_room *b);
 void				print_room(t_room *room, size_t index);
 
+
+typedef struct		s_link
+{
+	struct s_room 	*children;
+	struct s_room 	*parent;
+	int				flow;
+	int				residual_flow;
+}					t_link;
+
+t_link create_link()
+{
+
+}
 typedef struct		s_room_list
 {
 	t_room			**content;

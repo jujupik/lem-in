@@ -37,10 +37,8 @@ SRC =	ft_atoi.c \
 		ft_isdigit.c \
 		ft_isnum.c \
 		ft_isprint.c \
-		ft_str_list.c \
-		jlib_int_array.c \
-		jlib_intstr_list.c \
-		jlib_vector2_list.c \
+		jlib_list.c \
+		jlib_list2.c \
 		ft_bzero.c \
 		ft_memalloc.c \
 		ft_memccpy.c \
@@ -111,9 +109,7 @@ SRC =	ft_atoi.c \
 		ft_get_leaks.c \
 		ft_tab_free.c \
 		ft_tab_len.c \
-		jlib_vector.c \
-		jlib_vector2_list.c \
-		jlib_intstr_list2.c
+		jlib_vector.c 
 
 ##Transform and place every .o from SRC
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

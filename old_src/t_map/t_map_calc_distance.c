@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_map_calc_distance.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/31 16:50:05 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/03 08:16:50 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lem_in.h"
+
+void	calc_room_distance(t_room *actual, size_t parent_distance)
+{
+	size_t i;
+	t_room *tmp;
+
+	actual->distance = parent_distance;
+	if (actual->status == end)
+		return ;
+	i = 0;
+	while (i < actual->children->size)
+	{
+		tmp = t_room_list_at(actual->children, i);
+		if (tmp->distance > actual->distance + 1)
+			calc_room_distance(tmp, actual->distance + 1);
+		i++;
+	}
+}
+
+void	calc_distance(t_map *map)
+{
+	calc_room_distance(map->start, 0);
+}

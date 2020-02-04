@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:02:08 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 18:18:02 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:15:53 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	converter_percent(t_data *data, t_flag_data *flag_data)
 {
-	char	*str;
+	char		*str;
 
 	handle_wildcard(data, flag_data);
 	str = ft_strdup("%");
@@ -25,7 +25,7 @@ void	converter_percent(t_data *data, t_flag_data *flag_data)
 
 void	converter_other(t_data *data, t_flag_data *flag_data, char c)
 {
-	char	str[2];
+	char		str[2];
 
 	(void)flag_data;
 	str[0] = c;
@@ -33,10 +33,10 @@ void	converter_other(t_data *data, t_flag_data *flag_data, char c)
 	add_str_to_buffer(data, str);
 }
 
-void converter_b(t_data *data, t_flag_data *flag_data)
+void	converter_b(t_data *data, t_flag_data *flag_data)
 {
-	char *str;
-	BOOL value;
+	char		*str;
+	BOOL		value;
 
 	(void)flag_data;
 	value = va_arg(data->arg, int);
@@ -47,4 +47,25 @@ void converter_b(t_data *data, t_flag_data *flag_data)
 	else
 		str = "error";
 	add_str_to_buffer(data, str);
+}
+
+void	converter_v(t_data *data, t_flag_data *flag_data)
+{
+	char		*tmp;
+	char		*str;
+	t_vector2	value;
+
+	(void)flag_data;
+	value = va_arg(data->arg, t_vector2);
+	str = ft_strdup("(");
+	tmp = ft_itoa(value.x);
+	ft_str_replace_back(&str, tmp);
+	free(tmp);
+	ft_str_replace_back(&str, " / ");
+	tmp = ft_itoa(value.y);
+	ft_str_replace_back(&str, tmp);
+	free(tmp);
+	ft_str_replace_back(&str, ")");
+	add_str_to_buffer(data, str);
+	free(str);
 }

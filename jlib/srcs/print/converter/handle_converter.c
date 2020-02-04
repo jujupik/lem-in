@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:02:18 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 18:17:27 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:21:10 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	create_convert_funct_tab(t_convert_funct *tab)
 	tab['p'] = converter_p;
 	tab['%'] = converter_percent;
 	tab['b'] = converter_b;
+	tab['v'] = converter_v;
 }
 
 void	handle_converter(t_data *data, t_flag_data *flag_data,

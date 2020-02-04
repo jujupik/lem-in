@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_map_calc_distance.c                              :+:      :+:    :+:   */
+/*   t_map_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 16:50:05 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 08:01:49 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/31 16:50:07 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/04 17:28:49 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	calc_room_distance(t_room *actual, size_t parent_distance)
+void		reset_map_occupation(t_map *map)
 {
-	size_t i;
-	t_room *tmp;
+	t_room	*room;
+	size_t	i;
 
-	actual->distance = parent_distance;
-	if (actual->status == end)
-		return ;
 	i = 0;
-	while (i < actual->children->size)
+	while (i < map->room_list->size)
 	{
-		tmp = t_room_list_at(actual->children, i);
-		if (tmp->distance > actual->distance + 1)
-			calc_room_distance(tmp, actual->distance + 1);
+		room = t_room_list_at(map->room_list, i);
+		room->occuped = FALSE;
 		i++;
 	}
-}
-
-void	calc_distance(t_map *map)
-{
-	calc_room_distance(map->start, 0);
+	map->end->occuped = TRUE;
 }

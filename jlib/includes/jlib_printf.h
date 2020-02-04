@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:40:05 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/02 18:17:12 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:21:20 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void				converter_percent(t_data *data, t_flag_data *flag_data);
 void				converter_other(t_data *data, t_flag_data *flag_data,
 						char c);
 void				converter_b(t_data *data, t_flag_data *flag_data);
+void				converter_v(t_data *data, t_flag_data *flag_data);
 size_t				handle_flag(t_flag_data *data, char *cmd, size_t i);
 size_t				flag_sharp(t_flag_data *data, char *cmd, int i);
 size_t				flag_zero(t_flag_data *data, char *cmd, int i);
