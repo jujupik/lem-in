@@ -39,18 +39,11 @@ t_link	*search_link(t_room *actual, t_room *dest)
 
 	link = NULL;
 	i = 0;
-	while (i < actual->children->size)
+	while (i < actual->links->size)
 	{
-		link = list_at(actual->children, i);
-		if (ft_strcmp(link->children->name, dest->name) == 0)
-			return (link);
-		i++;
-	}
-	i = 0;
-	while (i < actual->parent->size)
-	{
-		link = list_at(actual->parent, i);
-		if (ft_strcmp(link->parent->name, dest->name) == 0)
+		link = list_at(actual->links, i);
+		if (ft_strcmp(link->children->name, dest->name) == 0 ||
+			ft_strcmp(link->parent->name, dest->name) == 0)
 			return (link);
 		i++;
 	}
@@ -59,29 +52,22 @@ t_link	*search_link(t_room *actual, t_room *dest)
 
 void	active_path(t_path *path)
 {
-	t_list	*list;
-	size_t	i;
-	t_room	*actual;
+	t_room	*room;
 	t_room	*next;
 	t_link	*link;
-	t_link	*link2;
+	size_t	i;
 
-	list = path->road;
-	if (list->size == 0)
-		return ;
 	i = 0;
-	while (i < list->size - 1)
+	while (i < path->road->size - 1)
 	{
-		actual = list_at(list, i);
-		next = list_at(list, i + 1);
-		link = search_link(actual, next);
-		link2 = search_link(next, actual);
-		if (link == NULL)
-			error_exit(1, "No links here");
+		room = list_at(path->road, i);
+		next = list_at(path->road, i + 1);
+		link = search_link(room, next);
+		if (room->state == normal)
+			room->active = TRUE;
+		if (next->state == normal)
+			next->active = TRUE;
 		link->flow = (link->flow == 0 ? 1 : 0);
-		//link2->flow = link->flow;
-		if (actual->state == normal)
-			actual->active = TRUE;
 		i++;
 	}
 }

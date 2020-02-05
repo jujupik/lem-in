@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 16:28:14 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 22:32:36 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct		s_room
 	size_t			distance;
 	int				x;
 	int				y;
-	t_list			*parent;
-	t_list			*children;
+	t_list			*links;
 	struct s_room	*previous;
 }					t_room;
 
@@ -43,7 +42,9 @@ void			destroy_room(t_room to_destroy);
 void			free_room(t_room *to_free);
 void			print_room(t_room *room);
 void			add_room_link(t_room *parent, t_room *children);
-size_t			room_nb_link_active(t_room *room);
+int				room_nb_link_active(t_room *room);
+int 			room_nb_parent(t_room *room);
+int 			room_nb_children(t_room *room);
 
 typedef struct	s_link
 {
@@ -56,7 +57,8 @@ t_link			create_link(t_room *p_parent, t_room *p_children);
 t_link			*malloc_link(t_room *p_parent, t_room *p_children);
 void			destroy_link(t_link to_destroy);
 void			free_link(t_link *to_free);
-void			print_link(t_link *link);
+void			print_link(t_room *room, t_link *link);
+void			swap_link(t_link *link);
 
 typedef struct	s_path
 {
@@ -99,5 +101,15 @@ void 			reset_distance(t_map *map);
 void			reverse_path(t_path *path);
 t_link 			*search_link(t_room *actual, t_room *dest);
 void 			active_path(t_path *path);
+void			desactive_path(t_path *path);
+
+void			calc_distance(t_room *room, size_t parent_dist);
+t_path			*calc_path(t_map *map);
+t_room			*get_next_room(t_room *room);
+t_path			*get_path(t_room *room);
+t_list			parse_path(t_map *map);
+t_path			*get_shorter_path(t_list *paths);
+t_path			*get_longuest_path(t_list *paths);
+void			prepare_path(t_map *map, t_list *paths);
 
 #endif

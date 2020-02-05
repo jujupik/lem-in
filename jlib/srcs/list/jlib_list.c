@@ -34,7 +34,8 @@ void destroy_list(t_list to_destroy, destroy_funct funct)
 		j = 0;
 		while (j < to_destroy.push_size)
 		{
-			funct(to_destroy.content[i][j]);
+			if (funct != NULL)
+				funct(to_destroy.content[i][j]);
 			j++;
 		}
 		i++;

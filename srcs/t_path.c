@@ -22,7 +22,7 @@ t_path			*malloc_path()
 
 void			destroy_path(t_path to_destroy)
 {
-	free_list(to_destroy.road, free);
+	free_list(to_destroy.road, NULL);
 }
 
 void			free_path(t_path *to_free)

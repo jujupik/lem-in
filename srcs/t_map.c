@@ -42,7 +42,7 @@ void		print_map(t_map *map)
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
-		if (room_nb_link_active(room) != 0)
+		if (room->active == TRUE || room->state == start || room->state == end)
 			print_room(room);
 		i++;
 	}

@@ -27,41 +27,38 @@ w 0 0
 x 0 0
 y 0 0
 z 0 0
-a-i
+aa 0 0
+#First path
 a-b
-a-p
-i-j
-i-c
 b-c
-p-q
-j-k
-c-d
-c-r
-q-d
-q-r
-k-l
-d-l
+d-c
 d-e
-r-s
-r-w
-w-x
-l-y
-l-m
-l-f
 e-f
-s-t
-s-x
-y-z
-m-n
-t-f
-t-g
-z-n
+g-f
 g-h
-g-u
-f-g
-f-u
+#Second path
+a-i
+i-p
+p-j
+j-d
+k-c
+k-l
+l-f
+m-e
+m-q
+q-n
 n-o
-n-g
 o-h
-u-v
-v-h
+#Third path
+a-r
+r-s
+t-s
+t-e
+d-u
+v-u
+v-w
+w-x
+z-y
+y-x
+aa-z
+aa-h

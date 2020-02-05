@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 02:20:44 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 22:16:11 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ void	free_link(t_link *to_free)
 	free(to_free);
 }
 
-void print_link(t_link *link)
+void print_link(t_room *room, t_link *link)
 {
 	size_t j;
 
-	ft_printf("%s[%d]", link->children->name, link->flow);
+	ft_printf("%2s[%2d]", link->children->name, link->flow);
+}
+
+void swap_link(t_link *link)
+{
+	t_room *tmp;
+
+	tmp = link->parent;
+	link->parent = link->children;
+	link->children = tmp;
 }
