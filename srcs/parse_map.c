@@ -77,6 +77,5 @@ t_map			parse_map()
 	map = create_map();
 	parse_fourmis(&map);
 	parse_map_content(&map);
-	print_map(&map);
 	return (map);
 }

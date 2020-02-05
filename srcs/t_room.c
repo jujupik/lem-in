@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 17:51:24 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 02:13:01 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ t_room	create_room(char *p_name, t_room_state p_state, int x, int y)
 	result.name = ft_strdup(p_name);
 	result.x = x;
 	result.y = y;
+	result.previous = NULL;
+	result.active = FALSE;
+	result.distance = UINT_MAX;
 	result.state = p_state;
 	result.parent = malloc_list(100);
 	result.children = malloc_list(100);
@@ -51,7 +54,7 @@ void print_room(t_room *room)
 {
 	size_t j;
 
-	ft_printf("{%3s} - {%9s} -> ", room->name, state_str(room->state));
+	ft_printf("{%3s} - [%6b] - [%12u] - {%5s} - {%9s} -> ", room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state));
 	j = 0;
 	while (j < room->children->size)
 	{
@@ -70,4 +73,8 @@ void add_room_link(t_room *parent, t_room *children)
 	p_link = malloc_link(parent, children);
 	list_push_back(parent->children, p_link);
 	list_push_back(children->parent, p_link);
+
+	// p_link = malloc_link(children, parent);
+	// list_push_back(children->parent, p_link);
+	// list_push_back(parent->children, p_link);
 }

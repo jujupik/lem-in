@@ -56,3 +56,11 @@ void	*list_at(t_list *list, size_t index)
 	coord = list_calc_index_coord(list, index);
 	return (list->content[coord.y][coord.x]);
 }
+
+void	**list_get(t_list *list, size_t index)
+{
+	t_vector2 coord;
+
+	coord = list_calc_index_coord(list, index);
+	return (&(list->content[coord.y][coord.x]));
+}

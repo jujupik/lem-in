@@ -1,4 +1,4 @@
-10
+100
 ##start
 a 0 0
 b 0 0
@@ -7,8 +7,8 @@ d 0 0
 e 0 0
 f 0 0
 g 0 0
-h 0 0
 ##end
+h 0 0
 i 0 0
 j 0 0
 k 0 0
@@ -27,36 +27,41 @@ w 0 0
 x 0 0
 y 0 0
 z 0 0
+a-i
 a-b
+a-p
+i-j
+i-c
 b-c
-c-d
-d-e
-e-f
-f-g
-g-h
-h-i
-a-j
+p-q
 j-k
-k-l
-l-d
-d-v
-v-g
-c-m
-m-z
-z-n
-n-q
-n-f
-f-o
+c-d
+c-r
+q-d
 q-r
-r-o
-o-p
-p-i
-a-s
-s-t
-t-b
-t-u
-u-y
-y-e
-f-w
+k-l
+d-l
+d-e
+r-s
+r-w
 w-x
-x-i
+l-y
+l-m
+l-n
+l-f
+e-f
+s-t
+s-x
+y-z
+m-n
+t-f
+t-g
+z-n
+g-h
+f-g
+f-u
+n-o
+n-g
+o-h
+u-v
+v-h

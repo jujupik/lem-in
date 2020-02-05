@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:49:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/03 08:01:37 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:37:33 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,6 @@ t_path			*calc_path(t_map *map, t_room *departure)
 		i++;
 	}
 	return (malloc_path(tmp_path));
-}
-
-void			print_path(t_path *tmp, char *name)
-{
-	size_t	i;
-	t_room	*tmp2;
-
-	i = 0;
-	ft_printf("%s : %u - %u\n", name, tmp->path->size, tmp->count);
-	if (tmp == NULL || tmp->path->size == 0)
-		ft_printf("No path");
-	else
-	{
-		while (i < tmp->path->size)
-		{
-			tmp2 = t_room_list_at(tmp->path, i);
-			if (i != 0)
-				ft_printf("-");
-			ft_printf("%s", tmp2->name);
-			i++;
-		}
-	}
-	ft_printf("\n");
 }
 
 void			reverse_path(t_path *path)

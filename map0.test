@@ -1,35 +1,12 @@
-10
+3
 ##start
 a 0 0
 b 0 0
 c 0 0
 d 0 0
-e 0 0
-f 0 0
-g 0 0
-h 0 0
-i 0 0
-j 0 0
-k 0 0
-l 0 0
-m 0 0
 ##end
-n 0 0
-a-c
-b-d
-d-e
-e-g
-g-f
-f-h
-h-i
-i-j
-j-g
-j-n
-n-i
-j-k
-k-n
-k-l
-l-m
-m-c
+e 0 0
+a-b
+b-c
 c-d
-b-a
+d-e

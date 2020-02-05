@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 18:01:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 23:18:33 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ typedef struct		s_room
 {
 	char			*name;
 	t_room_state	state;
+	BOOL 			active;
+	size_t			distance;
 	int				x;
 	int				y;
 	t_list			*parent;
 	t_list			*children;
+	struct s_room	*previous;
 }					t_room;
 
 t_room			create_room(char *p_name, t_room_state p_state, int x, int y);
@@ -53,6 +56,19 @@ t_link			*malloc_link(t_room *p_parent, t_room *p_children);
 void			destroy_link(t_link to_destroy);
 void			free_link(t_link *to_free);
 void			print_link(t_link *link);
+
+typedef struct	s_path
+{
+	t_list		*road;
+	size_t		count;
+}				t_path;
+
+t_path			create_path();
+t_path			*malloc_path();
+void			destroy_path(t_path to_destroy);
+void			free_path(t_path *to_free);
+void			add_room_to_path(t_path *path, t_room *room);
+void			print_path(t_path *path);
 
 typedef struct	s_map
 {
@@ -77,5 +93,10 @@ BOOL			line_is_command(char *line);
 BOOL			line_is_room(char *line);
 BOOL			line_is_link(char *line);
 BOOL			is_name_valid(t_list *list, char *name);
+
+void 			reset_distance(t_map *map);
+void			reverse_path(t_path *path);
+t_link 			*search_link(t_room *actual, t_room *dest);
+void 			active_path(t_path *path);
 
 #endif

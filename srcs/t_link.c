@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 17:57:41 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 02:20:44 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void print_link(t_link *link)
 {
 	size_t j;
 
-	ft_printf("{%s}", link->children->name);
+	ft_printf("%s[%d]", link->children->name, link->flow);
 }

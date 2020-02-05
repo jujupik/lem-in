@@ -42,7 +42,8 @@ void		print_map(t_map *map)
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
-		print_room(room);
+		//if (room->children->size > 1)
+			print_room(room);
 		i++;
 	}
 }

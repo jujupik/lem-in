@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:02:08 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 16:15:53 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:26:25 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	converter_b(t_data *data, t_flag_data *flag_data)
 {
 	char		*str;
 	BOOL		value;
+	char		*str2;
 
-	(void)flag_data;
+	handle_wildcard(data, flag_data);
 	value = va_arg(data->arg, int);
 	if (value == TRUE)
 		str = "true";
@@ -46,7 +47,13 @@ void	converter_b(t_data *data, t_flag_data *flag_data)
 		str = "false";
 	else
 		str = "error";
-	add_str_to_buffer(data, str);
+	str2 = ft_strdup(str);
+	if ((ft_strlen(str2) > (size_t)(flag_data->precision))
+			&& flag_data->point == TRUE)
+		str2[(size_t)(flag_data->precision)] = '\0';
+	handle_padding(flag_data, &str2);
+	add_str_to_buffer(data, str2);
+	free(str2);
 }
 
 void	converter_v(t_data *data, t_flag_data *flag_data)
