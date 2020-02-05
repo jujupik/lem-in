@@ -18,8 +18,8 @@ void	set_map_room(t_map *map, t_room *room)
 
 void	add_room(t_map *map, char *line, t_room_state *state)
 {
-	char **tab;
-	t_room *room;
+	char	**tab;
+	t_room	*room;
 
 	tab = ft_strsplit(line, ' ');
 	room = malloc_room(tab[0], *state, ft_atoi(tab[1]), ft_atoi(tab[2]));

@@ -2,7 +2,7 @@
 
 static void		parse_fourmis(t_map *map)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	while (get_next_line(0, &line) && line_is_commentary(line) == TRUE)
@@ -17,9 +17,9 @@ static void		parse_fourmis(t_map *map)
 
 static void		parse_link(t_map *map, char *line, BOOL *end)
 {
-	t_room *room_a;
-	t_room *room_b;
-	char **tab;
+	t_room	*room_a;
+	t_room	*room_b;
+	char	**tab;
 
 	if (line_is_link(line) == TRUE)
 	{
@@ -51,9 +51,9 @@ static void		parse_room(t_map *map, char *line)
 
 static void		parse_map_content(t_map *map)
 {
-	char *line;
-	BOOL found;
-	BOOL end;
+	char	*line;
+	BOOL	found;
+	BOOL	end;
 
 	end = FALSE;
 	found = FALSE;
@@ -72,7 +72,7 @@ static void		parse_map_content(t_map *map)
 
 t_map			parse_map()
 {
-	t_map map;
+	t_map	map;
 
 	map = create_map();
 	parse_fourmis(&map);

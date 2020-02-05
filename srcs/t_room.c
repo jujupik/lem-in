@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 02:13:01 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 18:17:48 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void print_room(t_room *room)
 {
 	size_t j;
 
-	ft_printf("{%3s} - [%6b] - [%12u] - {%5s} - {%9s} -> ", room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state));
+	ft_printf("{%3s} - [%6b] - [%12u] - {%5s} - {%9s} -> [total : %u] - ", room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state), room_nb_link_active(room));
 	j = 0;
 	while (j < room->children->size)
 	{
@@ -68,13 +68,29 @@ void print_room(t_room *room)
 
 void add_room_link(t_room *parent, t_room *children)
 {
-	t_link *p_link;
+	t_link	*p_link;
 
 	p_link = malloc_link(parent, children);
 	list_push_back(parent->children, p_link);
 	list_push_back(children->parent, p_link);
 
-	// p_link = malloc_link(children, parent);
-	// list_push_back(children->parent, p_link);
-	// list_push_back(parent->children, p_link);
+	p_link = malloc_link(children, parent);
+	list_push_back(parent->parent, p_link);
+	list_push_back(children->children, p_link);
+}
+
+size_t room_nb_link_active(t_room *room)
+{
+	size_t	nb;
+	size_t	j;
+
+	nb = 0;
+	j = 0;
+	while (j < room->children->size)
+	{
+		if (((t_link *)list_at(room->children, j))->flow != 0)
+			nb++;
+		j++;
+	}
+	return (nb);
 }

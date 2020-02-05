@@ -23,7 +23,7 @@ t_list	*malloc_list(size_t p_push_size)
 	return (result);
 }
 
-void destroy_list(t_list to_destroy)
+void destroy_list(t_list to_destroy, destroy_funct funct)
 {
 	size_t i;
 	size_t j;
@@ -34,15 +34,15 @@ void destroy_list(t_list to_destroy)
 		j = 0;
 		while (j < to_destroy.push_size)
 		{
-			free(to_destroy.content[i][j]);
+			funct(to_destroy.content[i][j]);
 			j++;
 		}
 		i++;
 	}
 }
 
-void free_list(t_list *to_free)
+void free_list(t_list *to_free, destroy_funct funct)
 {
-	destroy_list(*to_free);
+	destroy_list(*to_free, funct);
 	free(to_free);
 }

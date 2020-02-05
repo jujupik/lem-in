@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 23:18:33 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:28:14 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void			destroy_room(t_room to_destroy);
 void			free_room(t_room *to_free);
 void			print_room(t_room *room);
 void			add_room_link(t_room *parent, t_room *children);
+size_t			room_nb_link_active(t_room *room);
 
 typedef struct	s_link
 {
