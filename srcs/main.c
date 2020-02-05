@@ -108,8 +108,11 @@ t_list parse_path(t_map *map)
 		if (path != NULL)
 		{
 			prepare_path(map, &paths);
+			if (paths.size == 0 || path->road->size < get_longuest_path(&paths)->road->size + get_longuest_path(&paths)->count)
+			{
 			active_path(path);
 			list_push_back(&paths, path);
+			}
 		}
 		i++;
 	}
