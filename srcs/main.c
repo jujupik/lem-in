@@ -67,6 +67,7 @@ t_list parse_path(t_map *map)
 	while (path != NULL)
 	{
 		path = calc_path(map);
+		print_map(map);
 		if (path != NULL)
 		{
 			prepare_path(map, &paths);

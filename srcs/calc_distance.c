@@ -18,6 +18,7 @@ void	calc_distance(t_room *room, size_t parent_dist)
 	if (room == NULL)
 		return ;
 
+	ft_printf("Set distance of %s from %u -> %u\n", room->parent_dist)
 	room->distance = parent_dist;
 	if (room->state == end)
 		return ;
@@ -28,13 +29,23 @@ void	calc_distance(t_room *room, size_t parent_dist)
 		tmp_room = tmp_link->children;
 		if (tmp_room == room)
 			tmp_room = tmp_link->parent;
+		if (ft_strcmp(room->name, "Omd6") == 0 || ft_strcmp(tmp_room->name, "Omd6") == 0)
+			ft_printf("Test for %u > %u && %d == 0 && (room->active == %b || (room->active == %b && room->previous->active == %b && tmp_room->active == %b))\n", tmp_room->distance, parent_dist, tmp_link->flow, room->active, room->active, room->previous->active, tmp_room->active);
 		if (tmp_room->distance > parent_dist && tmp_link->flow == 0 && (room->active == FALSE || (room->active == TRUE && room->previous->active == TRUE && tmp_room->active == FALSE)))
 		{
+			if (ft_strcmp(room->name, "Omd6") == 0)
+				ft_printf("Entry 1\n");
+			if (ft_strcmp(tmp_room->name, "Omd6") == 0)
+				ft_printf("Entry 2\n");
 			tmp_room->previous = room;
 			calc_distance(tmp_room, parent_dist + 1);
 		}
 		if (tmp_room->distance > parent_dist && tmp_link->flow == 1 && room->active == TRUE && tmp_room->active == TRUE)
 		{
+			if (ft_strcmp(room->name, "Omd6") == 0)
+				ft_printf("Entry 3\n");
+			if (ft_strcmp(tmp_room->name, "Omd6") == 0)
+				ft_printf("Entry 4\n");
 			tmp_room->previous = room;
 			calc_distance(tmp_room, parent_dist + 1);
 		}
