@@ -49,25 +49,3 @@ t_link	*search_link(t_room *actual, t_room *dest)
 	}
 	return (NULL);
 }
-
-void	active_path(t_path *path)
-{
-	t_room	*room;
-	t_room	*next;
-	t_link	*link;
-	size_t	i;
-
-	i = 0;
-	while (i < path->road->size - 1)
-	{
-		room = list_at(path->road, i);
-		next = list_at(path->road, i + 1);
-		link = search_link(room, next);
-		if (room->state == normal)
-			room->active = TRUE;
-		if (next->state == normal)
-			next->active = TRUE;
-		link->flow = (link->flow == 0 ? 1 : 0);
-		i++;
-	}
-}

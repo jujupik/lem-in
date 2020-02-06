@@ -70,7 +70,7 @@ static void		parse_map_content(t_map *map)
 	free(line);
 }
 
-static void		parse_parenting(t_map *map)
+void parse_parenting(t_map *map)
 {
 	t_room *room;
 	t_link *link;
@@ -78,6 +78,7 @@ static void		parse_parenting(t_map *map)
 	size_t j;
 
 	i = 0;
+	calc_distance(map->start, 0);
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
@@ -85,7 +86,7 @@ static void		parse_parenting(t_map *map)
 		while (j < room->links->size)
 		{
 			link = list_at(room->links, j);
-			if (link->parent->state == end || (link->parent->distance > link->children->distance && link->children->state != end))
+			if (link->parent->distance > link->children->distance)
 				swap_link(link);
 			j++;
 		}
@@ -100,7 +101,6 @@ t_map			parse_map()
 	map = create_map();
 	parse_fourmis(&map);
 	parse_map_content(&map);
-	calc_distance(map.start, 0);
 	parse_parenting(&map);
 	return (map);
 }

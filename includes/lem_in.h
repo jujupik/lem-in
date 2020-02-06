@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 22:32:36 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:17:59 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void			destroy_room(t_room to_destroy);
 void			free_room(t_room *to_free);
 void			print_room(t_room *room);
 void			add_room_link(t_room *parent, t_room *children);
-int				room_nb_link_active(t_room *room);
-int 			room_nb_parent(t_room *room);
-int 			room_nb_children(t_room *room);
+int				room_flow_total(t_room *room);
+int 			room_flow_parent(t_room *room);
+int 			room_flow_children(t_room *room);
 
 typedef struct	s_link
 {
@@ -90,6 +90,7 @@ void			set_map_room(t_map *map, t_room *room);
 void			add_room(t_map *map, char *line, t_room_state *state);
 t_room			*search_room(t_map *map, char *room_name);
 t_map			parse_map();
+void			parse_parenting(t_map *map);
 
 BOOL			line_is_commentary(char *line);
 BOOL			line_is_command(char *line);

@@ -1,5 +1,8 @@
 100
 ##start
+start 0 0
+##end
+end 0 0
 a 0 0
 b 0 0
 c 0 0
@@ -7,7 +10,6 @@ d 0 0
 e 0 0
 f 0 0
 g 0 0
-##end
 h 0 0
 i 0 0
 j 0 0
@@ -28,37 +30,45 @@ x 0 0
 y 0 0
 z 0 0
 aa 0 0
-#First path
+#starting link
+start-a
+start-j
+start-s
+#ending link
+end-i
+end-r
+end-aa
+#first line
 a-b
+b-l
 b-c
-d-c
+c-m
 d-e
-e-f
-g-f
+e-o
+f-g
 g-h
-#Second path
-a-i
-i-p
-p-j
-j-d
-k-c
+h-r
+#second line
+j-k
 k-l
-l-f
-m-e
-m-q
-q-n
+k-u
+l-d
+m-l
+m-n
+m-w
+n-f
 n-o
-o-h
-#Third path
-a-r
-r-s
-t-s
-t-e
-d-u
-v-u
-v-w
+o-p
+p-z
+p-q
+q-r
+q-i
+#third line
+s-t
+t-l
+u-v
+v-n
 w-x
-z-y
-y-x
-aa-z
-aa-h
+x-y
+y-q
+z-aa

@@ -6,17 +6,21 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 22:34:45 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:53:01 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+size_t g_name_len = 1;
 
 t_room	create_room(char *p_name, t_room_state p_state, int x, int y)
 {
 	t_room	result;
 
 	result.name = ft_strdup(p_name);
+	if (ft_strlen(result.name) > g_name_len)
+		g_name_len = ft_strlen(result.name);
 	result.x = x;
 	result.y = y;
 	result.previous = NULL;
@@ -56,7 +60,7 @@ void print_room(t_room *room)
 	size_t	first;
 
 	first = 0;
-	ft_printf("{%3s} - [%6b] - [%12u] - {%5s} - {%9s} -> [total : %2d (%2d / %2d)] - ", room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state), room_nb_link_active(room), room_nb_children(room), room_nb_parent(room));
+	ft_printf("{%*s} - [%6b] - [%12u] - {%5s} - {%9s} -> [total : %2d (%2d / %2d)] - ", g_name_len, room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state), room_flow_total(room), room_flow_children(room), room_flow_parent(room));
 	j = 0;
 	while (j < room->links->size)
 	{
@@ -83,7 +87,7 @@ void add_room_link(t_room *parent, t_room *children)
 	list_push_back(children->links, p_link);
 }
 
-int room_nb_parent(t_room *room)
+int room_flow_parent(t_room *room)
 {
 	t_link	*link;
 	int		nb;
@@ -94,14 +98,14 @@ int room_nb_parent(t_room *room)
 	while (j < room->links->size)
 	{
 		link = list_at(room->links, j);
-		if (room != link->children)
-			nb += 1;
+		if (room == link->children)
+			nb += link->flow;
 		j++;
 	}
 	return (nb);
 }
 
-int room_nb_children(t_room *room)
+int room_flow_children(t_room *room)
 {
 	t_link	*link;
 	int		nb;
@@ -112,14 +116,14 @@ int room_nb_children(t_room *room)
 	while (j < room->links->size)
 	{
 		link = list_at(room->links, j);
-		if (room != link->parent)
-			nb += 1;
+		if (room == link->parent)
+			nb += link->flow;
 		j++;
 	}
 	return (nb);
 }
 
-int room_nb_link_active(t_room *room)
+int room_flow_total(t_room *room)
 {
 	t_link	*link;
 	int		nb;
@@ -130,13 +134,10 @@ int room_nb_link_active(t_room *room)
 	while (j < room->links->size)
 	{
 		link = list_at(room->links, j);
-		if (link->flow != 0)
-		{
-			if (room != link->children)
-				nb += 1;
-			else
-				nb -= 1;
-		}
+		if (link->parent == room)
+			nb += link->flow;
+		else
+			nb -= link->flow;
 		j++;
 	}
 	return (nb);

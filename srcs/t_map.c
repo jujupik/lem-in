@@ -42,8 +42,7 @@ void		print_map(t_map *map)
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
-		if (ft_strcmp(room->name, "Omd6") == 0)//room->active == TRUE || room->state == start || room->state == end)
-			print_room(room);
+		print_room(room);
 		i++;
 	}
 	ft_printf("\n----\n");
