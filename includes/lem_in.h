@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/06 15:17:59 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:06:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_map			*malloc_map(void);
 void			destroy_map(t_map to_destroy);
 void			free_map(t_map *to_free);
 void			print_map(t_map *map);
+void			print_map_strange(t_map *map);
 void			set_map_room(t_map *map, t_room *room);
 void			add_room(t_map *map, char *line, t_room_state *state);
 t_room			*search_room(t_map *map, char *room_name);
@@ -105,6 +106,7 @@ void 			active_path(t_path *path);
 void			desactive_path(t_path *path);
 
 void			calc_distance(t_room *room, size_t parent_dist);
+void			calc_complete_distance(t_room *room, size_t parent_dist);
 t_path			*calc_path(t_map *map);
 t_room			*get_next_room(t_room *room);
 t_path			*get_path(t_room *room);

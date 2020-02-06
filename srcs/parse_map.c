@@ -15,7 +15,7 @@ static void		parse_fourmis(t_map *map)
 	free(line);
 }
 
-static void		parse_link(t_map *map, char *line, BOOL *end)
+void		parse_link(t_map *map, char *line, BOOL *end)
 {
 	t_room	*room_a;
 	t_room	*room_b;
@@ -27,6 +27,8 @@ static void		parse_link(t_map *map, char *line, BOOL *end)
 		room_a = search_room(map, tab[0]);
 		room_b = search_room(map, tab[1]);
 		add_room_link(room_a, room_b);
+		if (room_a == map->end)
+			swap_link(search_link(room_a, room_b));
 	}
 	else if (line_is_commentary(line) == FALSE)
 	{
@@ -78,7 +80,7 @@ void parse_parenting(t_map *map)
 	size_t j;
 
 	i = 0;
-	calc_distance(map->start, 0);
+	calc_complete_distance(map->start, 0);
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
@@ -86,7 +88,7 @@ void parse_parenting(t_map *map)
 		while (j < room->links->size)
 		{
 			link = list_at(room->links, j);
-			if (link->parent->distance > link->children->distance)
+			if (link->parent->state == end || (link->children->state != end && link->parent->distance > link->children->distance))
 				swap_link(link);
 			j++;
 		}

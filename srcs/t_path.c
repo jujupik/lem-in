@@ -53,7 +53,7 @@ void			print_path(t_path *tmp)
 			tmp2 = list_at(tmp->road, i);
 			if (i != 0)
 				ft_printf("-");
-			ft_printf("%s", tmp2->name);
+			ft_printf("%s", (tmp2 == NULL ? "[null]" : tmp2->name));
 			i++;
 		}
 	}

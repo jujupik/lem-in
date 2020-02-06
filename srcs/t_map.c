@@ -47,3 +47,19 @@ void		print_map(t_map *map)
 	}
 	ft_printf("\n----\n");
 }
+
+void		print_map_strange(t_map *map)
+{
+	t_room	*room;
+	size_t	i;
+
+	i = 0;
+	while (i < map->room_list->size)
+	{
+		room = list_at(map->room_list, i);
+		if (room_flow_children(room) != 0 || room_flow_parent(room) != 0 || ft_strcmp("Vnl6", room->name) == 0)
+			print_room(room);
+		i++;
+	}
+	ft_printf("\n----\n");
+}

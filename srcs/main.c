@@ -44,12 +44,68 @@ t_path *get_path(t_room *room)
 	return (path);
 }
 
+t_room *find_next_room(t_room *room)
+{
+	t_link *link;
+	t_room *next;
+	size_t i;
+
+	i = 0;
+	while (i < room->links->size)
+	{
+		link = list_at(room->links, i);
+		next = link->children;
+		if (link->flow != 0 && next != room)
+			return (next);
+		i++;
+	}
+	return (NULL);
+}
+
+t_path *retrieve_path(t_room *start, t_room *room)
+{
+	t_path *path;
+
+	path = malloc_path();
+	add_room_to_path(path, start);
+	add_room_to_path(path, room);
+	while (room != NULL && room->state != end)
+	{
+		room = find_next_room(room);
+		add_room_to_path(path, room);
+	}
+	if (room == NULL || room->state != end)
+	{
+		free_path(path);
+		return (NULL);
+	}
+	return (path);
+}
+
 t_list parse_path(t_map *map)
 {
 	t_list result;
+	t_path *path;
+	t_room *room;
 
 	result = create_list(500);
-	(void)map;
+	for (size_t i = 0; i < map->start->links->size; i++)
+	{
+		reset_distance(map);
+		calc_distance(map->start, 0);
+		path = get_path(map->end);
+		if (path != NULL)
+			active_path(path);
+	}
+	ft_printf("----====----\n");
+	//print_map(map);
+	for (size_t i = 0; i < map->start->links->size; i++)
+	{
+		room = ((t_link *)list_at(map->start->links, i))->children;
+		path = retrieve_path(map->start, room);
+		if (path != NULL)
+			list_push_back(&result, path);
+	}
 	return (result);
 }
 
@@ -141,25 +197,20 @@ int main()
 	t_path *tmp;
 
 	map = parse_map();
-	for (size_t i = 0; i < 3; i++)
+	// print_map(&map);
+	paths = parse_path(&map);
+	prepare_path(&map, &paths);
+	for (size_t i = 0; i < paths.size; i++)
 	{
-		reset_distance(&map);
-		calc_distance(map.start, 0);
-		t_path *path = get_path(map.end);
-		if (path != NULL)
-		{
-			ft_printf("\n\n");
-			print_path(path);
-			active_path(path);
-		}
-		//ft_printf("\n\n");
-		//print_map(&map);
-
+		t_path *tmp = list_at(&paths, i);
+		if (tmp != NULL)
+			print_path(tmp);
 	}
-	ft_printf("\n\n");
-	print_map(&map);
-
-	// exit(0);
-	// paths = parse_path(&map);
+	print_map_strange(&map);
+	//print_room(map.start);
+	//print_room(map.end);
+	tmp = get_longuest_path(&paths);
+	if (tmp != NULL)
+		ft_printf("\nfor %u ants -> Nb turn : %u\n", map.nb_fourmis, tmp->road->size + tmp->count - 2);
 	return (0);
 }
