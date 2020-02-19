@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/06 15:53:01 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:44:56 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void print_room(t_room *room)
 	while (j < room->links->size)
 	{
 		link = list_at(room->links, j);
-		if (room != link->children)
-		{
+		// if (room != link->children)
+		// {
 			if (j != first)
 				ft_printf(" - ");
 			print_link(room, link);
-		}
-		else
-			first++;
+		// }
+		// else
+		// 	first++;
 		j++;
 	}
 	ft_printf("\n");
@@ -81,7 +81,16 @@ void print_room(t_room *room)
 void add_room_link(t_room *parent, t_room *children)
 {
 	t_link	*p_link;
+	size_t i;
 
+	i = 0;
+	while (i < parent->links->size)
+	{
+		p_link = list_at(parent->links, i);
+		if (p_link->parent == children || p_link->children == children)
+			return ;
+		i++;
+	}
 	p_link = malloc_link(parent, children);
 	list_push_back(parent->links, p_link);
 	list_push_back(children->links, p_link);

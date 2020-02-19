@@ -1,11 +1,5 @@
 #include "lem_in.h"
 
-t_path	*calc_path(t_map *map)
-{
-	(void)map;
-	return (NULL);
-}
-
 t_room *get_next_room(t_room *room)
 {
 	t_link *link;
@@ -54,8 +48,9 @@ t_room *find_next_room(t_room *room)
 	while (i < room->links->size)
 	{
 		link = list_at(room->links, i);
-		next = link->children;
-		if (link->flow != 0 && next != room)
+		next = (link->children == room ? link->parent : link->children);
+		if ((link->flow == 1 && link->parent == room) ||
+			(link->flow == -1 && link->children == room))
 			return (next);
 		i++;
 	}
@@ -93,12 +88,16 @@ t_list parse_path(t_map *map)
 	{
 		reset_distance(map);
 		calc_distance(map->start, 0);
+		print_map(map);
 		path = get_path(map->end);
 		if (path != NULL)
+		{
+			print_path(path);
 			active_path(path);
+		}
+		ft_printf("\n\n\n");
 	}
-	ft_printf("----====----\n");
-	//print_map(map);
+	exit(1);
 	for (size_t i = 0; i < map->start->links->size; i++)
 	{
 		room = ((t_link *)list_at(map->start->links, i))->children;
@@ -182,10 +181,11 @@ void	active_path(t_path *path)
 		link = search_link(room, next);
 		if (next->state == normal)
 			next->active = TRUE;
-		if (room == link->parent)
-			link->flow++;
-		else
-			link->flow--;
+		link->flow = (link->flow == 0 ? 1 : 0);
+		// if (room == link->parent)
+		// 	link->flow++;
+		// else
+		// 	link->flow--;
 		i++;
 	}
 }
@@ -197,18 +197,14 @@ int main()
 	t_path *tmp;
 
 	map = parse_map();
-	// print_map(&map);
 	paths = parse_path(&map);
 	prepare_path(&map, &paths);
 	for (size_t i = 0; i < paths.size; i++)
 	{
 		t_path *tmp = list_at(&paths, i);
-		if (tmp != NULL)
+		if (tmp != NULL && tmp->count != 0)
 			print_path(tmp);
 	}
-	print_map_strange(&map);
-	//print_room(map.start);
-	//print_room(map.end);
 	tmp = get_longuest_path(&paths);
 	if (tmp != NULL)
 		ft_printf("\nfor %u ants -> Nb turn : %u\n", map.nb_fourmis, tmp->road->size + tmp->count - 2);

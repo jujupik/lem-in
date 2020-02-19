@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/06 20:06:51 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:56:12 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_link
 {
 	t_room		*parent;
 	t_room		*children;
+	t_room		*actual_parent;
 	int			flow;
 }				t_link;
 

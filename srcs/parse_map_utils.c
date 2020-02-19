@@ -44,3 +44,26 @@ t_room	*search_room(t_map *map, char *room_name)
 	}
 	return (NULL);
 }
+
+void	calc_complete_distance(t_room *room, size_t parent_dist)
+{
+	t_link *link;
+	t_room *next;
+	size_t i;
+
+	room->distance = parent_dist;
+	if (room->state == end)
+		return ;
+	i = 0;
+	while (i < room->links->size)
+	{
+		link = list_at(room->links, i);
+		next = (link->children != room ? link->children : link->parent);
+		if (next->state != end && next->distance > room->distance)
+				calc_complete_distance(next, parent_dist + 1);
+		else if (next->state == end && (next->distance == UINT_MAX ||
+				next->distance < room->distance))
+				calc_complete_distance(next, parent_dist + 1);
+		i++;
+	}
+}
