@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:10:10 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:10:24 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:01:00 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,22 @@ static void	utils_calc_distance(t_list *list, t_room *tmp_room,
 	}
 }
 
-void		calc_distance(t_room *room, size_t parent_dist)
+void	reset_distance(t_map *map)
+{
+	t_room	*tmp;
+	size_t	i;
+
+	i = 0;
+	while (i < map->room_list->size)
+	{
+		tmp = list_at(map->room_list, i);
+		tmp->distance = UINT_MAX;
+		tmp->previous = NULL;
+		i++;
+	}
+}
+
+void		calc_distance(t_room *room)
 {
 	t_room *tmp_room;
 	t_link *tmp_link;
@@ -68,4 +83,5 @@ void		calc_distance(t_room *room, size_t parent_dist)
 		}
 		(index[0])++;
 	}
+	destroy_list(list, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 17:38:16 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:40:11 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void			print_path(t_path *path);
 
 typedef struct	s_map
 {
+	t_list		*map_string;
 	int			nb_fourmis;
 	t_list		*room_list;
 	t_room		*start;
@@ -106,7 +107,7 @@ t_link 			*search_link(t_room *actual, t_room *dest);
 void 			active_path(t_path *path);
 void			desactive_path(t_path *path);
 
-void			calc_distance(t_room *room, size_t parent_dist);
+void			calc_distance(t_room *room);
 void			calc_complete_distance(t_room *room, size_t parent_dist);
 t_path			*calc_path(t_map *map);
 t_room			*get_next_room(t_room *room);

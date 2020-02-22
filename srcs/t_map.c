@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:51:02 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 17:52:14 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:40:44 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_map	create_map(void)
 
 	result.nb_fourmis = 0;
 	result.room_list = malloc_list(500);
+	result.map_string = malloc_list(500);
 	result.start = NULL;
 	result.end = NULL;
 	return (result);

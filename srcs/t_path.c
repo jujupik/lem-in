@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:46:00 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 17:50:52 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:46:39 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			destroy_path(t_path to_destroy)
 
 void			free_path(t_path *to_free)
 {
+	if (to_free == NULL)
+		return ;
 	destroy_path(*to_free);
 	free(to_free);
 }

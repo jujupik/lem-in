@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:17:38 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:17:40 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:45:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	destroy_list(t_list to_destroy, t_destroy_funct funct)
 				funct(to_destroy.content[i][j]);
 			j++;
 		}
+		free(to_destroy.content[i]);
 		i++;
 	}
+	if (to_destroy.content != NULL)
+		free(to_destroy.content);
 }
 
 void	free_list(t_list *to_free, t_destroy_funct funct)

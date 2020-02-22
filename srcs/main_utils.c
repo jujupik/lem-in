@@ -6,26 +6,11 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:01:59 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:02:10 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:51:00 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	reset_distance(t_map *map)
-{
-	t_room	*tmp;
-	size_t	i;
-
-	i = 0;
-	while (i < map->room_list->size)
-	{
-		tmp = list_at(map->room_list, i);
-		tmp->distance = UINT_MAX;
-		tmp->previous = NULL;
-		i++;
-	}
-}
 
 void	reverse_path(t_path *path)
 {

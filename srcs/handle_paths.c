@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:10:44 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:12:25 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:00:50 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	prepare_path(t_map *map, t_list *paths)
 		i++;
 	}
 	i = 0;
-	while (i < map->nb_fourmis)
+	while ((int)i < map->nb_fourmis)
 	{
 		tmp_path = get_shorter_path(paths);
 		if (tmp_path != NULL)

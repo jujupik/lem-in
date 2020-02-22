@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:15:19 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:42:06 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void		parse_fourmis(t_map *map)
 	if (line == NULL || ft_strisdigit(line) == FALSE)
 		error_exit(1, "no fourmis line");
 	map->nb_fourmis = ft_atoi(line);
+	list_push_back(map->map_string, ft_strdup(line));
 	free(line);
 }
 
@@ -42,6 +43,7 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 		add_room_link(room_a, room_b);
 		if (room_a == map->end)
 			swap_link(search_link(room_a, room_b));
+		ft_tab_free(tab);
 	}
 	else if (line_is_commentary(line) == FALSE)
 		*end = TRUE;
@@ -50,7 +52,6 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 static void		parse_room(t_map *map, char *line)
 {
 	static t_room_state state = normal;
-
 	if (line_is_command(line) == TRUE)
 	{
 		if (ft_strcmp(line, "##start") == 0)
@@ -79,6 +80,7 @@ static void		parse_map_content(t_map *map)
 			parse_link(map, line, &end);
 		else
 			parse_room(map, line);
+		list_push_back(map->map_string, ft_strdup(line));
 	}
 	free(line);
 }

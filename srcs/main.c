@@ -6,21 +6,11 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:15:07 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 19:50:59 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-size_t	solution_note(t_list *paths)
-{
-	t_path	*tmp;
-
-	tmp = get_longuest_path(paths);
-	if (tmp == NULL)
-		return (0);
-	return (tmp->road->size + tmp->count);
-}
 
 t_path	*get_path(t_room *room)
 {
@@ -42,44 +32,43 @@ t_path	*get_path(t_room *room)
 	return (path);
 }
 
-t_list	*parse_path(t_map *map)
+void print_map_output(t_map *map)
 {
-	t_list	*result;
-	t_list	*tmp;
-	t_path	*path;
-	t_room	*room;
-	size_t	i;
+	size_t i;
 
 	i = 0;
-	result = NULL;
-	while (i < map->start->links->size)
+	while (i < map->map_string->size)
 	{
-		reset_distance(map);
-		calc_distance(map->start, 0);
-		path = get_path(map->end);
-		if (path != NULL)
-			active_path(path);
-		tmp = find_all_path(map);
-		prepare_path(map, tmp);
-		if (result == NULL || solution_note(tmp) < solution_note(result))
-			result = tmp;
-		else
-			return (result);
+		ft_printf("%s\n", list_at(map->map_string, i));
 		i++;
 	}
-	return (result);
+}
+
+void print_path_output(t_map *map, t_list *paths)
+{
+	t_path	*tmp;
+
+	for (size_t i = 0; i < paths->size; i++)
+	{
+		tmp = list_at(paths, i);
+		for (size_t j = 0; j < tmp->road->size; j++)
+			ft_printf("%s%s", (j != 0 ? " - " : ""), ((t_room *)(list_at(tmp->road, j)))->name);
+		ft_printf("\n");
+	}
+	tmp = get_longuest_path(paths);
+	if (tmp != NULL)
+		ft_printf("for %u ants -> Nb turn : %u\n", map->nb_fourmis, tmp->road->size + tmp->count - 2);
 }
 
 int		main(void)
 {
 	t_map	map;
 	t_list	*paths;
-	t_path	*tmp;
 
 	map = parse_map();
 	paths = parse_path(&map);
-	tmp = get_longuest_path(paths);
-	if (tmp != NULL)
-		ft_printf("\nfor %u ants -> Nb turn : %u\n", map.nb_fourmis, tmp->road->size + tmp->count - 2);
+	print_map_output(&map);
+	ft_printf("\n");
+	print_path_output(&map, paths);
 	return (0);
 }
