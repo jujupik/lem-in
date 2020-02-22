@@ -1,26 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/22 18:15:07 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-t_room *get_next_room(t_room *room)
+size_t	solution_note(t_list *paths)
 {
-	t_link *link;
-	t_room *next;
-	size_t i;
+	t_path	*tmp;
 
-	i = 0;
-	while (i < room->links->size)
-	{
-		link = list_at(room->links, i);
-		next = (link->children != room ? link->children : link->parent);
-		if (next->distance == room->distance - 1)
-			return (next);
-		i++;
-	}
-	return (NULL);
+	tmp = get_longuest_path(paths);
+	if (tmp == NULL)
+		return (0);
+	return (tmp->road->size + tmp->count);
 }
 
-t_path *get_path(t_room *room)
+t_path	*get_path(t_room *room)
 {
-	t_path *path;
+	t_path	*path;
 
 	path = malloc_path(500);
 	while (room != NULL && room->state != start)
@@ -38,174 +42,43 @@ t_path *get_path(t_room *room)
 	return (path);
 }
 
-t_room *find_next_room(t_room *room)
+t_list	*parse_path(t_map *map)
 {
-	t_link *link;
-	t_room *next;
-	size_t i;
+	t_list	*result;
+	t_list	*tmp;
+	t_path	*path;
+	t_room	*room;
+	size_t	i;
 
 	i = 0;
-	while (i < room->links->size)
-	{
-		link = list_at(room->links, i);
-		next = (link->children == room ? link->parent : link->children);
-		if ((link->flow == 1 && link->parent == room) ||
-			(link->flow == -1 && link->children == room))
-			return (next);
-		i++;
-	}
-	return (NULL);
-}
-
-t_path *retrieve_path(t_room *start, t_room *room)
-{
-	t_path *path;
-
-	path = malloc_path();
-	add_room_to_path(path, start);
-	add_room_to_path(path, room);
-	while (room != NULL && room->state != end)
-	{
-		room = find_next_room(room);
-		add_room_to_path(path, room);
-	}
-	if (room == NULL || room->state != end)
-	{
-		free_path(path);
-		return (NULL);
-	}
-	return (path);
-}
-
-t_list parse_path(t_map *map)
-{
-	t_list result;
-	t_path *path;
-	t_room *room;
-
-	result = create_list(500);
-	for (size_t i = 0; i < map->start->links->size; i++)
+	result = NULL;
+	while (i < map->start->links->size)
 	{
 		reset_distance(map);
 		calc_distance(map->start, 0);
-		print_map(map);
 		path = get_path(map->end);
 		if (path != NULL)
-		{
-			print_path(path);
 			active_path(path);
-		}
-		ft_printf("\n\n\n");
-	}
-	exit(1);
-	for (size_t i = 0; i < map->start->links->size; i++)
-	{
-		room = ((t_link *)list_at(map->start->links, i))->children;
-		path = retrieve_path(map->start, room);
-		if (path != NULL)
-			list_push_back(&result, path);
-	}
-	return (result);
-}
-
-t_path *get_shorter_path(t_list *paths)
-{
-	t_path	*tmp;
-	t_path	*result;
-	size_t	i;
-
-	i = 0;
-	result = NULL;
-	while (i < paths->size)
-	{
-		tmp = list_at(paths, i);
-		if (result == NULL || result->road->size + result->count > tmp->road->size + tmp->count)
+		tmp = find_all_path(map);
+		prepare_path(map, tmp);
+		if (result == NULL || solution_note(tmp) < solution_note(result))
 			result = tmp;
+		else
+			return (result);
 		i++;
 	}
 	return (result);
 }
 
-t_path *get_longuest_path(t_list *paths)
+int		main(void)
 {
+	t_map	map;
+	t_list	*paths;
 	t_path	*tmp;
-	t_path	*result;
-	size_t	i;
-
-	i = 0;
-	result = NULL;
-	while (i < paths->size)
-	{
-		tmp = list_at(paths, i);
-		if ((result == NULL || result->road->size + result->count < tmp->road->size + tmp->count) && tmp->count != 0)
-			result = tmp;
-		i++;
-	}
-	return (result);
-}
-
-void prepare_path(t_map *map, t_list *paths)
-{
-	size_t i;
-	t_path *tmp_path;
-
-	i = 0;
-	while (i < paths->size)
-	{
-		tmp_path = list_at(paths, i);
-		tmp_path->count = 0;
-		i++;
-	}
-	i = 0;
-	while (i < map->nb_fourmis)
-	{
-		tmp_path = get_shorter_path(paths);
-		if (tmp_path != NULL)
-			tmp_path->count++;
-		i++;
-	}
-}
-
-void	active_path(t_path *path)
-{
-	t_link *link;
-	t_room *room;
-	t_room *next;
-	size_t i;
-
-	i = 0;
-	while (i < path->road->size - 1)
-	{
-		room = list_at(path->road, i);
-		next = list_at(path->road, i + 1);
-		link = search_link(room, next);
-		if (next->state == normal)
-			next->active = TRUE;
-		link->flow = (link->flow == 0 ? 1 : 0);
-		// if (room == link->parent)
-		// 	link->flow++;
-		// else
-		// 	link->flow--;
-		i++;
-	}
-}
-
-int main()
-{
-	t_map map;
-	t_list paths;
-	t_path *tmp;
 
 	map = parse_map();
 	paths = parse_path(&map);
-	prepare_path(&map, &paths);
-	for (size_t i = 0; i < paths.size; i++)
-	{
-		t_path *tmp = list_at(&paths, i);
-		if (tmp != NULL && tmp->count != 0)
-			print_path(tmp);
-	}
-	tmp = get_longuest_path(&paths);
+	tmp = get_longuest_path(paths);
 	if (tmp != NULL)
 		ft_printf("\nfor %u ants -> Nb turn : %u\n", map.nb_fourmis, tmp->road->size + tmp->count - 2);
 	return (0);

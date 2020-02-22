@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   jlib_list2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 18:17:31 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/22 18:17:32 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "jlib.h"
 
-void	malloc_list_tab(t_list *list)
+void		malloc_list_tab(t_list *list)
 {
 	void	***tmp;
 	size_t	i;
@@ -26,7 +38,7 @@ void	malloc_list_tab(t_list *list)
 	list->max_size += list->push_size;
 }
 
-t_vector2 list_calc_index_coord(t_list *list, size_t index)
+t_vector2	list_calc_index_coord(t_list *list, size_t index)
 {
 	size_t i;
 
@@ -36,7 +48,7 @@ t_vector2 list_calc_index_coord(t_list *list, size_t index)
 	return (create_vector2(index - i * list->push_size, i));
 }
 
-void	list_push_back(t_list *list, void *to_add)
+void		list_push_back(t_list *list, void *to_add)
 {
 	t_vector2	coord;
 
@@ -49,7 +61,7 @@ void	list_push_back(t_list *list, void *to_add)
 	list->size++;
 }
 
-void	*list_at(t_list *list, size_t index)
+void		*list_at(t_list *list, size_t index)
 {
 	t_vector2 coord;
 
@@ -57,7 +69,7 @@ void	*list_at(t_list *list, size_t index)
 	return (list->content[coord.y][coord.x]);
 }
 
-void	**list_get(t_list *list, size_t index)
+void		**list_get(t_list *list, size_t index)
 {
 	t_vector2 coord;
 

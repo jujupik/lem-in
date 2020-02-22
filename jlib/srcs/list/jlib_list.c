@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   jlib_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 18:17:38 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/22 18:17:40 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "jlib.h"
 
 t_list	create_list(size_t p_push_size)
@@ -23,7 +35,7 @@ t_list	*malloc_list(size_t p_push_size)
 	return (result);
 }
 
-void destroy_list(t_list to_destroy, destroy_funct funct)
+void	destroy_list(t_list to_destroy, t_destroy_funct funct)
 {
 	size_t i;
 	size_t j;
@@ -42,7 +54,7 @@ void destroy_list(t_list to_destroy, destroy_funct funct)
 	}
 }
 
-void free_list(t_list *to_free, destroy_funct funct)
+void	free_list(t_list *to_free, t_destroy_funct funct)
 {
 	destroy_list(*to_free, funct);
 	free(to_free);

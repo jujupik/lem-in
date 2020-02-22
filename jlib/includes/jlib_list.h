@@ -6,14 +6,14 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:40:15 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/05 19:47:09 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:26:10 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef JLIB_LIST_H
 # define JLIB_LIST_H
 
-typedef void (*destroy_funct)(void *to_destroy);
+typedef void	(*t_destroy_funct)(void *to_destroy);
 
 typedef struct	s_list
 {
@@ -24,13 +24,13 @@ typedef struct	s_list
 	size_t		push_size;
 }				t_list;
 
-t_list		create_list(size_t p_push_size);
-t_list		*malloc_list(size_t p_push_size);
-void		destroy_list(t_list to_destroy, destroy_funct funct);
-void		free_list(t_list *to_free, destroy_funct funct);
-t_vector2	list_calc_index_coord(t_list *list, size_t index);
-void		list_push_back(t_list *list, void *to_add);
-void		*list_at(t_list *list, size_t index);
-void		**list_get(t_list *list, size_t index);
+t_list			create_list(size_t p_push_size);
+t_list			*malloc_list(size_t p_push_size);
+void			destroy_list(t_list to_destroy, t_destroy_funct funct);
+void			free_list(t_list *to_free, t_destroy_funct funct);
+t_vector2		list_calc_index_coord(t_list *list, size_t index);
+void			list_push_back(t_list *list, void *to_add);
+void			*list_at(t_list *list, size_t index);
+void			**list_get(t_list *list, size_t index);
 
 #endif

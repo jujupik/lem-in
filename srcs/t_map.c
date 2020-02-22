@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_map.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 17:51:02 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/22 17:52:14 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 t_map	create_map(void)
 {
-	t_map result;
+	t_map	result;
 
 	result.nb_fourmis = 0;
 	result.room_list = malloc_list(500);
@@ -31,35 +43,4 @@ void	free_map(t_map *to_free)
 {
 	destroy_map(*to_free);
 	free(to_free);
-}
-
-void		print_map(t_map *map)
-{
-	t_room	*room;
-	size_t	i;
-
-	i = 0;
-	while (i < map->room_list->size)
-	{
-		room = list_at(map->room_list, i);
-		print_room(room);
-		i++;
-	}
-	ft_printf("\n----\n");
-}
-
-void		print_map_strange(t_map *map)
-{
-	t_room	*room;
-	size_t	i;
-
-	i = 0;
-	while (i < map->room_list->size)
-	{
-		room = list_at(map->room_list, i);
-		if (room_flow_children(room) != 0 || room_flow_parent(room) != 0 || ft_strcmp("Vnl6", room->name) == 0)
-			print_room(room);
-		i++;
-	}
-	ft_printf("\n----\n");
 }

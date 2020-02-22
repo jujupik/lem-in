@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/19 19:44:56 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 17:59:00 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,10 @@ void	free_room(t_room *to_free)
 	free(to_free);
 }
 
-void print_room(t_room *room)
-{
-	t_link	*link;
-	size_t	j;
-	size_t	first;
-
-	first = 0;
-	ft_printf("{%*s} - [%6b] - [%12u] - {%5s} - {%9s} -> [total : %2d (%2d / %2d)] - ", g_name_len, room->name, room->active, room->distance, (room->previous == NULL ? "null" : room->previous->name), state_str(room->state), room_flow_total(room), room_flow_children(room), room_flow_parent(room));
-	j = 0;
-	while (j < room->links->size)
-	{
-		link = list_at(room->links, j);
-		// if (room != link->children)
-		// {
-			if (j != first)
-				ft_printf(" - ");
-			print_link(room, link);
-		// }
-		// else
-		// 	first++;
-		j++;
-	}
-	ft_printf("\n");
-}
-
-void add_room_link(t_room *parent, t_room *children)
+void	add_room_link(t_room *parent, t_room *children)
 {
 	t_link	*p_link;
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < parent->links->size)
@@ -94,60 +69,4 @@ void add_room_link(t_room *parent, t_room *children)
 	p_link = malloc_link(parent, children);
 	list_push_back(parent->links, p_link);
 	list_push_back(children->links, p_link);
-}
-
-int room_flow_parent(t_room *room)
-{
-	t_link	*link;
-	int		nb;
-	size_t	j;
-
-	nb = 0;
-	j = 0;
-	while (j < room->links->size)
-	{
-		link = list_at(room->links, j);
-		if (room == link->children)
-			nb += link->flow;
-		j++;
-	}
-	return (nb);
-}
-
-int room_flow_children(t_room *room)
-{
-	t_link	*link;
-	int		nb;
-	size_t	j;
-
-	nb = 0;
-	j = 0;
-	while (j < room->links->size)
-	{
-		link = list_at(room->links, j);
-		if (room == link->parent)
-			nb += link->flow;
-		j++;
-	}
-	return (nb);
-}
-
-int room_flow_total(t_room *room)
-{
-	t_link	*link;
-	int		nb;
-	size_t	j;
-
-	nb = 0;
-	j = 0;
-	while (j < room->links->size)
-	{
-		link = list_at(room->links, j);
-		if (link->parent == room)
-			nb += link->flow;
-		else
-			nb -= link->flow;
-		j++;
-	}
-	return (nb);
 }

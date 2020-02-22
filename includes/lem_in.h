@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/19 19:56:12 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/22 17:38:16 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,12 @@ void			calc_distance(t_room *room, size_t parent_dist);
 void			calc_complete_distance(t_room *room, size_t parent_dist);
 t_path			*calc_path(t_map *map);
 t_room			*get_next_room(t_room *room);
+t_room			*find_next_room(t_room *room);
 t_path			*get_path(t_room *room);
-t_list			parse_path(t_map *map);
+t_list			*parse_path(t_map *map);
 t_path			*get_shorter_path(t_list *paths);
 t_path			*get_longuest_path(t_list *paths);
 void			prepare_path(t_map *map, t_list *paths);
+t_list			*find_all_path(t_map *map);
 
 #endif
