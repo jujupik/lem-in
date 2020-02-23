@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:36:36 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:10:18 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ BOOL		parse_options(int argc, char **argv, BOOL *options)
 		else if (ft_strcmp(argv[i], "--map") == TRUE ||
 			ft_strcmp(argv[i], "-m") == TRUE)
 			options[MAP] = TRUE;
+		else if (ft_strcmp(argv[i], "--map-active") == TRUE ||
+			ft_strcmp(argv[i], "-m2") == TRUE)
+			options[MAP_ACTIVE] = TRUE;
 		else if (ft_strcmp(argv[i], "--leaks") == TRUE ||
 			ft_strcmp(argv[i], "-l") == TRUE)
 			options[LEAKS] = TRUE;
@@ -50,6 +53,8 @@ by lem-in, nb turn to run the map\n", space, "--verbose (-v)");
 number of turn (Usefull when many ant on the hill)\n", space, "--simple (-s)");
 	ft_printf("%*s -> Print the map after the calculation of paths\n",
 	space, "--map (-m)");
+	ft_printf("%*s -> Print only the active room of the map after \
+calculation\n", space, "--map-active (-m2)");
 	ft_printf("%*s -> Print leaks at the end of the program\n",
 	space, "--leaks (-l)");
 	exit(0);
@@ -72,10 +77,14 @@ BOOL		had_options(BOOL *options)
 int			main(int argc, char **argv)
 {
 	BOOL	options[NB_OPTION];
+	size_t	i;
 
-
-	for (size_t i = 0; i < NB_OPTION; i++)
+	i = 0;
+	while (i < NB_OPTION)
+	{
 		options[i] = FALSE;
+		i++;
+	}
 	if (argc >= 2)
 	{
 		if (parse_options(argc, argv, options) == FALSE ||

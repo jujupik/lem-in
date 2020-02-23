@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 18:35:08 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:57:36 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include "lem_in_includes.h"
 
-# define NB_OPTION 4
+# define NB_OPTION 5
 # define VERBOSE 0
 # define SIMPLE 1
 # define MAP 2
 # define LEAKS 3
+# define MAP_ACTIVE 4
 
 extern size_t		g_name_max_len;
 extern size_t		g_max_distance;
@@ -115,7 +116,7 @@ t_map				*malloc_map(void);
 void				destroy_map(t_map to_destroy);
 void				free_map(t_map *to_free);
 void				print_map(t_map *map);
-void				print_map_strange(t_map *map);
+void				print_active_map(t_map *map);
 void				set_map_room(t_map *map, t_room *room);
 void				add_room(t_map *map, char *line, t_room_state *state);
 t_room				*search_room(t_map *map, char *room_name);

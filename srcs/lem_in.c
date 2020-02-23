@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:20:30 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:05:13 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 		ft_printf("Paths parsing done !\n\n");
 	if (options[SIMPLE] == FALSE)
 		print_ant_output(map, paths, options[0]);
-	if (options[MAP])
-		print_map(map);
-	if (options[VERBOSE] == TRUE || options[1] == TRUE)
+	if (options[MAP] == TRUE || options[MAP_ACTIVE] == TRUE)
+	{
+		if (options[MAP_ACTIVE] == TRUE)
+			print_active_map(map);
+		else
+			print_map(map);
+	}
+	if (options[VERBOSE] == TRUE || options[SIMPLE] == TRUE)
 	{
 		ft_printf("\n");
 		print_path_output(map, paths);
@@ -86,12 +91,4 @@ void		lem_in(BOOL *options)
 	if (paths != NULL)
 		free_list(paths, tmp_free_path);
 	destroy_map(map);
-
-	// char buffer[250];
-	// read(0, &buffer, 100);
-	// int fd = open("tmp", O_RDONLY);
-	// line = NULL;
-	// while (get_next_line(fd, &line) > 0){}
-	// free(line);
-	// close(fd);
 }

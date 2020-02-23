@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:27:04 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:50:03 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ static void		parse_room(t_map *map, char *line)
 		else if (ft_strcmp(line, "##end") == TRUE)
 			state = end;
 	}
-	if (line_is_room(line) == TRUE)
+	else if (line_is_room(line) == TRUE)
 		add_room(map, line, &state);
+	else if (line_is_commentary(line) == FALSE)
+		error_exit(1, "Bad room line");
 }
 
 static void		parse_map_content(t_map *map)

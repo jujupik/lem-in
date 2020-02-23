@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:43:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:10:38 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int		get_next_line_result(char **line, char **saved, int result)
 	return (ft_strlen(*line) + ft_strlen(*saved) + result);
 }
 
-static int handle_quit_get_next_line(char **saved_line, char **line)
+static int		handle_quit_get_next_line(char **saved_line, char **line)
 {
 	if (*saved_line != NULL)
 		free(*saved_line);
