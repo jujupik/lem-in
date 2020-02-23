@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 14:31:24 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:37:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	add_room_link(t_room *parent, t_room *children)
 	t_link	*p_link;
 	size_t	i;
 
+	if (search_link(parent, children) != NULL)
+		return ;
 	i = 0;
 	while (i < parent->links->size)
 	{

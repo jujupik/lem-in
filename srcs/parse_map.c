@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 14:37:01 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:20:29 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 			return ;
 		}
 		tab = ft_strsplit(line, '-');
-		room_a = search_room(map, tab[0]);
-		room_b = search_room(map, tab[1]);
+		if ((room_a = search_room(map, tab[0])) == NULL ||
+			(room_b = search_room(map, tab[1])) == NULL)
+		{
+			*end = TRUE;
+			return ;
+		}
 		add_room_link(room_a, room_b);
 		if (room_a == map->end)
 			swap_link(search_link(room_a, room_b));
