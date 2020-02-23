@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:51:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:01:47 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define LEM_IN_H
 
 # include "lem_in_includes.h"
+
+#define NB_OPTION 4
+#define VERBOSE 0
+#define SIMPLE 1
+#define MAP 2
+#define LEAKS 3
+
+extern size_t		g_name_max_len;
+extern size_t		g_max_distance;
 
 typedef struct		s_ant
 {
@@ -145,5 +154,7 @@ void				print_ant_output(t_map *map, t_list *paths, BOOL verbose);
 void				tmp_free_room(void *room);
 void				tmp_free_path(void *path);
 void				tmp_free_link(void *link);
+
+void				lem_in(BOOL *options);
 
 #endif

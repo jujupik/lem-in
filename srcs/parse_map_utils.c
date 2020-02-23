@@ -6,11 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:59:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 13:47:18 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:55:05 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+size_t g_name_max_len = 0;
 
 void	set_map_room(t_map *map, t_room *room)
 {
@@ -37,6 +39,8 @@ void	add_room(t_map *map, char *line, t_room_state *state)
 	if (is_name_valid(map->room_list, tab[0]) == FALSE)
 		error_exit(1, "Bad name");
 	room = malloc_room(tab[0], *state, ft_atoi(tab[1]), ft_atoi(tab[2]));
+	if (g_name_max_len < ft_strlen(tab[0]))
+		g_name_max_len = ft_strlen(tab[0]);
 	list_push_back(map->room_list, room);
 	set_map_room(map, room);
 	*state = normal;

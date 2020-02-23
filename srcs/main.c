@@ -6,81 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 16:12:43 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:03:23 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		print_map_output(t_map *map)
-{
-	size_t i;
-
-	i = 0;
-	while (i < map->map_string->size)
-	{
-		ft_printf("%s\n", list_at(map->map_string, i));
-		i++;
-	}
-}
-
-void		print_path_output(t_map *map, t_list *paths)
-{
-	t_path	*tmp;
-	t_room	*room;
-	size_t	note;
-	size_t	index[2];
-
-	index[0] = 0;
-	while (index[0] < paths->size)
-	{
-		tmp = list_at(paths, index[0]);
-		if (index[0] != 0)
-			ft_printf("\n");
-		ft_printf("Path %u : len %u / Nb fourmi %u\n", index[0],
-		tmp->road->size, tmp->count);
-		index[1] = 0;
-		while (index[1] < tmp->road->size)
-		{
-			room = list_at(tmp->road, index[1]);
-			ft_printf("%s[%4s]", (index[1] != 0 ? " - " : ""), room->name);
-			index[1]++;
-		}
-		ft_printf("\n");
-		index[0]++;
-	}
-	note = solution_note(paths);
-	ft_printf("\nfor %u ants -> Nb turn : %u\n", map->nb_fourmis, note);
-}
-
-static void	lem_in(BOOL *options)
-{
-	t_map	map;
-	t_list	*paths;
-
-	map = parse_map();
-	print_map_output(&map);
-	ft_printf("\n");
-	paths = parse_path(&map);
-	if (paths->size != 0)
-	{
-		if (options[0] == TRUE)
-			ft_printf("Paths parsing done !\n");
-		if (options[1] == FALSE)
-			print_ant_output(&map, paths, options[0]);
-		if (options[0] == TRUE || options[1] == TRUE)
-		{
-			ft_printf("\n");
-			print_path_output(&map, paths);
-		}
-	}
-	else
-		ft_printf("No path found\n");
-	free_list(paths, tmp_free_path);
-	destroy_map(map);
-}
-
-void		parse_options(int argc, char **argv, BOOL *options)
+BOOL		parse_options(int argc, char **argv, BOOL *options)
 {
 	int		i;
 
@@ -89,32 +21,70 @@ void		parse_options(int argc, char **argv, BOOL *options)
 	{
 		if (ft_strcmp(argv[i], "--verbose") == TRUE ||
 			ft_strcmp(argv[i], "-v") == TRUE)
-			options[0] = TRUE;
-		else if (ft_strcmp(argv[i], "--many") == TRUE ||
+			options[VERBOSE] = TRUE;
+		else if (ft_strcmp(argv[i], "--simple") == TRUE ||
+			ft_strcmp(argv[i], "-s") == TRUE)
+			options[SIMPLE] = TRUE;
+		else if (ft_strcmp(argv[i], "--map") == TRUE ||
 			ft_strcmp(argv[i], "-m") == TRUE)
-			options[1] = TRUE;
+			options[MAP] = TRUE;
+		else if (ft_strcmp(argv[i], "--leaks") == TRUE ||
+			ft_strcmp(argv[i], "-l") == TRUE)
+			options[LEAKS] = TRUE;
+		else
+			return (FALSE);
 		i++;
 	}
+	return (TRUE);
+}
+
+void		print_usage(void)
+{
+	static int space = 25;
+
+	ft_printf("Usage : ./lem-in [--option] < [Map a tester]\n");
+	ft_printf("Options :\n");
+	ft_printf("%*s -> Print the paths found \
+by lem-in, nb turn to run the map\n", space, "--verbose (-v)");
+	ft_printf("%*s -> Print only the paths and total \
+number of turn (Usefull when many ant on the hill)\n", space, "--simple (-s)");
+	ft_printf("%*s -> Print the map after the calculation of paths\n",
+	space, "--map (-m)");
+	ft_printf("%*s -> Print leaks at the end of the program\n",
+	space, "--leaks (-l)");
+	exit(0);
+}
+
+BOOL		had_options(BOOL *options)
+{
+	size_t i;
+
+	i = 0;
+	while (i < NB_OPTION)
+	{
+		if (options[i] == TRUE)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }
 
 int			main(int argc, char **argv)
 {
-	BOOL	options[2];
+	BOOL	options[NB_OPTION];
 
 	options[0] = FALSE;
 	if (argc >= 2)
 	{
-		parse_options(argc, argv, options);
-		if (options[0] == FALSE && options[1] == FALSE)
-		{
-			ft_printf("Usage : ./lem-in [--option] < [Map a tester]\n\n");
-			ft_printf("Options :\n	--verbose -> Print the paths found \
-by lem-in, nb turn to run the map\n");
-			ft_printf("	--many -> Print only the path and total \
-number of turn (Usefull when many ant on the hill)\n");
-			return (0);
-		}
+		if (parse_options(argc, argv, options) == FALSE ||
+			had_options(options) == FALSE)
+			print_usage();
 	}
 	lem_in(options);
+	if (options[LEAKS] == TRUE)
+	{
+		ft_printf("\n");
+		ft_get_leaks_total("lem-in");
+	}
 	return (0);
 }

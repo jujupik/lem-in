@@ -6,11 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:20:29 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:55:28 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+size_t g_max_distance = 0;
 
 static void		parse_fourmis(t_map *map)
 {
@@ -23,7 +25,7 @@ static void		parse_fourmis(t_map *map)
 			break ;
 	}
 	if (line == NULL || ft_strisdigit(line) == FALSE)
-		error_exit(1, "no fourmis line");
+		error_exit(1, "Bad fourmis line");
 	map->nb_fourmis = ft_atoi(line);
 	list_push_back(map->map_string, ft_strdup(line));
 	free(line);
@@ -104,5 +106,6 @@ t_map			parse_map(void)
 	parse_fourmis(&map);
 	parse_map_content(&map);
 	parse_parenting(&map);
+	g_max_distance = nbr_len(map.room_list->size, 10);
 	return (map);
 }

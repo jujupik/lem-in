@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 13:45:46 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:23:55 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ char				*ft_uitoa_base(unsigned long long n, int base);
 char				*ft_uitoa(unsigned long long n);
 void				ft_str_replace_front(char *s2, char **s1);
 void				ft_str_replace_back(char **s1, char *s2);
+void				ft_get_leaks_total(char *prog_name);
 
 #endif
