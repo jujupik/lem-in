@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   tmp_free_funct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 15:24:48 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 13:46:15 by jrouchon         ###   ########.fr       */
+/*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/23 14:39:20 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "jlib.h"
+#include "lem_in.h"
 
-BOOL	ft_strncmp(char *s1, char *s2, size_t n)
+void	tmp_free_room(void *room)
 {
-	unsigned int i;
+	free_room(room);
+}
 
-	i = 0;
-	if (n == 0)
-		return (TRUE);
-	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && i < n)
-		i++;
-	if (i == n)
-		i--;
-	return (((unsigned char)s1[i] - (unsigned char)s2[i]) == 0 ? TRUE : FALSE);
+void	tmp_free_path(void *path)
+{
+	free_path(path);
+}
+
+void	tmp_free_link(void *link)
+{
+	free_link(link);
 }

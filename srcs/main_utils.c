@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:01:59 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:51:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:47:06 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_link	*search_link(t_room *actual, t_room *dest)
 	while (i < actual->links->size)
 	{
 		link = list_at(actual->links, i);
-		if (ft_strcmp(link->children->name, dest->name) == 0 ||
-			ft_strcmp(link->parent->name, dest->name) == 0)
+		if (ft_strcmp(link->children->name, dest->name) == TRUE ||
+			ft_strcmp(link->parent->name, dest->name) == TRUE)
 			return (link);
 		i++;
 	}

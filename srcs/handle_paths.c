@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:10:44 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:00:50 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:09:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,24 @@ void	active_path(t_path *path)
 			link->flow--;
 		i++;
 	}
+}
+
+t_path	*get_path(t_room *room)
+{
+	t_path	*path;
+
+	path = malloc_path(500);
+	while (room != NULL && room->state != start)
+	{
+		add_room_to_path(path, room);
+		room = get_next_room(room);
+	}
+	if (room == NULL)
+	{
+		free_path(path);
+		return (NULL);
+	}
+	add_room_to_path(path, room);
+	reverse_path(path);
+	return (path);
 }

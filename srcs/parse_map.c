@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:42:06 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:37:01 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 
 	if (line_is_link(line) == TRUE)
 	{
+		if (ft_strschr(line, "--") == TRUE)
+		{
+			*end = TRUE;
+			return ;
+		}
 		tab = ft_strsplit(line, '-');
 		room_a = search_room(map, tab[0]);
 		room_b = search_room(map, tab[1]);
@@ -52,11 +57,12 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 static void		parse_room(t_map *map, char *line)
 {
 	static t_room_state state = normal;
+
 	if (line_is_command(line) == TRUE)
 	{
-		if (ft_strcmp(line, "##start") == 0)
+		if (ft_strcmp(line, "##start") == TRUE)
 			state = start;
-		else if (ft_strcmp(line, "##end") == 0)
+		else if (ft_strcmp(line, "##end") == TRUE)
 			state = end;
 	}
 	if (line_is_room(line) == TRUE)
@@ -80,7 +86,8 @@ static void		parse_map_content(t_map *map)
 			parse_link(map, line, &end);
 		else
 			parse_room(map, line);
-		list_push_back(map->map_string, ft_strdup(line));
+		if (end == FALSE)
+			list_push_back(map->map_string, ft_strdup(line));
 	}
 	free(line);
 }

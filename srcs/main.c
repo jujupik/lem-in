@@ -6,33 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:50:59 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:53:05 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_path	*get_path(t_room *room)
-{
-	t_path	*path;
-
-	path = malloc_path(500);
-	while (room != NULL && room->state != start)
-	{
-		add_room_to_path(path, room);
-		room = get_next_room(room);
-	}
-	if (room == NULL)
-	{
-		free_path(path);
-		return (NULL);
-	}
-	add_room_to_path(path, room);
-	reverse_path(path);
-	return (path);
-}
-
-void print_map_output(t_map *map)
+void		print_map_output(t_map *map)
 {
 	size_t i;
 
@@ -44,23 +24,36 @@ void print_map_output(t_map *map)
 	}
 }
 
-void print_path_output(t_map *map, t_list *paths)
+void		print_path_output(t_map *map, t_list *paths)
 {
 	t_path	*tmp;
+	t_room	*room;
+	size_t	note;
+	size_t	index[2];
 
-	for (size_t i = 0; i < paths->size; i++)
+	index[0] = 0;
+	while (index[0] < paths->size)
 	{
-		tmp = list_at(paths, i);
-		for (size_t j = 0; j < tmp->road->size; j++)
-			ft_printf("%s%s", (j != 0 ? " - " : ""), ((t_room *)(list_at(tmp->road, j)))->name);
+		tmp = list_at(paths, index[0]);
+		if (index[0] != 0)
+			ft_printf("\n");
+		ft_printf("Path %u : len %u / Nb fourmi %u\n", index[0],
+		tmp->road->size, tmp->count);
+		index[1] = 0;
+		while (index[1] < tmp->road->size)
+		{
+			room = list_at(tmp->road, index[1]);
+			ft_printf("%s[%4s]", (index[1] != 0 ? " - " : ""), room->name);
+			index[1]++;
+		}
 		ft_printf("\n");
+		index[0]++;
 	}
-	tmp = get_longuest_path(paths);
-	if (tmp != NULL)
-		ft_printf("for %u ants -> Nb turn : %u\n", map->nb_fourmis, tmp->road->size + tmp->count - 2);
+	note = solution_note(paths);
+	ft_printf("\nfor %u ants -> Nb turn : %u\n", map->nb_fourmis, note);
 }
 
-int		main(void)
+static void	lem_in(BOOL verbose)
 {
 	t_map	map;
 	t_list	*paths;
@@ -69,6 +62,37 @@ int		main(void)
 	paths = parse_path(&map);
 	print_map_output(&map);
 	ft_printf("\n");
-	print_path_output(&map, paths);
+	if (paths->size != 0)
+	{
+		print_ant_output(&map, paths, verbose);
+		if (verbose == TRUE)
+		{
+			ft_printf("\n");
+			print_path_output(&map, paths);
+		}
+	}
+	else
+		ft_printf("No path found\n");
+	free_list(paths, tmp_free_path);
+	destroy_map(map);
+}
+
+int			main(int argc, char **argv)
+{
+	BOOL	verbose;
+
+	verbose = FALSE;
+	if (argc >= 2)
+	{
+		if (argc == 2 && (ft_strcmp(argv[1], "--v") == TRUE ||
+			ft_strcmp(argv[1], "-v") == TRUE))
+			verbose = TRUE;
+		else
+		{
+			ft_printf("Format : ./lem-in --v < [Map a tester]\n");
+			return (0);
+		}
+	}
+	lem_in(verbose);
 	return (0);
 }

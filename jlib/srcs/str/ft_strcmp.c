@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 15:03:02 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/29 22:54:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:45:26 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jlib.h"
 
-int	ft_strcmp(char *s1, char *s2)
+BOOL	ft_strcmp(char *s1, char *s2)
 {
 	unsigned int i;
 
 	i = 0;
 	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (((unsigned char)s1[i] - (unsigned char)s2[i]) == 0 ? TRUE : FALSE);
 }

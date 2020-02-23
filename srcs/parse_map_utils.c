@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:59:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:04:32 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:47:18 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	add_room(t_map *map, char *line, t_room_state *state)
 	t_room	*room;
 
 	tab = ft_strsplit(line, ' ');
+	if (is_name_valid(map->room_list, tab[0]) == FALSE)
+		error_exit(1, "Bad name");
 	room = malloc_room(tab[0], *state, ft_atoi(tab[1]), ft_atoi(tab[2]));
 	list_push_back(map->room_list, room);
 	set_map_room(map, room);
@@ -50,7 +52,7 @@ t_room	*search_room(t_map *map, char *room_name)
 	while (i < map->room_list->size)
 	{
 		room = list_at(map->room_list, i);
-		if (ft_strcmp(room->name, room_name) == 0)
+		if (ft_strcmp(room->name, room_name) == TRUE)
 			return (room);
 		i++;
 	}

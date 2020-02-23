@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:46:00 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:46:39 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:52:54 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_path			create_path(void)
 
 	result.road = malloc_list(500);
 	result.count = 0;
+	result.send = 0;
 	return (result);
 }
 

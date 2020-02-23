@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strschr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 17:26:27 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/28 20:29:51 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:35:20 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "jlib.h"
 
-char	*ft_strchr(char *s, char c)
+BOOL		ft_strschr(char *s, char *model)
 {
-	char	*str;
+	char *tmp;
 
-	if (s == NULL)
-		return (NULL);
-	str = (char*)s;
-	while (*str != c)
-	{
-		if (*str == '\0')
-		{
-			return (NULL);
-		}
-		str++;
-	}
-	return (str);
+	tmp = ft_strstr(s, model);
+	return (tmp == NULL ? FALSE : TRUE);
 }

@@ -75,7 +75,7 @@ SRC =	ft_atoi.c \
 		ft_str_toupper.c \
 		ft_strcat.c \
 		ft_strcchr.c \
-		ft_strchr.c \
+		ft_strschr.c \
 		ft_strclr.c \
 		ft_strcmp.c \
 		ft_strcpy.c \
@@ -109,7 +109,7 @@ SRC =	ft_atoi.c \
 		ft_get_leaks.c \
 		ft_tab_free.c \
 		ft_tab_len.c \
-		jlib_vector.c 
+		jlib_vector.c
 
 ##Transform and place every .o from SRC
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

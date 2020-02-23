@@ -6,20 +6,20 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:05:07 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:04:36 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static size_t	solution_note(t_list *paths)
+size_t			solution_note(t_list *paths)
 {
 	t_path	*tmp;
 
 	tmp = get_longuest_path(paths);
 	if (tmp == NULL)
 		return (0);
-	return (tmp->road->size + tmp->count);
+	return (tmp->road->size + tmp->count - 2);
 }
 
 static void		tmp_destroy_funct(void *param)

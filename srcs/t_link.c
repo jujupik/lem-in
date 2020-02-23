@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:00:56 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:29:36 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	destroy_link(t_link to_destroy)
 
 void	free_link(t_link *to_free)
 {
-	destroy_link(*to_free);
-	free(to_free);
+	if (to_free != NULL)
+	{
+		destroy_link(*to_free);
+		free(to_free);
+	}
 }
 
 void	swap_link(t_link *link)

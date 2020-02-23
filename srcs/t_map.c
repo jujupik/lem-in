@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:51:02 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 19:40:44 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:25:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_map	*malloc_map(void)
 
 void	destroy_map(t_map to_destroy)
 {
-	(void)to_destroy;
+	free_list(to_destroy.room_list, tmp_free_room);
+	free_list(to_destroy.map_string, free);
 }
 
 void	free_map(t_map *to_free)

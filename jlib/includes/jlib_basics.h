@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jlib_basics.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/24 17:39:26 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:45:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ char				*ft_strncpy(char *dest, char *src, unsigned int n);
 void				ft_strcat(char *dest, char *src);
 void				ft_strncat(char *dest, char *src, size_t n);
 size_t				ft_strlcat(char *dst, char *src, size_t size);
-char				*ft_strchr(char *s, char c);
+BOOL				ft_strschr(char *s, char *model);
 char				*ft_strrchr(char *str, char c);
 char				*ft_strstr(char *str, char *find);
 char				*ft_strnstr(char *str, char *find, size_t len);
-int					ft_strcmp(char *s1, char *s2);
-int					ft_strncmp(char *s1, char *s2, size_t n);
+BOOL				ft_strcmp(char *s1, char *s2);
+BOOL				ft_strncmp(char *s1, char *s2, size_t n);
 int					ft_atoi(char *str);
 BOOL				ft_isalpha(int c);
 BOOL				ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/04 17:57:52 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:46:54 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ BOOL	is_name_valid(t_list *list, char *name)
 	while (i < list->size)
 	{
 		to_test = ((t_room *)(list_at(list, i)))->name;
-		if (ft_strcmp(to_test, name) == 0)
+		if (ft_strcmp(to_test, name) == TRUE)
 			return (FALSE);
 		i++;
 	}

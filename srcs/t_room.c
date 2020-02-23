@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 17:59:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:31:24 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_room	create_room(char *p_name, t_room_state p_state, int x, int y)
 	result.distance = UINT_MAX;
 	result.state = p_state;
 	result.links = malloc_list(100);
+	result.my_link = malloc_list(100);
+	result.ant = NULL;
 	return (result);
 }
 
@@ -45,11 +47,14 @@ t_room	*malloc_room(char *p_name, t_room_state p_state, int x, int y)
 void	destroy_room(t_room to_destroy)
 {
 	free(to_destroy.name);
+	free_list(to_destroy.my_link, tmp_free_link);
+	free_list(to_destroy.links, NULL);
 }
 
 void	free_room(t_room *to_free)
 {
-	destroy_room(*to_free);
+	if (to_free != NULL)
+		destroy_room(*to_free);
 	free(to_free);
 }
 
@@ -67,6 +72,7 @@ void	add_room_link(t_room *parent, t_room *children)
 		i++;
 	}
 	p_link = malloc_link(parent, children);
+	list_push_back(parent->my_link, p_link);
 	list_push_back(parent->links, p_link);
 	list_push_back(children->links, p_link);
 }
