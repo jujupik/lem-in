@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:50:59 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:12:21 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void		print_ant_output(t_map *map, t_list *paths, BOOL verbose)
 		if (everyone_arrived(map, anthill) == FALSE)
 			print_anthill(anthill, map, verbose, j);
 	}
+	ft_printf("\n");
 	free(anthill);
 }

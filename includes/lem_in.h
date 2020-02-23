@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 17:05:00 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:09:08 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_ant
 
 t_ant				create_ant(size_t p_name, struct s_path *p_path);
 void				move_ant(t_ant *ant);
-BOOL				print_ant(t_ant *ant);
+BOOL				print_ant(t_ant *ant, BOOL verbose);
 
 typedef enum		e_room_state
 {
