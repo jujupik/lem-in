@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 14:39:08 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:51:32 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,17 @@ BOOL	print_ant(t_ant *ant)
 void	print_anthill(t_ant *anthill, t_map *map, BOOL verbose, size_t nb_turn)
 {
 	size_t	i;
+	int		len;
 	t_ant	*ant;
 	BOOL	first_ant;
 
 	i = 0;
 	first_ant = FALSE;
 	if (verbose == TRUE)
-		ft_printf("Turn [%4u] : ", nb_turn);
+	{
+		len = nbr_len(map->nb_fourmis, 10);
+		ft_printf("Turn [%*u] : ", len, nb_turn);
+	}
 	while ((int)(i) < map->nb_fourmis)
 	{
 		ant = &(anthill[i]);

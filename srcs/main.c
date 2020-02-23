@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:37:13 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:12:43 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,22 @@ void		print_path_output(t_map *map, t_list *paths)
 	ft_printf("\nfor %u ants -> Nb turn : %u\n", map->nb_fourmis, note);
 }
 
-static void	lem_in(BOOL verbose)
+static void	lem_in(BOOL *options)
 {
 	t_map	map;
 	t_list	*paths;
 
 	map = parse_map();
-	paths = parse_path(&map);
 	print_map_output(&map);
 	ft_printf("\n");
+	paths = parse_path(&map);
 	if (paths->size != 0)
 	{
-		print_ant_output(&map, paths, verbose);
-		if (verbose == TRUE)
+		if (options[0] == TRUE)
+			ft_printf("Paths parsing done !\n");
+		if (options[1] == FALSE)
+			print_ant_output(&map, paths, options[0]);
+		if (options[0] == TRUE || options[1] == TRUE)
 		{
 			ft_printf("\n");
 			print_path_output(&map, paths);
@@ -77,22 +80,41 @@ static void	lem_in(BOOL verbose)
 	destroy_map(map);
 }
 
+void		parse_options(int argc, char **argv, BOOL *options)
+{
+	int		i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_strcmp(argv[i], "--verbose") == TRUE ||
+			ft_strcmp(argv[i], "-v") == TRUE)
+			options[0] = TRUE;
+		else if (ft_strcmp(argv[i], "--many") == TRUE ||
+			ft_strcmp(argv[i], "-m") == TRUE)
+			options[1] = TRUE;
+		i++;
+	}
+}
+
 int			main(int argc, char **argv)
 {
-	BOOL	verbose;
+	BOOL	options[2];
 
-	verbose = FALSE;
+	options[0] = FALSE;
 	if (argc >= 2)
 	{
-		if (argc == 2 && (ft_strcmp(argv[1], "--v") == TRUE ||
-			ft_strcmp(argv[1], "-v") == TRUE))
-			verbose = TRUE;
-		else
+		parse_options(argc, argv, options);
+		if (options[0] == FALSE && options[1] == FALSE)
 		{
-			ft_printf("Format : ./lem-in --v < [Map a tester]\n");
+			ft_printf("Usage : ./lem-in [--option] < [Map a tester]\n\n");
+			ft_printf("Options :\n	--verbose -> Print the paths found \
+by lem-in, nb turn to run the map\n");
+			ft_printf("	--many -> Print only the path and total \
+number of turn (Usefull when many ant on the hill)\n");
 			return (0);
 		}
 	}
-	lem_in(verbose);
+	lem_in(options);
 	return (0);
 }
