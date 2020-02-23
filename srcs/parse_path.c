@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:55:11 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 20:56:09 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		tmp_parse_path(t_list **result, t_list *tmp)
 	}
 	else
 	{
-		free_list(tmp, NULL);
+		free_list(tmp, tmp_destroy_funct);
 		return (-1);
 	}
 	return (0);
@@ -61,9 +61,9 @@ t_list			*parse_path(t_map *map)
 			active_path(path);
 		tmp = find_all_path(map);
 		prepare_path(map, tmp);
+		free_path(path);
 		if (tmp_parse_path(&result, tmp) == -1)
 			return (result);
-		free_path(path);
 		i++;
 	}
 	return (result);

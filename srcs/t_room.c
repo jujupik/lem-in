@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:37:46 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:30:20 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_room	create_room(char *p_name, t_room_state p_state, int x, int y)
 	result.state = p_state;
 	result.links = malloc_list(100);
 	result.my_link = malloc_list(100);
-	result.ant = NULL;
 	return (result);
 }
 

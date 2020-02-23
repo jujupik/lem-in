@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 15:29:43 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:28:03 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_link	create_link(t_room *p_parent, t_room *p_children)
 	result.parent = p_parent;
 	result.children = p_children;
 	result.actual_parent = NULL;
+	result.ant = NULL;
 	result.flow = 0;
 	return (result);
 }

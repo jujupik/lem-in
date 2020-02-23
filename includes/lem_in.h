@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 17:09:08 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:35:08 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ typedef struct		s_ant
 	size_t			name;
 	size_t			index;
 	BOOL			arrived;
+	struct s_link	*actual;
 	struct s_path	*path;
 }					t_ant;
 
 t_ant				create_ant(size_t p_name, struct s_path *p_path);
 void				move_ant(t_ant *ant);
-BOOL				print_ant(t_ant *ant, BOOL verbose);
+BOOL				print_ant(t_ant *ant, BOOL verbose, BOOL first_ant);
 
 typedef enum		e_room_state
 {
@@ -56,7 +57,6 @@ typedef struct		s_room
 	t_list			*links;
 	t_list			*my_link;
 	struct s_room	*previous;
-	t_ant			*ant;
 }					t_room;
 
 t_room				create_room(char *p_name, t_room_state p_state, int x,
@@ -76,6 +76,7 @@ typedef struct		s_link
 	t_room			*parent;
 	t_room			*children;
 	t_room			*actual_parent;
+	t_ant			*ant;
 	int				flow;
 }					t_link;
 

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 17:06:07 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:36:36 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int			main(int argc, char **argv)
 {
 	BOOL	options[NB_OPTION];
 
-	options[0] = FALSE;
+
+	for (size_t i = 0; i < NB_OPTION; i++)
+		options[i] = FALSE;
 	if (argc >= 2)
 	{
 		if (parse_options(argc, argv, options) == FALSE ||

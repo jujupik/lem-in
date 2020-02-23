@@ -20,7 +20,29 @@ OBJ_DIR	=	obj
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
 ##List every .c found inside SRC_DIR
-SRC = $(foreach dir, $(SRC_DIR), $(foreach file, $(wildcard $(dir)/*.c), $(notdir $(file))))
+SRC = 		acces_path.c \
+			acces_room.c \
+			basics.c \
+			calc_distance.c \
+			handle_paths.c \
+			lem_in.c \
+			main.c \
+			main_utils.c \
+			parse_map.c \
+			parse_map_utils.c \
+			parse_path.c \
+			prepare_path.c \
+			print_map.c \
+			print_room.c \
+			room_state.c \
+			solver.c \
+			t_ant.c \
+			t_link.c \
+			t_map.c \
+			t_path.c \
+			t_room.c \
+			t_room_flow.c \
+			tmp_free_funct.c
 
 ##List every lib to link
 LIB = jlib

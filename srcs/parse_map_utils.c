@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:59:24 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 16:55:05 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:22:22 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,10 @@ void	parse_parenting(t_map *map)
 	size_t	i;
 	size_t	j;
 
+	if (map->room_list->size < 2)
+		error_exit(1, "Not enought room");
+	if (map->start == NULL || map->end == NULL)
+		error_exit(1, "No start or end room");
 	i = 0;
 	calc_complete_distance(map->start, 0);
 	while (i < map->room_list->size)

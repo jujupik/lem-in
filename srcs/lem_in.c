@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 17:11:36 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:20:30 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		print_path_output(t_map *map, t_list *paths)
 void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 {
 	if (options[VERBOSE] == TRUE)
-		ft_printf("Paths parsing done !\n");
+		ft_printf("Paths parsing done !\n\n");
 	if (options[SIMPLE] == FALSE)
 		print_ant_output(map, paths, options[0]);
 	if (options[MAP])
@@ -77,12 +77,21 @@ void		lem_in(BOOL *options)
 	print_map_output(&map);
 	ft_printf("\n");
 	paths = parse_path(&map);
-	if (paths->size != 0 && map.nb_fourmis > 0)
+	if (paths != NULL && paths->size != 0 && map.nb_fourmis > 0)
 		lem_in_printer(&map, paths, options);
 	else if (map.nb_fourmis <= 0)
 		ft_printf("No ant to move\n");
 	else
 		ft_printf("No path found\n");
-	free_list(paths, tmp_free_path);
+	if (paths != NULL)
+		free_list(paths, tmp_free_path);
 	destroy_map(map);
+
+	// char buffer[250];
+	// read(0, &buffer, 100);
+	// int fd = open("tmp", O_RDONLY);
+	// line = NULL;
+	// while (get_next_line(fd, &line) > 0){}
+	// free(line);
+	// close(fd);
 }

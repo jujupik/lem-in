@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jlib_includes.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:55 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/24 17:39:57 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:16:03 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <float.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdarg.h>

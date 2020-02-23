@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jlib_define.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:42 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/24 17:39:45 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:33:59 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@
 # define TRUE 1
 # define FALSE 0
 # define PRINTF_BUFFER_SIZE 400
-
+# define MAX_FD 10000
 #endif

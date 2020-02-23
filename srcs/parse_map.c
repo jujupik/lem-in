@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 16:55:28 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/23 21:27:04 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void		parse_fourmis(t_map *map)
 	char	*line;
 
 	line = NULL;
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) > 0)
 	{
+		if (line == NULL)
+			error_exit(1, "Empty file");
 		if (line_is_commentary(line) == FALSE)
 			break ;
 	}
