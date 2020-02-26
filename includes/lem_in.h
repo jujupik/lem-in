@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:57:36 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/26 19:27:06 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char				*state_str(t_room_state state);
 typedef struct		s_room
 {
 	char			*name;
+	int				apparition;
 	t_room_state	state;
 	BOOL			active;
 	size_t			distance;

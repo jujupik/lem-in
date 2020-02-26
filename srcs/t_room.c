@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 18:30:20 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/26 19:27:21 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_room	create_room(char *p_name, t_room_state p_state, int x, int y)
 	result.name = ft_strdup(p_name);
 	if (ft_strlen(result.name) > g_name_len)
 		g_name_len = ft_strlen(result.name);
+	result.apparition = 0;
 	result.x = x;
 	result.y = y;
 	result.previous = NULL;

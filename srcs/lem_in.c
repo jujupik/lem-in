@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 22:05:13 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/26 19:30:41 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 	}
 }
 
+static void lem_in_checker(t_map *map, t_list *paths)
+{
+	(void)map;
+	(void)paths;
+	ft_printf("TO DO : Lem-in checker\n");
+}
+
 void		lem_in(BOOL *options)
 {
 	t_map	map;
@@ -90,5 +97,6 @@ void		lem_in(BOOL *options)
 		ft_printf("No path found\n");
 	if (paths != NULL)
 		free_list(paths, tmp_free_path);
+	lem_in_checker(&map, paths);
 	destroy_map(map);
 }

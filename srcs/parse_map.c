@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 21:50:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:42:37 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void		parse_fourmis(t_map *map)
 	{
 		if (line == NULL)
 			error_exit(1, "Empty file");
+		list_push_back(map->map_string, ft_strdup(line));
 		if (line_is_commentary(line) == FALSE)
 			break ;
 	}

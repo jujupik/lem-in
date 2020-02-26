@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:09:05 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/22 18:09:23 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/26 17:29:27 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ t_room	*get_next_room(t_room *room)
 		link = list_at(room->links, i);
 		next = (link->children != room ? link->children : link->parent);
 		if (next->distance == room->distance - 1)
-			return (next);
+		{
+			link = search_link(room, next);
+			if (link->actual_parent == room && link->flow == 1)
+				return (next);
+			if (link->actual_parent == next && link->flow == 0)
+				return (next);
+		}
+
 		i++;
 	}
 	return (NULL);
