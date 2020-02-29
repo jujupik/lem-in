@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 17:56:13 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/26 18:42:37 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 16:39:16 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void		parse_map_content(t_map *map)
 	end = FALSE;
 	found = FALSE;
 	line = NULL;
-	while (get_next_line(0, &line) && end == FALSE)
+	while (get_next_line(0, &line) > 0 && end == FALSE)
 	{
 		if (found == FALSE && line_is_link(line) == TRUE)
 			found = TRUE;

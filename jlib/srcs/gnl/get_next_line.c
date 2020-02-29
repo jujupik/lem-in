@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 22:10:38 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 16:38:40 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				get_next_line(int fd, char **line)
 		if (result == 0)
 		{
 			free(saved[fd]);
+			saved[fd] = NULL;
 			break ;
 		}
 		buff[result] = '\0';

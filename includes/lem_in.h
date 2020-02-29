@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/26 19:27:06 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 15:47:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include "lem_in_includes.h"
 
-# define NB_OPTION 5
+# define NB_OPTION 6
 # define VERBOSE 0
 # define SIMPLE 1
 # define MAP 2
 # define LEAKS 3
 # define MAP_ACTIVE 4
+# define CHECKER 5
 
 extern size_t		g_name_max_len;
 extern size_t		g_max_distance;

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:31:15 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 22:13:37 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 15:31:08 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,16 @@ void		print_path(t_path *tmp)
 	while (i < tmp->road->size)
 	{
 		room = list_at(tmp->road, i);
-		ft_printf("%s[%*s]", (i != 0 ? " - " : ""), g_name_max_len, room->name);
+		ft_printf("%s[", (i != 0 ? " - " : ""));
+		if (room->apparition == 0)
+			ft_printf("\033[0;0m");
+		else if (room->apparition == 1 || room->state != normal)
+			ft_printf("\033[0;32m");
+		else
+			ft_printf("\033[0;31m");
+		ft_printf("%*s", g_name_max_len, room->name);
+		ft_printf("\033[0;0m");
+		ft_printf("]");
 		i++;
 	}
 	ft_printf("\n");

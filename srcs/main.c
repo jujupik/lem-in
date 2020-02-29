@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 22:10:18 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 16:28:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ BOOL		parse_options(int argc, char **argv, BOOL *options)
 		else if (ft_strcmp(argv[i], "--leaks") == TRUE ||
 			ft_strcmp(argv[i], "-l") == TRUE)
 			options[LEAKS] = TRUE;
+		else if (ft_strcmp(argv[i], "--checker") == TRUE ||
+			ft_strcmp(argv[i], "-c") == TRUE)
+			options[CHECKER] = TRUE;
 		else
 			return (FALSE);
 		i++;
@@ -57,6 +60,8 @@ number of turn (Usefull when many ant on the hill)\n", space, "--simple (-s)");
 calculation\n", space, "--map-active (-m2)");
 	ft_printf("%*s -> Print leaks at the end of the program\n",
 	space, "--leaks (-l)");
+	ft_printf("%*s -> Check room used only one time\n",
+	space, "--checker (-c)");
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/26 19:30:41 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 15:33:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void		print_map_output(t_map *map)
 void		print_path_output(t_map *map, t_list *paths)
 {
 	t_path	*tmp;
-	t_room	*room;
 	size_t	note;
 	size_t	index[2];
 
@@ -37,24 +36,39 @@ void		print_path_output(t_map *map, t_list *paths)
 		tmp = list_at(paths, index[0]);
 		if (index[0] != 0)
 			ft_printf("\n");
-		ft_printf("Path %u : len %u / Nb fourmi %u\n", index[0],
-		tmp->road->size, tmp->count);
-		index[1] = 0;
-		while (index[1] < tmp->road->size)
-		{
-			room = list_at(tmp->road, index[1]);
-			ft_printf("%s[%4s]", (index[1] != 0 ? " - " : ""), room->name);
-			index[1]++;
-		}
-		ft_printf("\n");
+		print_path(tmp);
 		index[0]++;
 	}
 	note = solution_note(paths);
 	ft_printf("\nfor %u ants -> Nb turn : %u\n", map->nb_fourmis, note);
 }
 
+static void lem_in_checker(t_list *paths)
+{
+	t_room *tmp_room;
+	t_path *tmp_path;
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (paths->size > i)
+	{
+		tmp_path = list_at(paths, i);
+		j = 0;
+		while (tmp_path->road->size > j)
+		{
+			tmp_room = list_at(tmp_path->road, j);
+			tmp_room->apparition++;
+			j++;
+		}
+		i++;
+	}
+}
+
 void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 {
+	if (options[CHECKER] == TRUE)
+		lem_in_checker(paths);
 	if (options[VERBOSE] == TRUE)
 		ft_printf("Paths parsing done !\n\n");
 	if (options[SIMPLE] == FALSE)
@@ -71,13 +85,6 @@ void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 		ft_printf("\n");
 		print_path_output(map, paths);
 	}
-}
-
-static void lem_in_checker(t_map *map, t_list *paths)
-{
-	(void)map;
-	(void)paths;
-	ft_printf("TO DO : Lem-in checker\n");
 }
 
 void		lem_in(BOOL *options)
@@ -97,6 +104,5 @@ void		lem_in(BOOL *options)
 		ft_printf("No path found\n");
 	if (paths != NULL)
 		free_list(paths, tmp_free_path);
-	lem_in_checker(&map, paths);
 	destroy_map(map);
 }
