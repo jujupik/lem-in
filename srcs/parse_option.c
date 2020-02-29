@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:57:49 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:12:03 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static BOOL		parse_options2(int i, char **argv, BOOL *options)
 	return (TRUE);
 }
 
-BOOL		parse_options(int argc, char **argv, BOOL *options)
+BOOL			parse_options(int argc, char **argv, BOOL *options)
 {
 	int		i;
 
