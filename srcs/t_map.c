@@ -28,7 +28,7 @@ t_map	*malloc_map(void)
 {
 	t_map	*result;
 
-	result = (t_map *)malloc(sizeof(t_map));
+	result = (t_map *)ft_malloc(sizeof(t_map));
 	if (result == NULL)
 		error_exit(111, "Can't malloc a t_map");
 	*result = create_map();
@@ -44,5 +44,5 @@ void	destroy_map(t_map to_destroy)
 void	free_map(t_map *to_free)
 {
 	destroy_map(*to_free);
-	free(to_free);
+	ft_free(to_free);
 }

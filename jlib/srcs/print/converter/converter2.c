@@ -28,7 +28,7 @@ void	converter_o(t_data *data, t_flag_data *flag_data)
 	handle_precision(flag_data, &str);
 	handle_padding_num(flag_data, &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void	converter_u(t_data *data, t_flag_data *flag_data)
@@ -45,7 +45,7 @@ void	converter_u(t_data *data, t_flag_data *flag_data)
 	handle_precision(flag_data, &str);
 	handle_padding_num(flag_data, &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void	converter_x(t_data *data, t_flag_data *flag_data)
@@ -69,7 +69,7 @@ void	converter_x(t_data *data, t_flag_data *flag_data)
 	if (flag_data->sharp == TRUE && flag_data->zero == TRUE && i != 0)
 		ft_str_replace_front("0x", &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void	converter_x_maj(t_data *data, t_flag_data *flag_data)
@@ -94,7 +94,7 @@ void	converter_x_maj(t_data *data, t_flag_data *flag_data)
 		ft_str_replace_front("0X", &str);
 	ft_str_toupper(str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void	converter_p(t_data *data, t_flag_data *flag_data)
@@ -118,5 +118,5 @@ void	converter_p(t_data *data, t_flag_data *flag_data)
 	if (flag_data->zero == TRUE)
 		ft_str_replace_front("0x", &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }

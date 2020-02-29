@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:17:31 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 16:34:23 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:09:10 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void		malloc_list_tab(t_list *list)
 	size_t	i;
 
 	tmp = list->content;
-	list->content = (void ***)malloc(sizeof(void **) * (list->nb_line + 1));
+	list->content = (void ***)ft_malloc(sizeof(void **) * (list->nb_line + 1));
 	i = 0;
 	while (i < list->nb_line)
 	{
 		list->content[i] = tmp[i];
 		i++;
 	}
-	list->content[list->nb_line] = (void **)malloc(sizeof(void *) *
+	list->content[list->nb_line] = (void **)ft_malloc(sizeof(void *) *
 															list->push_size);
-	free(tmp);
+	ft_free(tmp);
 	i = 0;
 	while (i < list->push_size)
 	{

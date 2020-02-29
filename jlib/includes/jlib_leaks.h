@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jlib.h                                             :+:      :+:    :+:   */
+/*   jlib_leaks.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:11 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:09:01 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:08:51 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef JLIB_H
-# define JLIB_H
+#ifndef JLIB_LEAKS_H
+# define JLIB_LEAKS_H
 
-# include "jlib_includes.h"
-# include "jlib_define.h"
-# include "jlib_basics.h"
-# include "jlib_vector.h"
-# include "jlib_list.h"
-# include "jlib_leaks.h"
-# include "jlib_printf.h"
+extern BOOL g_debug;
+
+typedef struct		s_address
+{
+	size_t			index;
+	void			*ptr;
+	size_t			size;
+	char			**strings;
+}					t_address;
+
+t_address			create_address(size_t p_index, void *p_ptr);
+t_address			*malloc_address(size_t p_index, void *p_ptr);
+void				destroy_address(t_address to_destroy);
+void				free_address(t_address *to_free);
+void				print_address(t_address *address);
+void				address_get_trace(t_address *address);
+
+void				*ft_malloc(size_t size);
+void				ft_free(void *to_free);
+void				ft_get_leaks(char *msg);
 
 #endif

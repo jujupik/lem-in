@@ -26,6 +26,6 @@ char	*ft_strcut(char **s1, char delim)
 	ft_strncat(result, tmp, len);
 	*s1 = ft_strnew(ft_strlen(tmp) - len + 2);
 	ft_strcat(*s1, &(tmp[len + 1]));
-	free(tmp);
+	ft_free(tmp);
 	return (result);
 }

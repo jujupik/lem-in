@@ -37,7 +37,7 @@ t_room	*malloc_room(char *p_name, t_room_state p_state, int x, int y)
 {
 	t_room	*result;
 
-	result = (t_room *)malloc(sizeof(t_room));
+	result = (t_room *)ft_malloc(sizeof(t_room));
 	if (result == NULL)
 		error_exit(111, "Can't malloc a t_room");
 	*result = create_room(p_name, p_state, x, y);
@@ -46,7 +46,7 @@ t_room	*malloc_room(char *p_name, t_room_state p_state, int x, int y)
 
 void	destroy_room(t_room to_destroy)
 {
-	free(to_destroy.name);
+	ft_free(to_destroy.name);
 	free_list(to_destroy.my_link, tmp_free_link);
 	free_list(to_destroy.links, NULL);
 }
@@ -55,7 +55,7 @@ void	free_room(t_room *to_free)
 {
 	if (to_free != NULL)
 		destroy_room(*to_free);
-	free(to_free);
+	ft_free(to_free);
 }
 
 void	add_room_link(t_room *parent, t_room *children)

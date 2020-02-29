@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:01:55 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/01/26 17:01:57 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:55:58 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void					converter_s(t_data *data, t_flag_data *flag_data)
 		str2[(size_t)(flag_data->precision)] = '\0';
 	handle_padding(flag_data, &str2);
 	add_str_to_buffer(data, str2);
-	free(str2);
+	ft_free(str2);
 }
 
 static long long		converter_d_annexe(t_flag_data *flag_data, long long i,
@@ -73,7 +73,7 @@ void					converter_d(t_data *data, t_flag_data *flag_data)
 	if (flag_data->zero == FALSE)
 		handle_padding_num(flag_data, &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void					converter_c(t_data *data, t_flag_data *flag_data)
@@ -100,7 +100,7 @@ void					converter_c(t_data *data, t_flag_data *flag_data)
 		str = ft_strnew_c(1, c);
 		handle_padding_c(flag_data, &str);
 		add_str_to_buffer(data, str);
-		free(str);
+		ft_free(str);
 	}
 }
 

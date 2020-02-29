@@ -49,7 +49,7 @@ static char	**ft_tab(char *s, char c, char ***tab)
 	if (!s)
 		return (NULL);
 	count = ft_count_str((char *)s, c);
-	if (!(*tab = (char **)malloc(sizeof(char *) * (count + 1))))
+	if (!(*tab = (char **)ft_malloc(sizeof(char *) * (count + 1))))
 		return (NULL);
 	return (*tab);
 }

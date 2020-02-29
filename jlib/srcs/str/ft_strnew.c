@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:09:57 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/28 22:34:23 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 18:50:12 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strnew(size_t len)
 	char	*result;
 	size_t	i;
 
-	result = (char *)malloc(sizeof(char) * (len + 1));
+	result = (char *)ft_malloc(sizeof(char) * (len + 1));
 	if (result == NULL)
 		return (NULL);
 	i = 0;

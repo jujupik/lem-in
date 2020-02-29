@@ -12,15 +12,15 @@
 
 #include "jlib.h"
 
-void	ft_tab_free(char **tab)
+void	ft_tab_ft_free(char **tab)
 {
 	int	i;
 
 	i = 0;
 	while (tab[i] != NULL)
 	{
-		free(tab[i]);
+		ft_free(tab[i]);
 		i++;
 	}
-	free(tab);
+	ft_free(tab);
 }

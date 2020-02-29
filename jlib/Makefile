@@ -109,6 +109,11 @@ SRC =	ft_atoi.c \
 		ft_get_leaks.c \
 		ft_tab_free.c \
 		ft_tab_len.c \
+		jlib_chain.c \
+		jlib_chain_acces.c \
+		jlib_chain_edit.c \
+		t_address.c \
+		t_address_print.c \
 		jlib_vector.c
 
 ##Transform and place every .o from SRC
@@ -119,7 +124,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 ##
 
 ##Basics flags
-CFLAGS=		-g -fsanitize=address
+CFLAGS =	-g -fsanitize=address
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir))

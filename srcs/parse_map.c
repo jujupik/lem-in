@@ -31,7 +31,7 @@ static void		parse_fourmis(t_map *map)
 		error_exit(1, "Bad fourmis line");
 	map->nb_fourmis = ft_atoi(line);
 	list_push_back(map->map_string, ft_strdup(line));
-	free(line);
+	ft_free(line);
 }
 
 void			parse_link(t_map *map, char *line, BOOL *end)
@@ -57,7 +57,7 @@ void			parse_link(t_map *map, char *line, BOOL *end)
 		add_room_link(room_a, room_b);
 		if (room_a == map->end)
 			swap_link(search_link(room_a, room_b));
-		ft_tab_free(tab);
+		ft_tab_ft_free(tab);
 	}
 	else if (line_is_commentary(line) == FALSE)
 		*end = TRUE;
@@ -100,7 +100,7 @@ static void		parse_map_content(t_map *map)
 		if (end == FALSE)
 			list_push_back(map->map_string, ft_strdup(line));
 	}
-	free(line);
+	ft_free(line);
 }
 
 t_map			parse_map(void)

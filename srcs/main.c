@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 16:28:51 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:29:14 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			main(int argc, char **argv)
 	BOOL	options[NB_OPTION];
 	size_t	i;
 
+	g_debug = 1;
 	i = 0;
 	while (i < NB_OPTION)
 	{
@@ -100,7 +101,7 @@ int			main(int argc, char **argv)
 	if (options[LEAKS] == TRUE)
 	{
 		ft_printf("\n");
-		ft_get_leaks_total("lem-in");
+		ft_get_leaks("At the end of program");
 	}
 	return (0);
 }

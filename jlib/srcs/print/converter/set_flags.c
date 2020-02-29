@@ -46,7 +46,7 @@ void		handle_padding(t_flag_data *flag_data, char **str2)
 		ft_str_replace_back(str2, s2);
 	else
 		ft_str_replace_front(s2, str2);
-	free(s2);
+	ft_free(s2);
 }
 
 void		handle_padding_c(t_flag_data *flag_data, char **str2)
@@ -60,7 +60,7 @@ void		handle_padding_c(t_flag_data *flag_data, char **str2)
 		ft_str_replace_back(str2, s2);
 	else
 		ft_str_replace_front(s2, str2);
-	free(s2);
+	ft_free(s2);
 }
 
 void		handle_precision(t_flag_data *flag_data, char **str)
@@ -71,7 +71,7 @@ void		handle_precision(t_flag_data *flag_data, char **str)
 	{
 		s2 = ft_strnew_c(flag_data->precision - (int)(ft_strlen(*str)), '0');
 		ft_str_replace_front(s2, str);
-		free(s2);
+		ft_free(s2);
 	}
 }
 
@@ -85,12 +85,12 @@ void		handle_padding_num(t_flag_data *flag_data, char **str2)
 	{
 		s2 = ft_strnew_c(flag_data->padding - (int)(ft_strlen(*str2)), '0');
 		ft_str_replace_front(s2, str2);
-		free(s2);
+		ft_free(s2);
 	}
 	s2 = ft_strnew_c(flag_data->padding - (int)(ft_strlen(*str2)), ' ');
 	if (flag_data->minus == TRUE)
 		ft_str_replace_back(str2, s2);
 	else
 		ft_str_replace_front(s2, str2);
-	free(s2);
+	ft_free(s2);
 }

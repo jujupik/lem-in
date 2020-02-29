@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jlib_define.h                                      :+:      :+:    :+:   */
+/*   t_address_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 17:39:42 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 18:58:15 by jrouchon         ###   ########.fr       */
+/*   Created: 2019/11/01 13:38:27 by jrouchon          #+#    #+#             */
+/*   Updated: 2020/02/29 19:17:28 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef JLIB_DEFINE_H
-# define JLIB_DEFINE_H
+#include "jlib.h"
 
-# define DEBUG 0
-# define BUFF_SIZE 10
+void	print_address(t_address *address)
+{
+	size_t	i;
 
-# define BOOL char
-# define TRUE 1
-# define FALSE 0
-# define UNKNOW 2
-
-# define PRINTF_BUFFER_SIZE 400
-# define MAX_FD 10000
-#endif
+	ft_printf("Malloc num %u : %p", address->index, address->ptr);
+	if (address->size < 3)
+	{
+		ft_printf("\n");
+		return ;
+	}
+	ft_printf(" -> \n");
+	i = address->size - 3;
+	while (i >= 2)
+	{
+		ft_printf("				%s\n", address->strings[i]);
+		i--;
+	}
+}

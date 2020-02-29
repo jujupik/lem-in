@@ -20,7 +20,7 @@ void	converter_percent(t_data *data, t_flag_data *flag_data)
 	str = ft_strdup("%");
 	handle_padding(flag_data, &str);
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }
 
 void	converter_other(t_data *data, t_flag_data *flag_data, char c)
@@ -53,7 +53,7 @@ void	converter_b(t_data *data, t_flag_data *flag_data)
 		str2[(size_t)(flag_data->precision)] = '\0';
 	handle_padding(flag_data, &str2);
 	add_str_to_buffer(data, str2);
-	free(str2);
+	ft_free(str2);
 }
 
 void	converter_v(t_data *data, t_flag_data *flag_data)
@@ -67,12 +67,12 @@ void	converter_v(t_data *data, t_flag_data *flag_data)
 	str = ft_strdup("(");
 	tmp = ft_itoa(value.x);
 	ft_str_replace_back(&str, tmp);
-	free(tmp);
+	ft_free(tmp);
 	ft_str_replace_back(&str, " / ");
 	tmp = ft_itoa(value.y);
 	ft_str_replace_back(&str, tmp);
-	free(tmp);
+	ft_free(tmp);
 	ft_str_replace_back(&str, ")");
 	add_str_to_buffer(data, str);
-	free(str);
+	ft_free(str);
 }

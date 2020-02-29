@@ -44,7 +44,7 @@ void	add_room(t_map *map, char *line, t_room_state *state)
 	list_push_back(map->room_list, room);
 	set_map_room(map, room);
 	*state = normal;
-	ft_tab_free(tab);
+	ft_tab_ft_free(tab);
 }
 
 t_room	*search_room(t_map *map, char *room_name)

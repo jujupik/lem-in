@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 16:35:57 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:07:58 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				error_exit(int nb, char *str);
 int					ft_tab_len(char **tab);
-void				ft_tab_free(char **tab);
+void				ft_tab_ft_free(char **tab);
 int					*ft_intparse_tab(char **tab);
 int					**ft_inttab_new(int size);
 int					*ft_int_str_new(int size);
@@ -87,7 +87,6 @@ void				ft_swap_int(int *a, int *b);
 void				ft_swap_float(float *a, float *b);
 int					ft_min(int nb_number, ...);
 int					ft_max(int nb_number, ...);
-void				ft_get_leaks(char *prog_name, char *msg);
 int					ft_strcchr(char *str, char c);
 char				*ft_strcut(char **src, char delim);
 int					nbr_len(long long n, int base);
@@ -103,6 +102,5 @@ char				*ft_uitoa_base(unsigned long long n, int base);
 char				*ft_uitoa(unsigned long long n);
 void				ft_str_replace_front(char *s2, char **s1);
 void				ft_str_replace_back(char **s1, char *s2);
-void				ft_get_leaks_total(char *prog_name);
 
 #endif

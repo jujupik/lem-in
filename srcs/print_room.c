@@ -25,7 +25,7 @@ void		print_room(t_room *room)
 			(room->previous == NULL ? "null" : room->previous->name), \
 			state_str(room->state), room_flow_total(room),\
 			room_flow_children(room), room_flow_parent(room));
-	free(dist_str);
+	ft_free(dist_str);
 	i = 0;
 	while (i < room->links->size)
 	{

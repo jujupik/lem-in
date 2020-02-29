@@ -79,5 +79,5 @@ void		print_ant_output(t_map *map, t_list *paths, BOOL verbose)
 			print_anthill(anthill, map, verbose, j);
 	}
 	ft_printf("\n");
-	free(anthill);
+	ft_free(anthill);
 }
