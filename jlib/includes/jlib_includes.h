@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:55 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 18:48:49 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:48:20 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <execinfo.h>
+# include <dlfcn.h>
 
 #endif

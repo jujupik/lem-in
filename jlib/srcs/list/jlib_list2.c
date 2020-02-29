@@ -18,16 +18,16 @@ void		malloc_list_tab(t_list *list)
 	size_t	i;
 
 	tmp = list->content;
-	list->content = (void ***)ft_malloc(sizeof(void **) * (list->nb_line + 1));
+	list->content = (void ***)malloc(sizeof(void **) * (list->nb_line + 1));
 	i = 0;
 	while (i < list->nb_line)
 	{
 		list->content[i] = tmp[i];
 		i++;
 	}
-	list->content[list->nb_line] = (void **)ft_malloc(sizeof(void *) *
+	list->content[list->nb_line] = (void **)malloc(sizeof(void *) *
 															list->push_size);
-	ft_free(tmp);
+	free(tmp);
 	i = 0;
 	while (i < list->push_size)
 	{

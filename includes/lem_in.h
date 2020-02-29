@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:55:20 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 15:47:46 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:56:58 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,6 @@ void				tmp_free_path(void *path);
 void				tmp_free_link(void *link);
 
 void				lem_in(BOOL *options);
+BOOL				parse_options(int argc, char **argv, BOOL *options);
 
 #endif

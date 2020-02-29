@@ -17,7 +17,7 @@ int	*ft_int_str_new(int size)
 	int	i;
 	int	*result;
 
-	result = (int *)ft_malloc(sizeof(int) * size);
+	result = (int *)malloc(sizeof(int) * size);
 	i = 0;
 	while (i < size)
 	{

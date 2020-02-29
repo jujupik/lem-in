@@ -42,6 +42,7 @@ SRC = 		acces_path.c \
 			t_path.c \
 			t_room.c \
 			t_room_flow.c \
+			parse_option.c \
 			tmp_free_funct.c
 
 ##List every lib to link
@@ -55,7 +56,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 ##
 
 ##Basics flags
-CFLAGS =	-g -fsanitize=address
+CFLAGS =	-Wall -Werror -Wextra
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir))

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:50:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 18:28:03 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:51:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_link	*malloc_link(t_room *p_parent, t_room *p_children)
 {
 	t_link	*result;
 
-	result = (t_link *)ft_malloc(sizeof(t_link));
+	result = (t_link *)malloc(sizeof(t_link));
 	if (result == NULL)
 		error_exit(111, "Can't malloc a t_link");
 	*result = create_link(p_parent, p_children);
@@ -45,7 +45,7 @@ void	free_link(t_link *to_free)
 	if (to_free != NULL)
 	{
 		destroy_link(*to_free);
-		ft_free(to_free);
+		free(to_free);
 	}
 }
 

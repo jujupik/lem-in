@@ -35,7 +35,7 @@ BOOL	line_is_room(char *line)
 		return (FALSE);
 	tab = ft_strsplit(line, ' ');
 	len = ft_tab_len(tab);
-	ft_tab_ft_free(tab);
+	ft_tab_free(tab);
 	return (len == 3 ? TRUE : FALSE);
 }
 
@@ -48,7 +48,7 @@ BOOL	line_is_link(char *line)
 		return (FALSE);
 	tab = ft_strsplit(line, '-');
 	len = ft_tab_len(tab);
-	ft_tab_ft_free(tab);
+	ft_tab_free(tab);
 	return (len == 2 ? TRUE : FALSE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 16:38:40 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:11:25 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ BOOL			is_only_compose(char *src, char c, size_t len)
 static int		get_next_line_result(char **line, char **saved, int result)
 {
 	if (*line != NULL)
-		ft_free(*line);
+		free(*line);
 	if (ft_strlen(*saved) == 0)
 	{
 		*line = NULL;
@@ -42,10 +42,10 @@ static int		get_next_line_result(char **line, char **saved, int result)
 static int		handle_quit_get_next_line(char **saved_line, char **line)
 {
 	if (*saved_line != NULL)
-		ft_free(*saved_line);
+		free(*saved_line);
 	*saved_line = NULL;
 	if (*line != NULL)
-		ft_free(*line);
+		free(*line);
 	*line = NULL;
 	return (0);
 }
@@ -65,7 +65,7 @@ int				get_next_line(int fd, char **line)
 		result = read(fd, buff, BUFF_SIZE);
 		if (result == 0)
 		{
-			ft_free(saved[fd]);
+			free(saved[fd]);
 			saved[fd] = NULL;
 			break ;
 		}
@@ -74,7 +74,7 @@ int				get_next_line(int fd, char **line)
 			return (handle_quit_get_next_line(&(saved[fd]), line));
 		tmp = saved[fd];
 		saved[fd] = ft_strjoin(tmp, buff);
-		ft_free(tmp);
+		free(tmp);
 	}
 	return (get_next_line_result(line, &(saved[fd]), result));
 }

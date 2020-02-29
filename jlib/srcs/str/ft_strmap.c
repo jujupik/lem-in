@@ -19,7 +19,7 @@ char	*ft_strmap(char *s, char (*f)(char))
 
 	if (!s)
 		return (NULL);
-	str = (char *)ft_malloc(sizeof(char) * (ft_strlen(s) + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (str == NULL)
 		return (NULL);
 	i = 0;

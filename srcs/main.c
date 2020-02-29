@@ -6,43 +6,11 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:29:14 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:06:57 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-BOOL		parse_options(int argc, char **argv, BOOL *options)
-{
-	int		i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (ft_strcmp(argv[i], "--verbose") == TRUE ||
-			ft_strcmp(argv[i], "-v") == TRUE)
-			options[VERBOSE] = TRUE;
-		else if (ft_strcmp(argv[i], "--simple") == TRUE ||
-			ft_strcmp(argv[i], "-s") == TRUE)
-			options[SIMPLE] = TRUE;
-		else if (ft_strcmp(argv[i], "--map") == TRUE ||
-			ft_strcmp(argv[i], "-m") == TRUE)
-			options[MAP] = TRUE;
-		else if (ft_strcmp(argv[i], "--map-active") == TRUE ||
-			ft_strcmp(argv[i], "-m2") == TRUE)
-			options[MAP_ACTIVE] = TRUE;
-		else if (ft_strcmp(argv[i], "--leaks") == TRUE ||
-			ft_strcmp(argv[i], "-l") == TRUE)
-			options[LEAKS] = TRUE;
-		else if (ft_strcmp(argv[i], "--checker") == TRUE ||
-			ft_strcmp(argv[i], "-c") == TRUE)
-			options[CHECKER] = TRUE;
-		else
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
-}
 
 void		print_usage(void)
 {
@@ -84,7 +52,6 @@ int			main(int argc, char **argv)
 	BOOL	options[NB_OPTION];
 	size_t	i;
 
-	g_debug = 1;
 	i = 0;
 	while (i < NB_OPTION)
 	{

@@ -6,13 +6,13 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:12 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 15:33:51 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:53:15 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		print_map_output(t_map *map)
+void			print_map_output(t_map *map)
 {
 	size_t i;
 
@@ -24,7 +24,7 @@ void		print_map_output(t_map *map)
 	}
 }
 
-void		print_path_output(t_map *map, t_list *paths)
+void			print_path_output(t_map *map, t_list *paths)
 {
 	t_path	*tmp;
 	size_t	note;
@@ -43,7 +43,7 @@ void		print_path_output(t_map *map, t_list *paths)
 	ft_printf("\nfor %u ants -> Nb turn : %u\n", map->nb_fourmis, note);
 }
 
-static void lem_in_checker(t_list *paths)
+static void		lem_in_checker(t_list *paths)
 {
 	t_room *tmp_room;
 	t_path *tmp_path;
@@ -65,7 +65,7 @@ static void lem_in_checker(t_list *paths)
 	}
 }
 
-void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
+void			lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 {
 	if (options[CHECKER] == TRUE)
 		lem_in_checker(paths);
@@ -87,11 +87,12 @@ void		lem_in_printer(t_map *map, t_list *paths, BOOL *options)
 	}
 }
 
-void		lem_in(BOOL *options)
+void			lem_in(BOOL *options)
 {
 	t_map	map;
 	t_list	*paths;
 
+	g_debug = options[LEAKS];
 	map = parse_map();
 	print_map_output(&map);
 	ft_printf("\n");

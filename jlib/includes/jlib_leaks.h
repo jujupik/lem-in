@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:11 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:08:51 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:51:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void				free_address(t_address *to_free);
 void				print_address(t_address *address);
 void				address_get_trace(t_address *address);
 
-void				*ft_malloc(size_t size);
-void				ft_free(void *to_free);
+void				*malloc(size_t size);
+void				free(void *to_free);
 void				ft_get_leaks(char *msg);
 
 #endif

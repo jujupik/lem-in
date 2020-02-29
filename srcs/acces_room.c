@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:09:05 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 13:38:56 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:52:52 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_room	*get_next_room(t_room *room)
 			if (link->actual_parent == next && link->flow == 0)
 				return (next);
 		}
-
 		i++;
 	}
 	return (NULL);

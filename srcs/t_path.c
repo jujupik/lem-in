@@ -26,7 +26,7 @@ t_path			*malloc_path(void)
 {
 	t_path	*result;
 
-	result = (t_path *)ft_malloc(sizeof(t_path));
+	result = (t_path *)malloc(sizeof(t_path));
 	if (result == NULL)
 		error_exit(111, "Can't malloc a t_path");
 	*result = create_path();
@@ -43,7 +43,7 @@ void			free_path(t_path *to_free)
 	if (to_free == NULL)
 		return ;
 	destroy_path(*to_free);
-	ft_free(to_free);
+	free(to_free);
 }
 
 void			add_room_to_path(t_path *path, t_room *room)

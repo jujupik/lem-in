@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 17:39:21 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:07:58 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:51:46 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				error_exit(int nb, char *str);
 int					ft_tab_len(char **tab);
-void				ft_tab_ft_free(char **tab);
+void				ft_tab_free(char **tab);
 int					*ft_intparse_tab(char **tab);
 int					**ft_inttab_new(int size);
 int					*ft_int_str_new(int size);

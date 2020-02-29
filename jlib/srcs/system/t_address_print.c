@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 13:38:27 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/29 19:17:28 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:31:17 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_address(t_address *address)
 		return ;
 	}
 	ft_printf(" -> \n");
-	i = address->size - 3;
+	i = address->size - 2;
 	while (i >= 2)
 	{
 		ft_printf("				%s\n", address->strings[i]);
