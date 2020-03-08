@@ -6,7 +6,7 @@
 /*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:10:44 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/02/23 16:13:24 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:57:30 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		prepare_path(t_map *map, t_list *paths)
 	size_t	i;
 	t_path	*tmp_path;
 
+	if (map == NULL || paths == NULL || paths->size == 0)
+		return ;
 	i = 0;
 	while (i < paths->size)
 	{
