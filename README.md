@@ -1,6 +1,6 @@
 # Lem-in
 
-Projet algorithmique de parcours de graphe augmentant afin d'obtenir les flux maximum.
+Projet algorithmique de parcours de graphe augmentant afin d'obtenir les flux maximums.
 
 ### Projet répondant à la problématique suivante :
 
